@@ -86,7 +86,11 @@ export const Footer: React.FC = () => {
             <a href="#bespoke" className="hover:text-[#d4af37] transition-colors">Bespoke Design Lab</a>
             <a href="#rates" className="hover:text-[#d4af37] transition-colors">Daily Gold Rates</a>
             <a href="#heritage" className="hover:text-[#d4af37] transition-colors">Our Heritage</a>
+            <a href="/admin" className="text-[#d4af37] hover:underline font-semibold flex items-center gap-1 mt-1">
+              👑 Admin &amp; Orders Portal
+            </a>
           </div>
+
 
           {/* Newsletter / Gold Rate Alert Col */}
           <div className="lg:col-span-2 flex flex-col gap-3 text-xs">

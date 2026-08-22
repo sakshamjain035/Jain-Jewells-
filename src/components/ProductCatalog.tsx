@@ -33,6 +33,14 @@ export const ProductCatalog: React.FC<ProductCatalogProps> = ({
   const [searchQuery, setSearchQuery] = useState<string>("");
   const [selectedProduct, setSelectedProduct] = useState<Product | null>(null);
   const [sortBy, setSortBy] = useState<"featured" | "price-asc" | "price-desc" | "weight">("featured");
+  const [orderModalProduct, setOrderModalProduct] = useState<Product | null>(null);
+  const [orderPlacedSuccess, setOrderPlacedSuccess] = useState<any | null>(null);
+  const [buyerName, setBuyerName] = useState("");
+  const [buyerPhone, setBuyerPhone] = useState("");
+  const [buyerEmail, setBuyerEmail] = useState("");
+  const [buyerCity, setBuyerCity] = useState("Jaipur");
+  const [buyerAddress, setBuyerAddress] = useState("B-4, C-Scheme");
+  const [isOrdering, setIsOrdering] = useState(false);
 
   const categories = [
     { id: "all", label: "All Masterpieces" },
@@ -42,6 +50,7 @@ export const ProductCatalog: React.FC<ProductCatalogProps> = ({
     { id: "everyday", label: "Everyday Luxury" },
     { id: "silver", label: "Fine Silver" },
   ];
+
 
   // Filtering
   const filteredProducts = PRODUCTS_DATA.filter((item) => {
@@ -351,13 +360,24 @@ export const ProductCatalog: React.FC<ProductCatalogProps> = ({
 
                 {/* CTAs */}
                 <div className="flex flex-col sm:flex-row items-stretch gap-3 pt-3">
+                  <button
+                    onClick={() => {
+                      const prod = selectedProduct;
+                      setSelectedProduct(null);
+                      setOrderModalProduct(prod);
+                    }}
+                    className="flex-1 gold-bg-gradient text-[#06110c] font-bold text-xs uppercase tracking-wider py-3.5 px-4 rounded-xl flex items-center justify-center gap-2 shadow-lg hover:scale-105 transition-all"
+                  >
+                    <Sparkles className="w-4 h-4" /> Order / Reserve Online
+                  </button>
+
                   <a
                     href={`https://wa.me/${SHOWROOM_DETAILS.whatsapp.replace("+", "")}?text=Hello%20Jain%20Jewells%2C%20I%20am%20interested%20in%20item%20%22${encodeURIComponent(selectedProduct.name)}%22%20(ID%3A%20${selectedProduct.id}%2C%20Price%3A%20%E2%82%B9${selectedProduct.price.toLocaleString("en-IN")}).%20Is%20this%20piece%20available%20for%20a%20showroom%20trial%3F`}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="flex-1 gold-bg-gradient text-[#06110c] font-bold text-xs uppercase tracking-wider py-3.5 px-5 rounded-xl flex items-center justify-center gap-2 shadow-lg"
+                    className="flex-1 bg-[#0d2a1e] hover:bg-[#123e2d] border border-[#d4af37]/40 text-[#fcf6ba] font-semibold text-xs uppercase tracking-wider py-3.5 px-4 rounded-xl flex items-center justify-center gap-2"
                   >
-                    <MessageSquare className="w-4 h-4" /> Enquire on WhatsApp
+                    <MessageSquare className="w-4 h-4" /> WhatsApp Inquiry
                   </a>
 
                   <button
@@ -365,9 +385,10 @@ export const ProductCatalog: React.FC<ProductCatalogProps> = ({
                       setSelectedProduct(null);
                       onOpenAppointment();
                     }}
-                    className="flex-1 bg-[#0d2a1e] hover:bg-[#123e2d] border border-[#d4af37]/40 text-white font-semibold text-xs uppercase tracking-wider py-3.5 px-5 rounded-xl flex items-center justify-center gap-2"
+                    className="bg-white/10 hover:bg-white/20 text-white font-semibold text-xs uppercase tracking-wider py-3.5 px-4 rounded-xl flex items-center justify-center gap-1.5"
+                    title="Book Showroom Trial"
                   >
-                    <Calendar className="w-4 h-4 text-[#d4af37]" /> Book Showroom Trial
+                    <Calendar className="w-4 h-4 text-[#d4af37]" /> Trial
                   </button>
                 </div>
               </div>
@@ -375,6 +396,190 @@ export const ProductCatalog: React.FC<ProductCatalogProps> = ({
           </div>
         </div>
       )}
+
+      {/* Online Order / Reserve Masterpiece Modal */}
+      {orderModalProduct && (
+        <div className="fixed inset-0 z-50 bg-black/85 backdrop-blur-md flex items-center justify-center p-4 overflow-y-auto">
+          <div className="emerald-glass max-w-lg w-full rounded-3xl p-6 sm:p-8 border border-[#d4af37] relative shadow-2xl my-8 text-white">
+            <button
+              onClick={() => {
+                setOrderModalProduct(null);
+                setOrderPlacedSuccess(null);
+              }}
+              className="absolute top-4 right-4 text-white/70 hover:text-white p-2 rounded-full bg-white/10"
+            >
+              <X className="w-5 h-5" />
+            </button>
+
+            {!orderPlacedSuccess ? (
+              <div>
+                <div className="flex items-center gap-3 border-b border-white/10 pb-4 mb-4">
+                  <img
+                    src={orderModalProduct.image}
+                    alt={orderModalProduct.name}
+                    className="w-14 h-14 rounded-xl object-cover border border-[#d4af37]"
+                  />
+                  <div>
+                    <h3 className="text-base font-serif-luxury font-bold gold-text-gradient">
+                      Reserve &amp; Order Masterpiece
+                    </h3>
+                    <p className="text-xs text-white/70">{orderModalProduct.name}</p>
+                    <strong className="text-sm font-serif-luxury text-[#fcf6ba]">
+                      ₹{orderModalProduct.price.toLocaleString("en-IN")}
+                    </strong>
+                  </div>
+                </div>
+
+                <form
+                  onSubmit={async (e) => {
+                    e.preventDefault();
+                    setIsOrdering(true);
+                    try {
+                      const res = await fetch("/api/orders", {
+                        method: "POST",
+                        headers: { "Content-Type": "application/json" },
+                        body: JSON.stringify({
+                          customerName: buyerName,
+                          customerPhone: buyerPhone,
+                          customerEmail: buyerEmail || `${buyerName.toLowerCase().replace(/\s+/g, "")}@gmail.com`,
+                          shippingAddress: {
+                            street: buyerAddress,
+                            city: buyerCity,
+                            state: "Rajasthan",
+                            pincode: "302001",
+                          },
+                          items: [
+                            {
+                              productId: orderModalProduct.id,
+                              name: orderModalProduct.name,
+                              image: orderModalProduct.image,
+                              category: orderModalProduct.category,
+                              metal: orderModalProduct.metal,
+                              metalPurity: orderModalProduct.metalPurity,
+                              weightGrams: orderModalProduct.weightGrams,
+                              quantity: 1,
+                              price: orderModalProduct.price,
+                            },
+                          ],
+                          totalAmount: orderModalProduct.price,
+                          paymentStatus: "Paid",
+                          paymentMethod: "UPI / NetBanking",
+                          orderStatus: "Received",
+                          notes: "Storefront express checkout reservation.",
+                        }),
+                      });
+                      const data = await res.json();
+                      if (data.success) {
+                        setOrderPlacedSuccess(data.order);
+                      }
+                    } catch (err) {
+                      console.error("Order error:", err);
+                    } finally {
+                      setIsOrdering(false);
+                    }
+                  }}
+                  className="flex flex-col gap-3 text-xs"
+                >
+                  <div>
+                    <label className="font-semibold uppercase text-white/80 block mb-1">Your Full Name *</label>
+                    <input
+                      type="text"
+                      required
+                      placeholder="e.g. Smt. Sunita Jain"
+                      value={buyerName}
+                      onChange={(e) => setBuyerName(e.target.value)}
+                      className="w-full bg-[#061811] border border-white/15 focus:border-[#d4af37] text-white rounded-xl p-2.5 outline-none"
+                    />
+                  </div>
+
+                  <div className="grid grid-cols-2 gap-2">
+                    <div>
+                      <label className="font-semibold uppercase text-white/80 block mb-1">Phone *</label>
+                      <input
+                        type="tel"
+                        required
+                        placeholder="+91 98290 XXXXX"
+                        value={buyerPhone}
+                        onChange={(e) => setBuyerPhone(e.target.value)}
+                        className="w-full bg-[#061811] border border-white/15 focus:border-[#d4af37] text-white rounded-xl p-2.5 outline-none"
+                      />
+                    </div>
+                    <div>
+                      <label className="font-semibold uppercase text-white/80 block mb-1">City *</label>
+                      <input
+                        type="text"
+                        required
+                        value={buyerCity}
+                        onChange={(e) => setBuyerCity(e.target.value)}
+                        className="w-full bg-[#061811] border border-white/15 focus:border-[#d4af37] text-white rounded-xl p-2.5 outline-none"
+                      />
+                    </div>
+                  </div>
+
+                  <div>
+                    <label className="font-semibold uppercase text-white/80 block mb-1">Delivery Address *</label>
+                    <input
+                      type="text"
+                      required
+                      value={buyerAddress}
+                      onChange={(e) => setBuyerAddress(e.target.value)}
+                      placeholder="Street, Landmark, City"
+                      className="w-full bg-[#061811] border border-white/15 focus:border-[#d4af37] text-white rounded-xl p-2.5 outline-none"
+                    />
+                  </div>
+
+                  <div className="bg-[#0b2419] p-2.5 rounded-xl border border-emerald-500/20 text-[11px] text-emerald-300 flex items-center gap-2">
+                    <ShieldCheck className="w-4 h-4 shrink-0" />
+                    <span>Includes 100% Insured Transit &amp; 6-Digit HUID Hallmarking Certificate</span>
+                  </div>
+
+                  <button
+                    type="submit"
+                    disabled={isOrdering}
+                    className="gold-bg-gradient text-[#06110c] font-bold text-xs uppercase tracking-wider py-3 rounded-xl shadow-lg mt-2 flex items-center justify-center gap-2"
+                  >
+                    {isOrdering ? "Placing Order in Database..." : "Confirm & Place Order (₹" + orderModalProduct.price.toLocaleString("en-IN") + ")"}
+                  </button>
+                </form>
+              </div>
+            ) : (
+              <div className="text-center py-6">
+                <div className="w-14 h-14 rounded-full bg-emerald-950 border border-emerald-500 text-emerald-400 flex items-center justify-center mx-auto mb-3">
+                  <Check className="w-7 h-7" />
+                </div>
+                <span className="text-[10px] text-[#d4af37] font-bold uppercase tracking-widest block">
+                  Order Successfully Placed!
+                </span>
+                <h3 className="text-xl font-serif-luxury font-bold text-white mt-1">
+                  Order #{orderPlacedSuccess.orderNumber}
+                </h3>
+                <p className="text-xs text-white/70 max-w-sm mx-auto mt-2">
+                  Thank you <strong className="text-white">{orderPlacedSuccess.customerName}</strong>. Your order is logged in our atelier system with status <span className="text-amber-300 font-bold">Received (Awaiting Dispatch)</span>.
+                </p>
+
+                <div className="flex gap-2 mt-6 justify-center">
+                  <button
+                    onClick={() => {
+                      setOrderModalProduct(null);
+                      setOrderPlacedSuccess(null);
+                    }}
+                    className="gold-bg-gradient text-[#06110c] font-bold text-xs uppercase tracking-wider px-6 py-2.5 rounded-xl shadow"
+                  >
+                    Continue Browsing
+                  </button>
+                  <a
+                    href="/admin"
+                    className="bg-[#0b2419] border border-emerald-500/40 text-emerald-300 font-semibold text-xs py-2.5 px-4 rounded-xl flex items-center gap-1.5"
+                  >
+                    View in Admin Panel →
+                  </a>
+                </div>
+              </div>
+            )}
+          </div>
+        </div>
+      )}
     </section>
   );
 };
+

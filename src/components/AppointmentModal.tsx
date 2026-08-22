@@ -21,11 +21,25 @@ export const AppointmentModal: React.FC<AppointmentModalProps> = ({ isOpen, onCl
   });
   const [isBooked, setIsBooked] = useState(false);
 
+  const [isSubmitting, setIsSubmitting] = useState(false);
+
   if (!isOpen) return null;
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    setIsBooked(true);
+    setIsSubmitting(true);
+    try {
+      await fetch("/api/appointments", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(formData),
+      });
+    } catch (err) {
+      console.error("Failed to save appointment to DB:", err);
+    } finally {
+      setIsSubmitting(false);
+      setIsBooked(true);
+    }
   };
 
   const waMessage = encodeURIComponent(
@@ -166,10 +180,12 @@ export const AppointmentModal: React.FC<AppointmentModalProps> = ({ isOpen, onCl
 
               <button
                 type="submit"
-                className="gold-bg-gradient text-[#06110c] font-bold text-xs uppercase tracking-wider py-3.5 rounded-xl mt-2 flex items-center justify-center gap-2 shadow-lg"
+                disabled={isSubmitting}
+                className="gold-bg-gradient text-[#06110c] font-bold text-xs uppercase tracking-wider py-3.5 rounded-xl mt-2 flex items-center justify-center gap-2 shadow-lg disabled:opacity-50"
               >
-                Confirm VIP Appointment
+                {isSubmitting ? "Securing VIP Suite in Database..." : "Confirm VIP Appointment"}
               </button>
+
             </form>
           </div>
         ) : (

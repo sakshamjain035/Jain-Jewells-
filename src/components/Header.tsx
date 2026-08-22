@@ -136,7 +136,15 @@ export const Header: React.FC<HeaderProps> = ({
             >
               Heritage
             </a>
+            <a
+              href="/admin"
+              className="text-[#d4af37] bg-[#082417] px-3 py-1.5 rounded-full border border-[#d4af37]/40 hover:bg-[#0d3b26] transition-all hover:scale-105 transform duration-200 flex items-center gap-1.5 shadow"
+            >
+              <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
+              Admin Portal
+            </a>
           </nav>
+
 
           {/* Action CTAs */}
           <div className="hidden sm:flex items-center gap-4">
@@ -233,7 +241,18 @@ export const Header: React.FC<HeaderProps> = ({
             >
               Our Heritage & Quality Seals
             </a>
+            <a
+              href="/admin"
+              onClick={() => setMobileMenuOpen(false)}
+              className="text-[#d4af37] border-b border-white/10 pb-2 flex items-center justify-between"
+            >
+              <span>Admin &amp; Operations Portal</span>
+              <span className="text-[10px] bg-emerald-950 text-emerald-400 border border-emerald-500/30 px-2 py-0.5 rounded-full">
+                MongoDB Active
+              </span>
+            </a>
           </nav>
+
 
           <div className="flex flex-col gap-3 pt-2">
             <button
