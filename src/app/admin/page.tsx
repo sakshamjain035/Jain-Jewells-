@@ -8,14 +8,12 @@ import {
   Truck,
   Plus,
   RefreshCw,
-  Sparkles,
   ArrowLeft,
   Database,
-  ShieldCheck,
   CheckCircle2,
-  AlertTriangle,
-  Bell,
-  Clock,
+  Lock,
+  Eye,
+  EyeOff,
 } from "lucide-react";
 import { Logo } from "@/components/Logo";
 import { AdminStatsCards } from "@/components/admin/AdminStatsCards";
@@ -26,7 +24,137 @@ import { CustomerNotificationModal } from "@/components/admin/CustomerNotificati
 import { CreateOrderModal } from "@/components/admin/CreateOrderModal";
 import { CreateLeadModal } from "@/components/admin/CreateLeadModal";
 
+const ADMIN_PASSWORD = "12345";
+
 export default function AdminPage() {
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
+  const [passwordInput, setPasswordInput] = useState("");
+  const [showPassword, setShowPassword] = useState(false);
+  const [passwordError, setPasswordError] = useState("");
+
+  // Check if already authenticated in this session
+  useEffect(() => {
+    const sessionAuth = sessionStorage.getItem("jain_admin_auth");
+    if (sessionAuth === "true") {
+      setIsAuthenticated(true);
+    }
+  }, []);
+
+  const handlePasswordSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    if (passwordInput === ADMIN_PASSWORD) {
+      setIsAuthenticated(true);
+      sessionStorage.setItem("jain_admin_auth", "true");
+      setPasswordError("");
+    } else {
+      setPasswordError("Incorrect password. Please try again.");
+      setPasswordInput("");
+    }
+  };
+
+  // If not authenticated, show password gate
+  if (!isAuthenticated) {
+    return (
+      <div className="min-h-screen bg-[#040d09] text-[#f4ede2] flex items-center justify-center px-4">
+        <div className="w-full max-w-md">
+          {/* Login Card */}
+          <div className="bg-[#061811] border border-[#d4af37]/30 rounded-3xl p-8 sm:p-10 shadow-2xl">
+            {/* Logo */}
+            <div className="flex justify-center mb-8">
+              <Link href="/">
+                <Logo size="md" />
+              </Link>
+            </div>
+
+            {/* Lock Icon */}
+            <div className="flex justify-center mb-6">
+              <div className="w-16 h-16 rounded-full bg-[#d4af37]/10 border-2 border-[#d4af37]/40 flex items-center justify-center">
+                <Lock className="w-8 h-8 text-[#d4af37]" />
+              </div>
+            </div>
+
+            {/* Title */}
+            <h1 className="text-center text-2xl font-serif-luxury font-bold text-white mb-2">
+              Admin Portal
+            </h1>
+            <p className="text-center text-sm text-white/60 mb-8">
+              Enter the admin password to access the management dashboard.
+            </p>
+
+            {/* Password Form */}
+            <form onSubmit={handlePasswordSubmit} className="space-y-5">
+              <div>
+                <label
+                  htmlFor="admin-password"
+                  className="block text-xs uppercase tracking-widest text-[#d4af37]/80 font-semibold mb-2"
+                >
+                  Password
+                </label>
+                <div className="relative">
+                  <input
+                    id="admin-password"
+                    type={showPassword ? "text" : "password"}
+                    value={passwordInput}
+                    onChange={(e) => {
+                      setPasswordInput(e.target.value);
+                      setPasswordError("");
+                    }}
+                    placeholder="Enter admin password"
+                    autoFocus
+                    className="w-full bg-[#040d09] border border-white/15 rounded-xl px-4 py-3.5 text-white text-sm placeholder:text-white/30 focus:outline-none focus:border-[#d4af37]/60 focus:ring-1 focus:ring-[#d4af37]/40 transition-all pr-12"
+                  />
+                  <button
+                    type="button"
+                    onClick={() => setShowPassword(!showPassword)}
+                    className="absolute right-3 top-1/2 -translate-y-1/2 text-white/40 hover:text-white/70 transition-colors"
+                    tabIndex={-1}
+                  >
+                    {showPassword ? (
+                      <EyeOff className="w-5 h-5" />
+                    ) : (
+                      <Eye className="w-5 h-5" />
+                    )}
+                  </button>
+                </div>
+                {passwordError && (
+                  <p className="text-red-400 text-xs mt-2 font-medium">
+                    {passwordError}
+                  </p>
+                )}
+              </div>
+
+              <button
+                type="submit"
+                className="w-full gold-bg-gradient text-[#06110c] font-bold text-sm uppercase tracking-wider py-3.5 rounded-xl hover:shadow-[0_0_20px_rgba(212,175,55,0.4)] transition-all transform hover:-translate-y-0.5 active:translate-y-0"
+              >
+                Enter Admin Portal
+              </button>
+            </form>
+
+            {/* Back to Store */}
+            <div className="mt-6 text-center">
+              <Link
+                href="/"
+                className="text-xs text-white/40 hover:text-white/70 transition-colors inline-flex items-center gap-1.5"
+              >
+                <ArrowLeft className="w-3.5 h-3.5" />
+                Back to Storefront
+              </Link>
+            </div>
+          </div>
+        </div>
+      </div>
+    );
+  }
+
+  // ----- Authenticated: Full Admin Dashboard -----
+  return <AdminDashboard />;
+}
+
+// ============================================================
+// Admin Dashboard Component (rendered only after auth)
+// ============================================================
+function AdminDashboard() {
   const [activeTab, setActiveTab] = useState<"orders" | "leads" | "dispatched">("orders");
   const [stats, setStats] = useState<any | null>(null);
   const [orders, setOrders] = useState<any[]>([]);
