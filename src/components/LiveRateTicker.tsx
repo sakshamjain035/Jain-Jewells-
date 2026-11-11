@@ -18,76 +18,76 @@ export const LiveRateTicker: React.FC = () => {
   const totalEstimatedPrice = Math.round(subtotal + gstAmount);
 
   return (
-    <section id="rates" className="py-24 sm:py-28 px-5 sm:px-8 bg-[#0a0a08] border-y border-[#c9a96a]/12 relative overflow-hidden">
+    <section id="rates" className="py-24 sm:py-28 px-5 sm:px-8 bg-[#0e0908] border-y border-[#c8a05c]/12 relative overflow-hidden">
       {/* Ambient warmth */}
-      <div className="absolute -top-32 left-1/2 -translate-x-1/2 w-[620px] h-[300px] bg-[#c9a96a]/5 blur-[130px] rounded-full pointer-events-none" />
+      <div className="absolute -top-32 left-1/2 -translate-x-1/2 w-[620px] h-[300px] bg-[#c8a05c]/5 blur-[130px] rounded-full pointer-events-none" />
 
       <div className="max-w-[1400px] mx-auto relative z-10">
         {/* Section Header */}
-        <div className="lux-reveal flex flex-col lg:flex-row lg:items-end justify-between gap-6 mb-12 pb-10 border-b border-[#f4eee3]/10">
+        <div className="lux-reveal flex flex-col lg:flex-row lg:items-end justify-between gap-6 mb-12 pb-10 border-b border-[#f6efe4]/10">
           <div className="max-w-2xl">
             <span className="lux-eyebrow block mb-4">Transparent by Design</span>
-            <h2 className="text-[2.2rem] sm:text-[3.2rem] font-light text-[#f4eee3] leading-[1.05]">
+            <h2 className="text-[2.2rem] sm:text-[3.2rem] font-light text-[#f6efe4] leading-[1.05]">
               Today&apos;s Live Metal Rates<br className="hidden sm:block" />
-              <span className="italic text-[#e8d9b4]"> &amp; Atelier Estimator</span>
+              <span className="italic text-[#ecd8ae]"> &amp; Atelier Estimator</span>
             </h2>
           </div>
-          <p className="text-[#a79e8e] text-xs sm:text-sm font-light leading-[1.9] max-w-sm lg:text-right">
+          <p className="text-[#a99987] text-xs sm:text-sm font-light leading-[1.9] max-w-sm lg:text-right">
             A pure rate board, refreshed twice daily at our Jaipur showroom. Estimate any piece with complete clarity — no hidden charges.
           </p>
         </div>
 
         {/* Live Rate Cards Grid */}
-        <div className="lux-reveal grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-px bg-[#f4eee3]/10 border border-[#f4eee3]/10 mb-14">
+        <div className="lux-reveal grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-px bg-[#f6efe4]/10 border border-[#f6efe4]/10 mb-14">
           {LIVE_METAL_RATES.map((rate, idx) => (
             <div
               key={rate.metal}
               onClick={() => setSelectedRateIndex(idx)}
               className={`cursor-pointer p-6 sm:p-7 transition-all duration-500 relative ${
                 selectedRateIndex === idx
-                  ? "bg-[#1a1712]"
-                  : "bg-[#0c0b09] hover:bg-[#14110c]"
+                  ? "bg-[#211614]"
+                  : "bg-[#0d0808] hover:bg-[#1b1110]"
               }`}
             >
               {selectedRateIndex === idx && (
-                <span className="absolute top-0 left-0 right-0 h-px bg-[#c9a96a]" />
+                <span className="absolute top-0 left-0 right-0 h-px bg-[#c8a05c]" />
               )}
               <div className="flex items-center justify-between mb-4">
-                <span className="text-[10px] uppercase tracking-[0.2em] text-[#ded6c7]">{rate.metal}</span>
+                <span className="text-[10px] uppercase tracking-[0.2em] text-[#e0d4c2]">{rate.metal}</span>
                 <span
                   className={`text-[10px] tracking-[0.04em] ${
-                    rate.isPositive ? "text-[#c9a96a]" : "text-[#a79e8e]"
+                    rate.isPositive ? "text-[#c8a05c]" : "text-[#a99987]"
                   }`}
                 >
                   {rate.change}
                 </span>
               </div>
-              <div className="text-[1.7rem] font-serif-luxury font-light text-[#f4eee3] mb-1">
+              <div className="text-[1.7rem] font-serif-luxury font-light text-[#f6efe4] mb-1">
                 ₹{rate.ratePerGram.toLocaleString("en-IN")}
-                <span className="text-[10px] font-light text-[#7f786c] ml-1.5">/ {rate.unit}</span>
+                <span className="text-[10px] font-light text-[#857768] ml-1.5">/ {rate.unit}</span>
               </div>
-              <div className="text-[10px] text-[#7f786c] tracking-[0.04em]">{rate.purity}</div>
+              <div className="text-[10px] text-[#857768] tracking-[0.04em]">{rate.purity}</div>
             </div>
           ))}
         </div>
 
         {/* Interactive Estimator Tool */}
-        <div className="lux-reveal bg-[#0f0d0a] border border-[#f4eee3]/10 p-6 sm:p-10 grid grid-cols-1 lg:grid-cols-12 gap-10 items-stretch">
+        <div className="lux-reveal bg-[#150d0c] border border-[#f6efe4]/10 p-6 sm:p-10 grid grid-cols-1 lg:grid-cols-12 gap-10 items-stretch">
           {/* Controls side */}
           <div className="lg:col-span-7 flex flex-col gap-7">
-            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 border-b border-[#f4eee3]/10 pb-5">
-              <h3 className="text-2xl font-serif-luxury font-light text-[#f4eee3] flex items-center gap-2.5">
-                <Calculator className="w-4 h-4 text-[#c9a96a]" strokeWidth={1.3} />
+            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 border-b border-[#f6efe4]/10 pb-5">
+              <h3 className="text-2xl font-serif-luxury font-light text-[#f6efe4] flex items-center gap-2.5">
+                <Calculator className="w-4 h-4 text-[#c8a05c]" strokeWidth={1.3} />
                 Atelier Cost Estimator
               </h3>
-              <span className="text-[9px] uppercase tracking-[0.16em] text-[#7f786c] flex items-center gap-1.5">
-                <RefreshCw className="w-2.5 h-2.5 text-[#c9a96a]" /> Updated {lastRefreshed}
+              <span className="text-[9px] uppercase tracking-[0.16em] text-[#857768] flex items-center gap-1.5">
+                <RefreshCw className="w-2.5 h-2.5 text-[#c8a05c]" /> Updated {lastRefreshed}
               </span>
             </div>
 
             {/* Metal Selector Tabs */}
             <div>
-              <label className="text-[9px] uppercase tracking-[0.2em] text-[#7f786c] mb-3 block">
+              <label className="text-[9px] uppercase tracking-[0.2em] text-[#857768] mb-3 block">
                 01 — Select Metal
               </label>
               <div className="grid grid-cols-2 sm:grid-cols-4 gap-2">
@@ -97,8 +97,8 @@ export const LiveRateTicker: React.FC = () => {
                     onClick={() => setSelectedRateIndex(idx)}
                     className={`py-3 px-3 text-[10px] uppercase tracking-[0.08em] transition-all border ${
                       selectedRateIndex === idx
-                        ? "border-[#c9a96a] text-[#e8d9b4] bg-[#c9a96a]/10"
-                        : "border-[#f4eee3]/10 text-[#a79e8e] hover:border-[#c9a96a]/40 hover:text-[#f4eee3]"
+                        ? "border-[#c8a05c] text-[#ecd8ae] bg-[#c8a05c]/10"
+                        : "border-[#f6efe4]/10 text-[#a99987] hover:border-[#c8a05c]/40 hover:text-[#f6efe4]"
                     }`}
                   >
                     {r.metal}
@@ -110,10 +110,10 @@ export const LiveRateTicker: React.FC = () => {
             {/* Gram Weight Input */}
             <div>
               <div className="flex justify-between items-center mb-3">
-                <label className="text-[9px] uppercase tracking-[0.2em] text-[#7f786c]">
+                <label className="text-[9px] uppercase tracking-[0.2em] text-[#857768]">
                   02 — Jewellery Weight
                 </label>
-                <span className="text-xs text-[#e8d9b4] font-light">{gramWeight} grams</span>
+                <span className="text-xs text-[#ecd8ae] font-light">{gramWeight} grams</span>
               </div>
               <input
                 type="range"
@@ -121,9 +121,9 @@ export const LiveRateTicker: React.FC = () => {
                 max="250"
                 value={gramWeight}
                 onChange={(e) => setGramWeight(Number(e.target.value))}
-                className="w-full h-[3px] bg-[#2c2619] rounded-none appearance-none cursor-pointer accent-[#c9a96a]"
+                className="w-full h-[3px] bg-[#3a2420] rounded-none appearance-none cursor-pointer accent-[#c8a05c]"
               />
-              <div className="flex justify-between text-[9px] tracking-[0.04em] text-[#7f786c] mt-2">
+              <div className="flex justify-between text-[9px] tracking-[0.04em] text-[#857768] mt-2">
                 <span>1g · Rings</span>
                 <span>50g · Bangles</span>
                 <span>150g · Necklaces</span>
@@ -134,13 +134,13 @@ export const LiveRateTicker: React.FC = () => {
             {/* Making Charges Slider */}
             <div>
               <div className="flex justify-between items-center mb-3">
-                <label className="text-[9px] uppercase tracking-[0.2em] text-[#7f786c] flex items-center gap-1.5">
+                <label className="text-[9px] uppercase tracking-[0.2em] text-[#857768] flex items-center gap-1.5">
                   03 — Making Charge
                   <span title="Making charges depend on design complexity — cast work versus handcrafted Nakshi work">
-                    <Info className="w-3 h-3 text-[#7f786c] hover:text-[#c9a96a]" strokeWidth={1.4} />
+                    <Info className="w-3 h-3 text-[#857768] hover:text-[#c8a05c]" strokeWidth={1.4} />
                   </span>
                 </label>
-                <span className="text-xs text-[#e8d9b4] font-light">{makingChargePercent}%</span>
+                <span className="text-xs text-[#ecd8ae] font-light">{makingChargePercent}%</span>
               </div>
               <input
                 type="range"
@@ -148,9 +148,9 @@ export const LiveRateTicker: React.FC = () => {
                 max="22"
                 value={makingChargePercent}
                 onChange={(e) => setMakingChargePercent(Number(e.target.value))}
-                className="w-full h-[3px] bg-[#2c2619] rounded-none appearance-none cursor-pointer accent-[#c9a96a]"
+                className="w-full h-[3px] bg-[#3a2420] rounded-none appearance-none cursor-pointer accent-[#c8a05c]"
               />
-              <div className="flex justify-between text-[9px] tracking-[0.04em] text-[#7f786c] mt-2">
+              <div className="flex justify-between text-[9px] tracking-[0.04em] text-[#857768] mt-2">
                 <span>8% · Lightweight</span>
                 <span>14% · Kundan</span>
                 <span>22% · Artisan Nakshi</span>
@@ -159,35 +159,35 @@ export const LiveRateTicker: React.FC = () => {
           </div>
 
           {/* Breakdown summary side */}
-          <div className="lg:col-span-5 bg-[#16130e] p-6 sm:p-8 border border-[#c9a96a]/20 flex flex-col justify-between h-full gap-7">
+          <div className="lg:col-span-5 bg-[#1e1413] p-6 sm:p-8 border border-[#c8a05c]/20 flex flex-col justify-between h-full gap-7">
             <div>
-              <h4 className="text-[9px] text-[#c9a96a] uppercase tracking-[0.24em] border-b border-[#f4eee3]/10 pb-4 mb-5">
+              <h4 className="text-[9px] text-[#c8a05c] uppercase tracking-[0.24em] border-b border-[#f6efe4]/10 pb-4 mb-5">
                 Price Breakdown
               </h4>
               
               <div className="flex flex-col gap-3.5 text-[11px] font-light">
-                <div className="flex justify-between gap-3 text-[#a79e8e]">
+                <div className="flex justify-between gap-3 text-[#a99987]">
                   <span>Metal value · {gramWeight}g @ ₹{activeRateObj.ratePerGram}/g</span>
-                  <span className="text-[#f4eee3]">₹{metalCost.toLocaleString("en-IN")}</span>
+                  <span className="text-[#f6efe4]">₹{metalCost.toLocaleString("en-IN")}</span>
                 </div>
-                <div className="flex justify-between gap-3 text-[#a79e8e]">
+                <div className="flex justify-between gap-3 text-[#a99987]">
                   <span>Making charges · {makingChargePercent}%</span>
-                  <span className="text-[#f4eee3]">₹{Math.round(makingCost).toLocaleString("en-IN")}</span>
+                  <span className="text-[#f6efe4]">₹{Math.round(makingCost).toLocaleString("en-IN")}</span>
                 </div>
-                <div className="flex justify-between gap-3 text-[#a79e8e]">
+                <div className="flex justify-between gap-3 text-[#a99987]">
                   <span>GST · 3% standard</span>
-                  <span className="text-[#f4eee3]">₹{Math.round(gstAmount).toLocaleString("en-IN")}</span>
+                  <span className="text-[#f6efe4]">₹{Math.round(gstAmount).toLocaleString("en-IN")}</span>
                 </div>
               </div>
 
-              <div className="border-t border-[#c9a96a]/25 mt-5 pt-5">
-                <span className="text-[9px] text-[#7f786c] uppercase tracking-[0.22em] block mb-2">
+              <div className="border-t border-[#c8a05c]/25 mt-5 pt-5">
+                <span className="text-[9px] text-[#857768] uppercase tracking-[0.22em] block mb-2">
                   Estimated Total · INR
                 </span>
-                <div className="text-[2.1rem] font-serif-luxury font-light text-[#e8d9b4]">
+                <div className="text-[2.1rem] font-serif-luxury font-light text-[#ecd8ae]">
                   ₹{totalEstimatedPrice.toLocaleString("en-IN")}
                 </div>
-                <p className="text-[9px] text-[#7f786c] leading-relaxed mt-2">
+                <p className="text-[9px] text-[#857768] leading-relaxed mt-2">
                   Final price may vary with gemstone carats, settings and the finished ornament.
                 </p>
               </div>
@@ -199,7 +199,7 @@ export const LiveRateTicker: React.FC = () => {
               rel="noopener noreferrer"
               className="lux-btn lux-btn-outline w-full group"
             >
-              <MessageSquare className="w-3.5 h-3.5 text-[#c9a96a]" strokeWidth={1.4} />
+              <MessageSquare className="w-3.5 h-3.5 text-[#c8a05c]" strokeWidth={1.4} />
               Request this Quote
               <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform" strokeWidth={1.4} />
             </a>

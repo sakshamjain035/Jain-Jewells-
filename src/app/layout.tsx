@@ -1,19 +1,20 @@
 import type { Metadata } from "next";
-import { Cormorant_Garamond, Jost } from "next/font/google";
+import { Bodoni_Moda, Manrope } from "next/font/google";
 import { ScrollReveal } from "@/components/ScrollReveal";
 import "./globals.css";
 
-const playfair = Cormorant_Garamond({
+const bodoni = Bodoni_Moda({
   subsets: ["latin"],
-  weight: ["300", "400", "500", "600", "700"],
-  variable: "--font-playfair",
+  weight: ["400", "500", "600"],
+  style: ["normal", "italic"],
+  variable: "--font-display",
   display: "swap",
 });
 
-const jakarta = Jost({
+const manrope = Manrope({
   subsets: ["latin"],
   weight: ["300", "400", "500", "600"],
-  variable: "--font-jakarta",
+  variable: "--font-body",
   display: "swap",
 });
 
@@ -37,9 +38,9 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${playfair.variable} ${jakarta.variable} h-full antialiased scroll-smooth`}
+      className={`${bodoni.variable} ${manrope.variable} h-full antialiased scroll-smooth`}
     >
-      <body className="min-h-full flex flex-col bg-[#0a0a08] text-[#f4eee3] selection:bg-[#c9a96a] selection:text-[#0a0a08]">
+      <body className="min-h-full flex flex-col bg-[#0e0908] text-[#f6efe4] selection:bg-[#c8a05c] selection:text-[#0e0908]">
         <noscript>
           <style>{`.lux-reveal{opacity:1 !important;transform:none !important}`}</style>
         </noscript>

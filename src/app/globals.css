@@ -2,31 +2,35 @@
 
 @layer base {
   :root {
-    --background: #0a0a08;
-    --foreground: #f4eee3;
-    --ink: #0a0a08;
-    --ink-soft: #0f0e0b;
-    --surface: #14110c;
-    --ivory: #f4eee3;
-    --ivory-dim: #ded6c7;
-    --muted: #a79e8e;
-    --gold: #c9a96a;
-    --gold-light: #e8d9b4;
-    --gold-deep: #9c7f4c;
-    --line: rgba(201, 169, 106, 0.22);
-    --line-soft: rgba(244, 238, 227, 0.09);
+    --background: #0e0908;
+    --foreground: #f6efe4;
+    --ink: #0e0908;
+    --ink-soft: #140c0b;
+    --surface: #1b1110;
+    --ivory: #f6efe4;
+    --ivory-dim: #e0d4c2;
+    --muted: #a99987;
+    --gold: #c8a05c;
+    --gold-light: #ecd8ae;
+    --gold-deep: #96713c;
+    --wine: #481c24;
+    --wine-deep: #260f13;
+    --line: rgba(200, 160, 92, 0.24);
+    --line-soft: rgba(246, 239, 228, 0.09);
   }
 
   body {
     background-color: var(--ink);
     background-image:
-      radial-gradient(1100px 620px at 12% -10%, rgba(201, 169, 106, 0.07), transparent 62%),
-      radial-gradient(900px 560px at 102% 12%, rgba(201, 169, 106, 0.035), transparent 58%);
+      radial-gradient(1150px 680px at 8% -12%, rgba(94, 30, 40, 0.32), transparent 62%),
+      radial-gradient(980px 620px at 104% 8%, rgba(200, 160, 92, 0.09), transparent 58%),
+      radial-gradient(900px 700px at 50% 115%, rgba(61, 22, 27, 0.26), transparent 65%),
+      linear-gradient(180deg, #120b0b 0%, #0e0908 45%, #0b0707 100%);
     background-attachment: fixed;
     color: var(--ivory);
-    font-family: var(--font-jakarta), system-ui, -apple-system, sans-serif;
+    font-family: var(--font-body), "Manrope", system-ui, -apple-system, sans-serif;
     font-weight: 300;
-    letter-spacing: 0.01em;
+    letter-spacing: 0.012em;
     overflow-x: hidden;
   }
 
@@ -37,14 +41,15 @@
     inset: 0;
     z-index: 0;
     pointer-events: none;
-    opacity: 0.028;
+    opacity: 0.03;
     background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='160' height='160' filter='url(%23n)'/%3E%3C/svg%3E");
   }
 
   h1, h2, h3, h4, h5, h6, .font-serif-luxury {
-    font-family: var(--font-playfair), "Cormorant Garamond", Georgia, serif;
+    font-family: var(--font-display), "Bodoni Moda", Didot, Georgia, serif;
     font-weight: 400;
-    letter-spacing: -0.005em;
+    letter-spacing: 0;
+    font-optical-sizing: auto;
   }
 
   ::selection {
@@ -57,7 +62,7 @@
    Editorial gold treatments
    --------------------------------------------------------------- */
 .gold-text-gradient {
-  background: linear-gradient(94deg, #f7f2e7 0%, #ead9b2 48%, #c9a96a 100%);
+  background: linear-gradient(96deg, #fbf4e7 0%, #eddbb2 46%, #c8a05c 100%);
   -webkit-background-clip: text;
   background-clip: text;
   -webkit-text-fill-color: transparent;
@@ -65,19 +70,19 @@
 }
 
 .gold-bg-gradient {
-  background: linear-gradient(135deg, #dfc894 0%, #c9a96a 52%, #b08f57 100%);
+  background: linear-gradient(135deg, #e4ca92 0%, #c8a05c 52%, #a47d45 100%);
   color: var(--ink);
 }
 
 .gold-border-glow {
-  box-shadow: 0 0 0 1px rgba(201, 169, 106, 0.32);
+  box-shadow: 0 0 0 1px rgba(200, 160, 92, 0.34);
 }
 
-/* Refined dark glass — replaces the old emerald glass globally */
+/* Refined dark glass with a bordeaux undertone */
 .emerald-glass {
-  background: rgba(19, 17, 13, 0.72);
-  backdrop-filter: blur(14px);
-  -webkit-backdrop-filter: blur(14px);
+  background: rgba(23, 13, 12, 0.74);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
   border: 1px solid var(--line);
 }
 
@@ -88,9 +93,9 @@
     box-shadow 0.45s cubic-bezier(0.22, 0.61, 0.36, 1);
 }
 .emerald-glass-hover:hover {
-  background: rgba(25, 22, 17, 0.9);
-  border-color: rgba(201, 169, 106, 0.4);
-  box-shadow: 0 24px 60px -32px rgba(0, 0, 0, 0.9);
+  background: rgba(31, 18, 16, 0.92);
+  border-color: rgba(200, 160, 92, 0.44);
+  box-shadow: 0 24px 60px -32px rgba(0, 0, 0, 0.95);
   transform: translateY(-3px);
 }
 
@@ -98,13 +103,14 @@
 .lux-hairline {
   height: 1px;
   width: 100%;
-  background: linear-gradient(90deg, transparent, rgba(201, 169, 106, 0.45), transparent);
+  background: linear-gradient(90deg, transparent, rgba(200, 160, 92, 0.5), transparent);
 }
 
 .lux-eyebrow {
+  font-family: var(--font-body), "Manrope", sans-serif;
   font-size: 10px;
   font-weight: 500;
-  letter-spacing: 0.34em;
+  letter-spacing: 0.38em;
   text-transform: uppercase;
   color: var(--gold);
 }
@@ -113,34 +119,35 @@
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  gap: 0.6rem;
-  padding: 1rem 1.9rem;
-  font-size: 10px;
+  gap: 0.65rem;
+  padding: 1.05rem 2rem;
+  font-family: var(--font-body), "Manrope", sans-serif;
+  font-size: 9.5px;
   font-weight: 500;
-  letter-spacing: 0.22em;
+  letter-spacing: 0.24em;
   text-transform: uppercase;
   border: 1px solid transparent;
   transition: all 0.35s cubic-bezier(0.22, 0.61, 0.36, 1);
 }
 
 .lux-btn-gold {
-  background: linear-gradient(135deg, #dfc894 0%, #c9a96a 55%, #b08f57 100%);
-  color: #14110c;
+  background: linear-gradient(135deg, #e4ca92 0%, #c8a05c 55%, #a47d45 100%);
+  color: #170d0c;
 }
 .lux-btn-gold:hover {
-  background: #f4eee3;
-  color: #0a0a08;
-  box-shadow: 0 16px 40px -22px rgba(201, 169, 106, 0.7);
+  background: var(--ivory);
+  color: var(--ink);
+  box-shadow: 0 16px 44px -22px rgba(200, 160, 92, 0.75);
 }
 
 .lux-btn-outline {
-  border-color: rgba(201, 169, 106, 0.45);
-  color: #f4eee3;
-  background: rgba(10, 10, 8, 0.25);
+  border-color: rgba(200, 160, 92, 0.46);
+  color: var(--ivory);
+  background: rgba(14, 9, 8, 0.28);
 }
 .lux-btn-outline:hover {
-  border-color: rgba(201, 169, 106, 0.9);
-  background: rgba(201, 169, 106, 0.1);
+  border-color: rgba(200, 160, 92, 0.9);
+  background: rgba(200, 160, 92, 0.1);
 }
 
 /* Gentle entrance animation */
@@ -220,20 +227,28 @@
   width: 100%;
 }
 
+/* A quiet bordeaux field for feature panels */
+.lux-wine-panel {
+  background:
+    radial-gradient(120% 140% at 0% 0%, rgba(112, 40, 50, 0.38), transparent 60%),
+    linear-gradient(145deg, #261114 0%, #170d0d 100%);
+  border: 1px solid rgba(200, 160, 92, 0.18);
+}
+
 /* Custom luxury scrollbar */
 ::-webkit-scrollbar {
   width: 9px;
 }
 ::-webkit-scrollbar-track {
-  background: #0a0a08;
+  background: #0b0707;
 }
 ::-webkit-scrollbar-thumb {
-  background: #35301f;
+  background: #3a2420;
   border-radius: 0;
-  border: 2px solid #0a0a08;
+  border: 2px solid #0b0707;
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: #c9a96a;
+  background: #c8a05c;
 }
 
 /* Smooth Scrolling */
@@ -241,7 +256,7 @@ html {
   scroll-behavior: smooth;
 }
 
-/* Range inputs — champagne instead of green */
+/* Range inputs — antique gold */
 input[type="range"] {
-  accent-color: #c9a96a;
+  accent-color: #c8a05c;
 }

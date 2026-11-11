@@ -74,43 +74,43 @@ export const BespokeStudio: React.FC = () => {
   );
 
   return (
-    <section id="bespoke" className="py-24 sm:py-32 px-5 sm:px-8 bg-[#0a0a08] relative border-t border-[#c9a96a]/12">
+    <section id="bespoke" className="py-24 sm:py-32 px-5 sm:px-8 bg-[#0e0908] relative border-t border-[#c8a05c]/12">
       <div className="max-w-[1400px] mx-auto">
         {/* Header */}
-        <div className="lux-reveal flex flex-col lg:flex-row lg:items-end justify-between gap-6 mb-14 pb-10 border-b border-[#f4eee3]/10">
+        <div className="lux-reveal flex flex-col lg:flex-row lg:items-end justify-between gap-6 mb-14 pb-10 border-b border-[#f6efe4]/10">
           <div className="max-w-2xl">
             <span className="lux-eyebrow block mb-4 flex items-center gap-2.5">
               <Palette className="w-3.5 h-3.5" strokeWidth={1.3} /> The Bespoke Atelier
             </span>
-            <h2 className="text-[2.4rem] sm:text-[3.4rem] font-light text-[#f4eee3] leading-[1.05] tracking-[-0.015em]">
-              A Piece Made <span className="italic text-[#e8d9b4]">Only for You</span>
+            <h2 className="text-[2.4rem] sm:text-[3.4rem] font-light text-[#f6efe4] leading-[1.05] tracking-[-0.015em]">
+              A Piece Made <span className="italic text-[#ecd8ae]">Only for You</span>
             </h2>
           </div>
-          <p className="text-[#a79e8e] text-xs sm:text-sm font-light leading-[1.9] max-w-sm lg:text-right">
+          <p className="text-[#a99987] text-xs sm:text-sm font-light leading-[1.9] max-w-sm lg:text-right">
             Sketch an idea with our master goldsmiths in Jaipur. From the first line to the final polish, the piece is yours alone.
           </p>
         </div>
 
         {/* Wizard Container */}
-        <div className="lux-reveal bg-[#0f0d0a] border border-[#f4eee3]/10 p-6 sm:p-10 lg:p-12 max-w-4xl mx-auto relative">
+        <div className="lux-reveal bg-[#150d0c] border border-[#f6efe4]/10 p-6 sm:p-10 lg:p-12 max-w-4xl mx-auto relative">
           {!isSubmitted ? (
             <div>
               {/* Stepper indicator */}
-              <div className="flex items-center justify-between border-b border-[#f4eee3]/10 pb-6 mb-9 gap-2">
+              <div className="flex items-center justify-between border-b border-[#f6efe4]/10 pb-6 mb-9 gap-2">
                 {[1, 2, 3, 4].map((i) => (
                   <div key={i} className="flex items-center gap-2.5">
                     <div
                       className={`w-7 h-7 flex items-center justify-center text-[10px] transition-all border ${
                         step === i
-                          ? "border-[#c9a96a] bg-[#c9a96a]/10 text-[#e8d9b4]"
+                          ? "border-[#c8a05c] bg-[#c8a05c]/10 text-[#ecd8ae]"
                           : step > i
-                          ? "border-[#c9a96a]/40 text-[#c9a96a]"
-                          : "border-[#f4eee3]/15 text-[#7f786c]"
+                          ? "border-[#c8a05c]/40 text-[#c8a05c]"
+                          : "border-[#f6efe4]/15 text-[#857768]"
                       }`}
                     >
                       {step > i ? <CheckCircle2 className="w-3.5 h-3.5" strokeWidth={1.4} /> : i}
                     </div>
-                    <span className="hidden sm:inline text-[9px] uppercase tracking-[0.16em] text-[#a79e8e]">
+                    <span className="hidden sm:inline text-[9px] uppercase tracking-[0.16em] text-[#a99987]">
                       {i === 1 && "Category"}
                       {i === 2 && "Metal Choice"}
                       {i === 3 && "Gemstones"}
@@ -123,11 +123,11 @@ export const BespokeStudio: React.FC = () => {
               {/* Step 1: Category */}
               {step === 1 && (
                 <div>
-                  <h3 className="text-2xl font-serif-luxury font-light text-[#f4eee3] mb-2">
-                    <span className="text-[#c9a96a] text-[10px] uppercase tracking-[0.2em] block mb-2">Step 01</span>
+                  <h3 className="text-2xl font-serif-luxury font-light text-[#f6efe4] mb-2">
+                    <span className="text-[#c8a05c] text-[10px] uppercase tracking-[0.2em] block mb-2">Step 01</span>
                     What would you like to create?
                   </h3>
-                  <p className="text-[11px] text-[#a79e8e] mb-6 font-light">Select your preferred ornament category.</p>
+                  <p className="text-[11px] text-[#a99987] mb-6 font-light">Select your preferred ornament category.</p>
 
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 mb-8">
                     {jewelryTypes.map((item) => (
@@ -136,12 +136,12 @@ export const BespokeStudio: React.FC = () => {
                         onClick={() => setFormData({ ...formData, jewelryType: item.title })}
                         className={`p-4 cursor-pointer border transition-all duration-300 ${
                           formData.jewelryType === item.title
-                            ? "bg-[#c9a96a]/10 border-[#c9a96a]"
-                            : "bg-transparent border-[#f4eee3]/10 hover:border-[#c9a96a]/40"
+                            ? "bg-[#c8a05c]/10 border-[#c8a05c]"
+                            : "bg-transparent border-[#f6efe4]/10 hover:border-[#c8a05c]/40"
                         }`}
                       >
-                        <h4 className="text-[12px] text-[#f4eee3] mb-1 tracking-[0.02em]">{item.title}</h4>
-                        <p className="text-[10px] text-[#a79e8e] font-light leading-relaxed">{item.desc}</p>
+                        <h4 className="text-[12px] text-[#f6efe4] mb-1 tracking-[0.02em]">{item.title}</h4>
+                        <p className="text-[10px] text-[#a99987] font-light leading-relaxed">{item.desc}</p>
                       </div>
                     ))}
                   </div>
@@ -160,11 +160,11 @@ export const BespokeStudio: React.FC = () => {
               {/* Step 2: Metal */}
               {step === 2 && (
                 <div>
-                  <h3 className="text-2xl font-serif-luxury font-light text-[#f4eee3] mb-2">
-                    <span className="text-[#c9a96a] text-[10px] uppercase tracking-[0.2em] block mb-2">Step 02</span>
+                  <h3 className="text-2xl font-serif-luxury font-light text-[#f6efe4] mb-2">
+                    <span className="text-[#c8a05c] text-[10px] uppercase tracking-[0.2em] block mb-2">Step 02</span>
                     Choose your precious metal
                   </h3>
-                  <p className="text-[11px] text-[#a79e8e] mb-6 font-light">Every gold piece carries official BIS hallmarking.</p>
+                  <p className="text-[11px] text-[#a99987] mb-6 font-light">Every gold piece carries official BIS hallmarking.</p>
 
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 mb-8">
                     {metals.map((m) => (
@@ -173,8 +173,8 @@ export const BespokeStudio: React.FC = () => {
                         onClick={() => setFormData({ ...formData, metalPreference: m })}
                         className={`p-4 cursor-pointer border transition-all duration-300 ${
                           formData.metalPreference === m
-                            ? "bg-[#c9a96a]/10 border-[#c9a96a] text-[#e8d9b4]"
-                            : "bg-transparent border-[#f4eee3]/10 hover:border-[#c9a96a]/40 text-[#ded6c7]"
+                            ? "bg-[#c8a05c]/10 border-[#c8a05c] text-[#ecd8ae]"
+                            : "bg-transparent border-[#f6efe4]/10 hover:border-[#c8a05c]/40 text-[#e0d4c2]"
                         }`}
                       >
                         <span className="text-[12px] tracking-[0.02em]">{m}</span>
@@ -185,7 +185,7 @@ export const BespokeStudio: React.FC = () => {
                   <div className="flex justify-between gap-3">
                     <button
                       onClick={() => setStep(1)}
-                      className="px-5 py-3 border border-[#f4eee3]/15 text-[9px] uppercase tracking-[0.18em] text-[#a79e8e] hover:text-[#f4eee3] hover:border-[#f4eee3]/35 transition-colors"
+                      className="px-5 py-3 border border-[#f6efe4]/15 text-[9px] uppercase tracking-[0.18em] text-[#a99987] hover:text-[#f6efe4] hover:border-[#f6efe4]/35 transition-colors"
                     >
                       Back
                     </button>
@@ -202,11 +202,11 @@ export const BespokeStudio: React.FC = () => {
               {/* Step 3: Gemstones */}
               {step === 3 && (
                 <div>
-                  <h3 className="text-2xl font-serif-luxury font-light text-[#f4eee3] mb-2">
-                    <span className="text-[#c9a96a] text-[10px] uppercase tracking-[0.2em] block mb-2">Step 03</span>
+                  <h3 className="text-2xl font-serif-luxury font-light text-[#f6efe4] mb-2">
+                    <span className="text-[#c8a05c] text-[10px] uppercase tracking-[0.2em] block mb-2">Step 03</span>
                     Choose your stones
                   </h3>
-                  <p className="text-[11px] text-[#a79e8e] mb-6 font-light">Select one or more gemstones for your design.</p>
+                  <p className="text-[11px] text-[#a99987] mb-6 font-light">Select one or more gemstones for your design.</p>
 
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 mb-8">
                     {gemstonesList.map((g) => {
@@ -217,12 +217,12 @@ export const BespokeStudio: React.FC = () => {
                           onClick={() => toggleGemstone(g)}
                           className={`p-4 cursor-pointer border transition-all duration-300 flex items-center justify-between ${
                             isSelected
-                              ? "bg-[#c9a96a]/10 border-[#c9a96a] text-[#e8d9b4]"
-                              : "bg-transparent border-[#f4eee3]/10 hover:border-[#c9a96a]/40 text-[#a79e8e]"
+                              ? "bg-[#c8a05c]/10 border-[#c8a05c] text-[#ecd8ae]"
+                              : "bg-transparent border-[#f6efe4]/10 hover:border-[#c8a05c]/40 text-[#a99987]"
                           }`}
                         >
                           <span className="text-[12px] tracking-[0.02em]">{g}</span>
-                          {isSelected && <CheckCircle2 className="w-3.5 h-3.5 text-[#c9a96a]" strokeWidth={1.4} />}
+                          {isSelected && <CheckCircle2 className="w-3.5 h-3.5 text-[#c8a05c]" strokeWidth={1.4} />}
                         </div>
                       );
                     })}
@@ -231,7 +231,7 @@ export const BespokeStudio: React.FC = () => {
                   <div className="flex justify-between gap-3">
                     <button
                       onClick={() => setStep(2)}
-                      className="px-5 py-3 border border-[#f4eee3]/15 text-[9px] uppercase tracking-[0.18em] text-[#a79e8e] hover:text-[#f4eee3] hover:border-[#f4eee3]/35 transition-colors"
+                      className="px-5 py-3 border border-[#f6efe4]/15 text-[9px] uppercase tracking-[0.18em] text-[#a99987] hover:text-[#f6efe4] hover:border-[#f6efe4]/35 transition-colors"
                     >
                       Back
                     </button>
@@ -249,15 +249,15 @@ export const BespokeStudio: React.FC = () => {
               {step === 4 && (
                 <form onSubmit={handleFinish} className="flex flex-col gap-6">
                   <div>
-                    <h3 className="text-2xl font-serif-luxury font-light text-[#f4eee3] mb-2">
-                      <span className="text-[#c9a96a] text-[10px] uppercase tracking-[0.2em] block mb-2">Step 04</span>
+                    <h3 className="text-2xl font-serif-luxury font-light text-[#f6efe4] mb-2">
+                      <span className="text-[#c8a05c] text-[10px] uppercase tracking-[0.2em] block mb-2">Step 04</span>
                       Your budget &amp; details
                     </h3>
-                    <p className="text-[11px] text-[#a79e8e] font-light">Finalise your commission inquiry for our Jaipur master artisans.</p>
+                    <p className="text-[11px] text-[#a99987] font-light">Finalise your commission inquiry for our Jaipur master artisans.</p>
                   </div>
 
                   <div>
-                    <label className="text-[9px] uppercase tracking-[0.2em] text-[#7f786c] block mb-2">
+                    <label className="text-[9px] uppercase tracking-[0.2em] text-[#857768] block mb-2">
                       Target Budget
                     </label>
                     <div className="grid grid-cols-1 sm:grid-cols-3 gap-2">
@@ -268,8 +268,8 @@ export const BespokeStudio: React.FC = () => {
                           onClick={() => setFormData({ ...formData, budget: b })}
                           className={`p-3 border text-[11px] transition-all duration-300 ${
                             formData.budget === b
-                              ? "border-[#c9a96a] bg-[#c9a96a]/10 text-[#e8d9b4]"
-                              : "border-[#f4eee3]/10 text-[#a79e8e] hover:border-[#c9a96a]/40"
+                              ? "border-[#c8a05c] bg-[#c8a05c]/10 text-[#ecd8ae]"
+                              : "border-[#f6efe4]/10 text-[#a99987] hover:border-[#c8a05c]/40"
                           }`}
                         >
                           {b}
@@ -280,7 +280,7 @@ export const BespokeStudio: React.FC = () => {
 
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                     <div>
-                      <label className="text-[9px] uppercase tracking-[0.2em] text-[#7f786c] block mb-2">
+                      <label className="text-[9px] uppercase tracking-[0.2em] text-[#857768] block mb-2">
                         Your Full Name *
                       </label>
                       <input
@@ -289,12 +289,12 @@ export const BespokeStudio: React.FC = () => {
                         placeholder="e.g. Radhika Sharma"
                         value={formData.fullName}
                         onChange={(e) => setFormData({ ...formData, fullName: e.target.value })}
-                        className="w-full bg-[#14110c] border border-[#f4eee3]/12 focus:border-[#c9a96a] text-[11px] text-[#f4eee3] rounded-none p-3 outline-none transition-colors"
+                        className="w-full bg-[#1b1110] border border-[#f6efe4]/12 focus:border-[#c8a05c] text-[11px] text-[#f6efe4] rounded-none p-3 outline-none transition-colors"
                       />
                     </div>
 
                     <div>
-                      <label className="text-[9px] uppercase tracking-[0.2em] text-[#7f786c] block mb-2">
+                      <label className="text-[9px] uppercase tracking-[0.2em] text-[#857768] block mb-2">
                         Phone / WhatsApp *
                       </label>
                       <input
@@ -303,13 +303,13 @@ export const BespokeStudio: React.FC = () => {
                         placeholder="+91 98290 XXXXX"
                         value={formData.phone}
                         onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
-                        className="w-full bg-[#14110c] border border-[#f4eee3]/12 focus:border-[#c9a96a] text-[11px] text-[#f4eee3] rounded-none p-3 outline-none transition-colors"
+                        className="w-full bg-[#1b1110] border border-[#f6efe4]/12 focus:border-[#c8a05c] text-[11px] text-[#f6efe4] rounded-none p-3 outline-none transition-colors"
                       />
                     </div>
                   </div>
 
                   <div>
-                    <label className="text-[9px] uppercase tracking-[0.2em] text-[#7f786c] block mb-2">
+                    <label className="text-[9px] uppercase tracking-[0.2em] text-[#857768] block mb-2">
                       Design Notes &amp; Inspiration <span className="normal-case tracking-normal">(optional)</span>
                     </label>
                     <textarea
@@ -317,7 +317,7 @@ export const BespokeStudio: React.FC = () => {
                       placeholder="Describe a motif, a family heirloom stone, or the occasion…"
                       value={formData.specialNotes}
                       onChange={(e) => setFormData({ ...formData, specialNotes: e.target.value })}
-                      className="w-full bg-[#14110c] border border-[#f4eee3]/12 focus:border-[#c9a96a] text-[11px] text-[#f4eee3] rounded-none p-3 outline-none resize-none transition-colors"
+                      className="w-full bg-[#1b1110] border border-[#f6efe4]/12 focus:border-[#c8a05c] text-[11px] text-[#f6efe4] rounded-none p-3 outline-none resize-none transition-colors"
                     />
                   </div>
 
@@ -325,7 +325,7 @@ export const BespokeStudio: React.FC = () => {
                     <button
                       type="button"
                       onClick={() => setStep(3)}
-                      className="px-5 py-3 border border-[#f4eee3]/15 text-[9px] uppercase tracking-[0.18em] text-[#a79e8e] hover:text-[#f4eee3] hover:border-[#f4eee3]/35 transition-colors"
+                      className="px-5 py-3 border border-[#f6efe4]/15 text-[9px] uppercase tracking-[0.18em] text-[#a99987] hover:text-[#f6efe4] hover:border-[#f6efe4]/35 transition-colors"
                     >
                       Back
                     </button>
@@ -341,15 +341,15 @@ export const BespokeStudio: React.FC = () => {
             </div>
           ) : (
             <div className="text-center py-8">
-              <div className="w-12 h-12 border border-[#c9a96a]/50 text-[#c9a96a] flex items-center justify-center mx-auto mb-5">
+              <div className="w-12 h-12 border border-[#c8a05c]/50 text-[#c8a05c] flex items-center justify-center mx-auto mb-5">
                 <Sparkles className="w-5 h-5" strokeWidth={1.2} />
               </div>
               <span className="lux-eyebrow block">Commission Inquiry Received</span>
-              <h3 className="text-2xl font-serif-luxury font-light text-[#f4eee3] mt-2 mb-3">
+              <h3 className="text-2xl font-serif-luxury font-light text-[#f6efe4] mt-2 mb-3">
                 Your vision is in our hands
               </h3>
-              <p className="text-[11px] text-[#a79e8e] font-light leading-relaxed max-w-md mx-auto mb-7">
-                Thank you, <strong className="text-[#f4eee3] font-normal">{formData.fullName}</strong>. A senior designer at Jain Jewells Jaipur will review your specifications for a {formData.jewelryType}.
+              <p className="text-[11px] text-[#a99987] font-light leading-relaxed max-w-md mx-auto mb-7">
+                Thank you, <strong className="text-[#f6efe4] font-normal">{formData.fullName}</strong>. A senior designer at Jain Jewells Jaipur will review your specifications for a {formData.jewelryType}.
               </p>
 
               <div className="flex flex-col sm:flex-row items-center justify-center gap-3">

@@ -70,11 +70,11 @@ export const CustomerNotificationModal: React.FC<CustomerNotificationModalProps>
   };
 
   return (
-    <div className="fixed inset-0 z-50 bg-[#050504]/90 backdrop-blur-md flex items-center justify-center p-4 overflow-y-auto">
-      <div className="bg-[#100e0b] max-w-3xl w-full rounded-none p-6 sm:p-9 border border-[#c9a96a]/25 relative shadow-2xl my-8">
+    <div className="fixed inset-0 z-50 bg-[#080504]/90 backdrop-blur-md flex items-center justify-center p-4 overflow-y-auto">
+      <div className="bg-[#170d0c] max-w-3xl w-full rounded-none p-6 sm:p-9 border border-[#c8a05c]/25 relative shadow-2xl my-8">
         <button
           onClick={onClose}
-          className="absolute top-4 right-4 w-9 h-9 flex items-center justify-center text-[#a79e8e] hover:text-[#f4eee3] border border-[#f4eee3]/10 hover:border-[#c9a96a]/50 transition-colors"
+          className="absolute top-4 right-4 w-9 h-9 flex items-center justify-center text-[#a99987] hover:text-[#f6efe4] border border-[#f6efe4]/10 hover:border-[#c8a05c]/50 transition-colors"
           aria-label="Close notifications"
         >
           <X className="w-4 h-4" strokeWidth={1.4} />
@@ -86,17 +86,17 @@ export const CustomerNotificationModal: React.FC<CustomerNotificationModalProps>
             <CheckCircle2 className="w-5 h-5" strokeWidth={1.3} />
           </div>
           <span className="lux-eyebrow block">Consignment in Transit</span>
-          <h3 className="text-2xl sm:text-3xl font-serif-luxury font-light text-[#f4eee3] mt-2">
+          <h3 className="text-2xl sm:text-3xl font-serif-luxury font-light text-[#f6efe4] mt-2">
             Order #{order.orderNumber} dispatched
           </h3>
-          <p className="text-[10.5px] text-[#a79e8e] font-light max-w-md mx-auto mt-2 leading-relaxed">
-            Handed to <strong className="text-[#ded6c7] font-normal">{courier}</strong> · AWB{" "}
-            <code className="text-[#e8d9b4] font-mono">{trackingNumber}</code>
+          <p className="text-[10.5px] text-[#a99987] font-light max-w-md mx-auto mt-2 leading-relaxed">
+            Handed to <strong className="text-[#e0d4c2] font-normal">{courier}</strong> · AWB{" "}
+            <code className="text-[#ecd8ae] font-mono">{trackingNumber}</code>
           </p>
         </div>
 
         {/* Notification Channel Tabs */}
-        <div className="flex items-center justify-center gap-7 mb-7 border-b border-[#f4eee3]/10 pb-4">
+        <div className="flex items-center justify-center gap-7 mb-7 border-b border-[#f6efe4]/10 pb-4">
           {[
             { id: "whatsapp" as const, label: "WhatsApp", icon: MessageSquare },
             { id: "email" as const, label: "Email", icon: Mail },
@@ -107,8 +107,8 @@ export const CustomerNotificationModal: React.FC<CustomerNotificationModalProps>
               onClick={() => setActiveNotificationTab(channel.id)}
               className={`relative flex items-center gap-2 text-[9px] uppercase tracking-[0.18em] pb-2 transition-colors ${
                 activeNotificationTab === channel.id
-                  ? "text-[#e8d9b4] after:absolute after:left-0 after:right-0 after:bottom-0 after:h-px after:bg-[#c9a96a]"
-                  : "text-[#a79e8e] hover:text-[#f4eee3]"
+                  ? "text-[#ecd8ae] after:absolute after:left-0 after:right-0 after:bottom-0 after:h-px after:bg-[#c8a05c]"
+                  : "text-[#a99987] hover:text-[#f6efe4]"
               }`}
             >
               <channel.icon className="w-3.5 h-3.5" strokeWidth={1.4} /> {channel.label}
@@ -119,22 +119,22 @@ export const CustomerNotificationModal: React.FC<CustomerNotificationModalProps>
         {/* Tab 1: WhatsApp Notification View */}
         {activeNotificationTab === "whatsapp" && (
           <div className="space-y-4">
-            <div className="border border-[#f4eee3]/10 p-5 sm:p-6">
-              <div className="flex flex-wrap items-center justify-between gap-2 border-b border-[#f4eee3]/10 pb-4 mb-4 text-[9px] uppercase tracking-[0.14em]">
-                <div className="flex items-center gap-2 text-[#c9a96a]">
+            <div className="border border-[#f6efe4]/10 p-5 sm:p-6">
+              <div className="flex flex-wrap items-center justify-between gap-2 border-b border-[#f6efe4]/10 pb-4 mb-4 text-[9px] uppercase tracking-[0.14em]">
+                <div className="flex items-center gap-2 text-[#c8a05c]">
                   <MessageSquare className="w-3.5 h-3.5" strokeWidth={1.4} /> WhatsApp Template
                 </div>
-                <span className="text-[#7f786c]">To <strong className="text-[#ded6c7] font-normal normal-case">{phone}</strong></span>
+                <span className="text-[#857768]">To <strong className="text-[#e0d4c2] font-normal normal-case">{phone}</strong></span>
               </div>
 
-              <div className="bg-[#14110c] p-4 font-mono text-[11px] text-[#ded6c7] whitespace-pre-wrap leading-relaxed border border-[#f4eee3]/8 max-h-56 overflow-y-auto">
+              <div className="bg-[#1b1110] p-4 font-mono text-[11px] text-[#e0d4c2] whitespace-pre-wrap leading-relaxed border border-[#f6efe4]/8 max-h-56 overflow-y-auto">
                 {waMsg}
               </div>
 
               <div className="flex flex-wrap items-center justify-between gap-3 mt-4 pt-2">
                 <button
                   onClick={handleCopyWA}
-                  className="flex items-center gap-1.5 text-xs text-[#a79e8e] hover:text-[#f4eee3] bg-white/5 px-3 py-2 rounded-none border border-[#f4eee3]/10"
+                  className="flex items-center gap-1.5 text-xs text-[#a99987] hover:text-[#f6efe4] bg-white/5 px-3 py-2 rounded-none border border-[#f6efe4]/10"
                 >
                   {copiedWA ? <Check className="w-3.5 h-3.5 text-[#9ab79f]" /> : <Copy className="w-3.5 h-3.5" />}
                   {copiedWA ? "Copied to Clipboard!" : "Copy Text"}
@@ -156,44 +156,44 @@ export const CustomerNotificationModal: React.FC<CustomerNotificationModalProps>
         {/* Tab 2: Luxury Email View */}
         {activeNotificationTab === "email" && (
           <div className="space-y-4">
-            <div className="bg-[#14110c] border border-[#f4eee3]/8 p-5 max-h-80 overflow-y-auto">
+            <div className="bg-[#1b1110] border border-[#f6efe4]/8 p-5 max-h-80 overflow-y-auto">
               {/* Luxury Email Header */}
-              <div className="text-center border-b border-[#c9a96a]/30 pb-4 mb-4">
+              <div className="text-center border-b border-[#c8a05c]/30 pb-4 mb-4">
                 <div className="text-base font-serif-luxury font-light gold-text-gradient tracking-widest uppercase">
                   JAIN JEWELLS
                 </div>
-                <span className="text-[10px] text-[#7f786c] tracking-widest uppercase block">
+                <span className="text-[10px] text-[#857768] tracking-widest uppercase block">
                   Fine Jewellery Atelier • Jaipur
                 </span>
               </div>
 
-              <div className="text-xs text-[#ded6c7] space-y-3 leading-relaxed">
-                <p>Dear <strong className="text-[#f4eee3]">{order.customerName}</strong>,</p>
+              <div className="text-xs text-[#e0d4c2] space-y-3 leading-relaxed">
+                <p>Dear <strong className="text-[#f6efe4]">{order.customerName}</strong>,</p>
                 <p>
-                  We take great pride in informing you that your handcrafted jewellery piece(s) under Order <strong className="text-[#e8d9b4]">#{order.orderNumber}</strong> have passed our master quality appraisal, received 6-Digit HUID hallmarking certification, and are now in transit.
+                  We take great pride in informing you that your handcrafted jewellery piece(s) under Order <strong className="text-[#ecd8ae]">#{order.orderNumber}</strong> have passed our master quality appraisal, received 6-Digit HUID hallmarking certification, and are now in transit.
                 </p>
 
-                <div className="border-y border-[#f4eee3]/10 py-4 text-[10px] grid grid-cols-2 gap-3">
+                <div className="border-y border-[#f6efe4]/10 py-4 text-[10px] grid grid-cols-2 gap-3">
                   <div>
-                    <span className="text-[#7f786c] block">Logistics Partner:</span>
-                    <strong className="text-[#f4eee3]">{courier}</strong>
+                    <span className="text-[#857768] block">Logistics Partner:</span>
+                    <strong className="text-[#f6efe4]">{courier}</strong>
                   </div>
                   <div>
-                    <span className="text-[#7f786c] block">Tracking ID:</span>
-                    <strong className="text-[#e8d9b4] font-mono">{trackingNumber}</strong>
+                    <span className="text-[#857768] block">Tracking ID:</span>
+                    <strong className="text-[#ecd8ae] font-mono">{trackingNumber}</strong>
                   </div>
                   <div>
-                    <span className="text-[#7f786c] block">Estimated Arrival:</span>
-                    <strong className="text-[#f4eee3]">{estimatedDelivery}</strong>
+                    <span className="text-[#857768] block">Estimated Arrival:</span>
+                    <strong className="text-[#f6efe4]">{estimatedDelivery}</strong>
                   </div>
                   <div>
-                    <span className="text-[#7f786c] block">Insurance Status:</span>
+                    <span className="text-[#857768] block">Insurance Status:</span>
                     <strong className="text-[#9ab79f]">100% Fully Insured</strong>
                   </div>
                 </div>
 
-                <p className="text-[11px] text-[#a79e8e]">
-                  Recipient Email: <strong className="text-[#f4eee3]">{email}</strong>
+                <p className="text-[11px] text-[#a99987]">
+                  Recipient Email: <strong className="text-[#f6efe4]">{email}</strong>
                 </p>
               </div>
             </div>
@@ -209,9 +209,9 @@ export const CustomerNotificationModal: React.FC<CustomerNotificationModalProps>
         {/* Tab 3: SMS View */}
         {activeNotificationTab === "sms" && (
           <div className="space-y-4">
-            <div className="border border-[#f4eee3]/10 p-5">
-              <div className="text-[9px] uppercase tracking-[0.16em] text-[#7f786c] mb-3">SMS Preview · {phone}</div>
-              <div className="bg-[#14110c] p-4 font-mono text-[11px] text-[#ded6c7] border border-[#f4eee3]/8 leading-relaxed">
+            <div className="border border-[#f6efe4]/10 p-5">
+              <div className="text-[9px] uppercase tracking-[0.16em] text-[#857768] mb-3">SMS Preview · {phone}</div>
+              <div className="bg-[#1b1110] p-4 font-mono text-[11px] text-[#e0d4c2] border border-[#f6efe4]/8 leading-relaxed">
                 JAIN JEWELLS: Your order #{order.orderNumber} has been dispatched via {courier} (AWB: {trackingNumber}). Estimated delivery: {estimatedDelivery}. Track live at {trackingUrl}
               </div>
             </div>
@@ -219,10 +219,10 @@ export const CustomerNotificationModal: React.FC<CustomerNotificationModalProps>
         )}
 
         {/* Modal Footer Actions */}
-        <div className="flex flex-col sm:flex-row items-center justify-between gap-3 border-t border-[#f4eee3]/10 pt-5 mt-6">
+        <div className="flex flex-col sm:flex-row items-center justify-between gap-3 border-t border-[#f6efe4]/10 pt-5 mt-6">
           <button
             onClick={handleCopyTrack}
-            className="text-[9px] uppercase tracking-[0.14em] text-[#a79e8e] hover:text-[#f4eee3] flex items-center gap-1.5 px-4 py-2.5 border border-[#f4eee3]/10"
+            className="text-[9px] uppercase tracking-[0.14em] text-[#a99987] hover:text-[#f6efe4] flex items-center gap-1.5 px-4 py-2.5 border border-[#f6efe4]/10"
           >
             {copiedTrack ? <Check className="w-3.5 h-3.5 text-[#9ab79f]" /> : <Copy className="w-3.5 h-3.5" />}
             {copiedTrack ? "Tracking Link Copied!" : "Copy Tracking URL"}

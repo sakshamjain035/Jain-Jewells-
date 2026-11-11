@@ -76,31 +76,31 @@ export const DispatchModal: React.FC<DispatchModalProps> = ({
   };
 
   return (
-    <div className="fixed inset-0 z-50 bg-[#050504]/90 backdrop-blur-md flex items-center justify-center p-4 overflow-y-auto">
-      <div className="bg-[#100e0b] max-w-2xl w-full rounded-none p-6 sm:p-8 border border-[#c9a96a]/25 relative shadow-2xl my-8">
+    <div className="fixed inset-0 z-50 bg-[#080504]/90 backdrop-blur-md flex items-center justify-center p-4 overflow-y-auto">
+      <div className="bg-[#170d0c] max-w-2xl w-full rounded-none p-6 sm:p-8 border border-[#c8a05c]/25 relative shadow-2xl my-8">
         <button
           onClick={onClose}
           disabled={isSubmitting}
-          className="absolute top-4 right-4 w-9 h-9 flex items-center justify-center text-[#a79e8e] hover:text-[#f4eee3] border border-[#f4eee3]/10 hover:border-[#c9a96a]/50 transition-colors"
+          className="absolute top-4 right-4 w-9 h-9 flex items-center justify-center text-[#a99987] hover:text-[#f6efe4] border border-[#f6efe4]/10 hover:border-[#c8a05c]/50 transition-colors"
         >
           <X className="w-5 h-5" />
         </button>
 
         {/* Modal Header */}
-        <div className="flex items-start gap-4 border-b border-[#f4eee3]/10 pb-5 mb-6">
+        <div className="flex items-start gap-4 border-b border-[#f6efe4]/10 pb-5 mb-6">
           <div className="w-12 h-12 rounded-none bg-amber-500/20 border border-amber-500/40 text-amber-400 flex items-center justify-center shrink-0">
             <Truck className="w-6 h-6" />
           </div>
           <div>
-            <span className="text-[10px] text-[#c9a96a] font-bold uppercase tracking-widest block">
+            <span className="text-[10px] text-[#c8a05c] font-bold uppercase tracking-widest block">
               Fulfilment &amp; Logistics Action
             </span>
-            <h3 className="text-xl sm:text-2xl font-serif-luxury font-light text-[#f4eee3]">
+            <h3 className="text-xl sm:text-2xl font-serif-luxury font-light text-[#f6efe4]">
               Dispatch Order #{order.orderNumber}
             </h3>
-            <p className="text-xs text-[#a79e8e] mt-1">
+            <p className="text-xs text-[#a99987] mt-1">
               Mark this jewellery consignment as dispatched and immediately notify patron{" "}
-              <strong className="text-[#f4eee3]">{order.customerName}</strong>.
+              <strong className="text-[#f6efe4]">{order.customerName}</strong>.
             </p>
           </div>
         </div>
@@ -113,16 +113,16 @@ export const DispatchModal: React.FC<DispatchModalProps> = ({
         )}
 
         {/* Order Summary Snapshot */}
-        <div className="bg-[#14110c] p-4 rounded-none border border-[#f4eee3]/10 mb-6 text-xs text-[#ded6c7] space-y-2">
-          <div className="flex flex-wrap justify-between items-center border-b border-[#f4eee3]/10 pb-2">
+        <div className="bg-[#1b1110] p-4 rounded-none border border-[#f6efe4]/10 mb-6 text-xs text-[#e0d4c2] space-y-2">
+          <div className="flex flex-wrap justify-between items-center border-b border-[#f6efe4]/10 pb-2">
             <div>
-              <span className="text-[#7f786c] block text-[10px]">Customer:</span>
-              <strong className="text-[#f4eee3] text-sm">{order.customerName}</strong> (
+              <span className="text-[#857768] block text-[10px]">Customer:</span>
+              <strong className="text-[#f6efe4] text-sm">{order.customerName}</strong> (
               {order.customerPhone})
             </div>
             <div className="text-right">
-              <span className="text-[#7f786c] block text-[10px]">Order Value:</span>
-              <strong className="text-sm font-serif-luxury text-[#e8d9b4]">
+              <span className="text-[#857768] block text-[10px]">Order Value:</span>
+              <strong className="text-sm font-serif-luxury text-[#ecd8ae]">
                 ₹{order.totalAmount.toLocaleString("en-IN")}
               </strong>
             </div>
@@ -130,28 +130,28 @@ export const DispatchModal: React.FC<DispatchModalProps> = ({
 
           <div className="flex flex-wrap justify-between items-center pt-1 text-[11px]">
             <div>
-              <span className="text-[#7f786c]">Delivery Destination: </span>
-              <span className="text-[#f4eee3]">
+              <span className="text-[#857768]">Delivery Destination: </span>
+              <span className="text-[#f6efe4]">
                 {order.shippingAddress.city}, {order.shippingAddress.state} ({order.shippingAddress.pincode})
               </span>
             </div>
             <div>
-              <span className="text-[#7f786c]">Items: </span>
+              <span className="text-[#857768]">Items: </span>
               <span className="text-[#9ab79f] font-semibold">{order.items.length} Piece(s)</span>
             </div>
           </div>
         </div>
 
         {/* Dispatch Form */}
-        <form onSubmit={handleDispatch} className="flex flex-col gap-4 text-xs text-[#f4eee3]">
+        <form onSubmit={handleDispatch} className="flex flex-col gap-4 text-xs text-[#f6efe4]">
           <div>
-            <label className="text-[8px] uppercase tracking-[0.18em] text-[#7f786c] block mb-1.5">
+            <label className="text-[8px] uppercase tracking-[0.18em] text-[#857768] block mb-1.5">
               Insured Courier Logistics Partner *
             </label>
             <select
               value={courierPartner}
               onChange={handleCourierChange}
-              className="w-full bg-[#14110c] border border-[#f4eee3]/15 focus:border-[#c9a96a] text-[#f4eee3] rounded-none p-3 outline-none cursor-pointer"
+              className="w-full bg-[#1b1110] border border-[#f6efe4]/15 focus:border-[#c8a05c] text-[#f6efe4] rounded-none p-3 outline-none cursor-pointer"
             >
               {COURIER_OPTIONS.map((c) => (
                 <option key={c.id} value={c.id}>
@@ -163,7 +163,7 @@ export const DispatchModal: React.FC<DispatchModalProps> = ({
 
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             <div>
-              <label className="text-[8px] uppercase tracking-[0.18em] text-[#7f786c] block mb-1.5">
+              <label className="text-[8px] uppercase tracking-[0.18em] text-[#857768] block mb-1.5">
                 Tracking / AWB Airway Bill Number *
               </label>
               <input
@@ -172,12 +172,12 @@ export const DispatchModal: React.FC<DispatchModalProps> = ({
                 value={trackingNumber}
                 onChange={(e) => setTrackingNumber(e.target.value)}
                 placeholder="e.g. BD-8921445"
-                className="w-full bg-[#14110c] border border-[#f4eee3]/15 focus:border-[#c9a96a] text-[#f4eee3] font-mono rounded-none p-3 outline-none"
+                className="w-full bg-[#1b1110] border border-[#f6efe4]/15 focus:border-[#c8a05c] text-[#f6efe4] font-mono rounded-none p-3 outline-none"
               />
             </div>
 
             <div>
-              <label className="text-[8px] uppercase tracking-[0.18em] text-[#7f786c] block mb-1.5">
+              <label className="text-[8px] uppercase tracking-[0.18em] text-[#857768] block mb-1.5">
                 Estimated Delivery Timeline *
               </label>
               <input
@@ -186,13 +186,13 @@ export const DispatchModal: React.FC<DispatchModalProps> = ({
                 value={estimatedDelivery}
                 onChange={(e) => setEstimatedDelivery(e.target.value)}
                 placeholder="e.g. In 2 Business Days (By 4 PM)"
-                className="w-full bg-[#14110c] border border-[#f4eee3]/15 focus:border-[#c9a96a] text-[#f4eee3] rounded-none p-3 outline-none"
+                className="w-full bg-[#1b1110] border border-[#f6efe4]/15 focus:border-[#c8a05c] text-[#f6efe4] rounded-none p-3 outline-none"
               />
             </div>
           </div>
 
           <div>
-            <label className="text-[8px] uppercase tracking-[0.18em] text-[#7f786c] block mb-1.5">
+            <label className="text-[8px] uppercase tracking-[0.18em] text-[#857768] block mb-1.5">
               Security Seal &amp; Dispatch Notes
             </label>
             <textarea
@@ -200,17 +200,17 @@ export const DispatchModal: React.FC<DispatchModalProps> = ({
               value={dispatchNotes}
               onChange={(e) => setDispatchNotes(e.target.value)}
               placeholder="Tamper proof vault seal number, special packaging notes..."
-              className="w-full bg-[#14110c] border border-[#f4eee3]/15 focus:border-[#c9a96a] text-[#f4eee3] rounded-none p-3 outline-none resize-none"
+              className="w-full bg-[#1b1110] border border-[#f6efe4]/15 focus:border-[#c8a05c] text-[#f6efe4] rounded-none p-3 outline-none resize-none"
             />
           </div>
 
           {/* Customer Notification Channels Banner */}
-          <div className="bg-[#14110c] p-3.5 rounded-none border border-[#9ab79f]/25 flex items-center justify-between">
+          <div className="bg-[#1b1110] p-3.5 rounded-none border border-[#9ab79f]/25 flex items-center justify-between">
             <div className="flex items-center gap-2.5">
               <ShieldCheck className="w-5 h-5 text-[#9ab79f] shrink-0" />
               <div>
-                <strong className="text-[#f4eee3] text-xs block">Automated Customer Notification Enabled</strong>
-                <span className="text-[10px] text-[#a79e8e]">
+                <strong className="text-[#f6efe4] text-xs block">Automated Customer Notification Enabled</strong>
+                <span className="text-[10px] text-[#a99987]">
                   Instant WhatsApp link, branded email notification &amp; SMS tracking will be generated.
                 </span>
               </div>
@@ -227,7 +227,7 @@ export const DispatchModal: React.FC<DispatchModalProps> = ({
               type="button"
               onClick={onClose}
               disabled={isSubmitting}
-              className="px-5 py-3 rounded-none border border-[#f4eee3]/15 text-[#ded6c7] hover:text-[#f4eee3] text-xs font-semibold"
+              className="px-5 py-3 rounded-none border border-[#f6efe4]/15 text-[#e0d4c2] hover:text-[#f6efe4] text-xs font-semibold"
             >
               Cancel
             </button>

@@ -47,11 +47,11 @@ export const AppointmentModal: React.FC<AppointmentModalProps> = ({ isOpen, onCl
   );
 
   return (
-    <div className="fixed inset-0 z-50 bg-[#050504]/90 backdrop-blur-md flex items-center justify-center p-4 overflow-y-auto">
-      <div className="bg-[#100e0b]/95 backdrop-blur-xl max-w-xl w-full p-6 sm:p-9 border border-[#c9a96a]/25 relative shadow-2xl my-8">
+    <div className="fixed inset-0 z-50 bg-[#080504]/90 backdrop-blur-md flex items-center justify-center p-4 overflow-y-auto">
+      <div className="bg-[#170d0c]/95 backdrop-blur-xl max-w-xl w-full p-6 sm:p-9 border border-[#c8a05c]/25 relative shadow-2xl my-8">
         <button
           onClick={onClose}
-          className="absolute top-4 right-4 w-9 h-9 flex items-center justify-center text-[#a79e8e] hover:text-[#f4eee3] border border-[#f4eee3]/10 hover:border-[#c9a96a]/50 transition-colors"
+          className="absolute top-4 right-4 w-9 h-9 flex items-center justify-center text-[#a99987] hover:text-[#f6efe4] border border-[#f6efe4]/10 hover:border-[#c8a05c]/50 transition-colors"
           aria-label="Close appointment form"
         >
           <X className="w-4 h-4" strokeWidth={1.4} />
@@ -60,21 +60,21 @@ export const AppointmentModal: React.FC<AppointmentModalProps> = ({ isOpen, onCl
         {!isBooked ? (
           <div>
             <div className="text-center mb-7">
-              <div className="w-10 h-10 border border-[#c9a96a]/45 text-[#c9a96a] flex items-center justify-center mx-auto mb-4">
+              <div className="w-10 h-10 border border-[#c8a05c]/45 text-[#c8a05c] flex items-center justify-center mx-auto mb-4">
                 <Calendar className="w-4 h-4" strokeWidth={1.3} />
               </div>
               <span className="lux-eyebrow block mb-2">By Appointment</span>
-              <h3 className="text-2xl sm:text-3xl font-serif-luxury font-light text-[#f4eee3]">
+              <h3 className="text-2xl sm:text-3xl font-serif-luxury font-light text-[#f6efe4]">
                 A Private Viewing
               </h3>
-              <p className="text-[10.5px] text-[#a79e8e] font-light leading-relaxed mt-2 max-w-sm mx-auto">
+              <p className="text-[10.5px] text-[#a99987] font-light leading-relaxed mt-2 max-w-sm mx-auto">
                 Reserve a private suite at our Jaipur showroom with a dedicated jewellery stylist.
               </p>
             </div>
 
-            <form onSubmit={handleSubmit} className="flex flex-col gap-4 text-[11px] text-[#f4eee3]">
+            <form onSubmit={handleSubmit} className="flex flex-col gap-4 text-[11px] text-[#f6efe4]">
               <div>
-                <label className="text-[8px] uppercase tracking-[0.2em] text-[#7f786c] block mb-1.5">
+                <label className="text-[8px] uppercase tracking-[0.2em] text-[#857768] block mb-1.5">
                   Full Name *
                 </label>
                 <input
@@ -83,13 +83,13 @@ export const AppointmentModal: React.FC<AppointmentModalProps> = ({ isOpen, onCl
                   placeholder="e.g. Suman Jain"
                   value={formData.fullName}
                   onChange={(e) => setFormData({ ...formData, fullName: e.target.value })}
-                  className="w-full bg-[#14110c] border border-[#f4eee3]/12 focus:border-[#c9a96a] text-[#f4eee3] rounded-none p-3 outline-none transition-colors"
+                  className="w-full bg-[#1b1110] border border-[#f6efe4]/12 focus:border-[#c8a05c] text-[#f6efe4] rounded-none p-3 outline-none transition-colors"
                 />
               </div>
 
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                 <div>
-                  <label className="text-[8px] uppercase tracking-[0.2em] text-[#7f786c] block mb-1.5">
+                  <label className="text-[8px] uppercase tracking-[0.2em] text-[#857768] block mb-1.5">
                     Phone / Mobile *
                   </label>
                   <input
@@ -98,12 +98,12 @@ export const AppointmentModal: React.FC<AppointmentModalProps> = ({ isOpen, onCl
                     placeholder="+91 98290 XXXXX"
                     value={formData.phone}
                     onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
-                    className="w-full bg-[#14110c] border border-[#f4eee3]/12 focus:border-[#c9a96a] text-[#f4eee3] rounded-none p-3 outline-none transition-colors"
+                    className="w-full bg-[#1b1110] border border-[#f6efe4]/12 focus:border-[#c8a05c] text-[#f6efe4] rounded-none p-3 outline-none transition-colors"
                   />
                 </div>
 
                 <div>
-                  <label className="text-[8px] uppercase tracking-[0.2em] text-[#7f786c] block mb-1.5">
+                  <label className="text-[8px] uppercase tracking-[0.2em] text-[#857768] block mb-1.5">
                     Email Address
                   </label>
                   <input
@@ -111,14 +111,14 @@ export const AppointmentModal: React.FC<AppointmentModalProps> = ({ isOpen, onCl
                     placeholder="patron@example.com"
                     value={formData.email}
                     onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                    className="w-full bg-[#14110c] border border-[#f4eee3]/12 focus:border-[#c9a96a] text-[#f4eee3] rounded-none p-3 outline-none transition-colors"
+                    className="w-full bg-[#1b1110] border border-[#f6efe4]/12 focus:border-[#c8a05c] text-[#f6efe4] rounded-none p-3 outline-none transition-colors"
                   />
                 </div>
               </div>
 
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                 <div>
-                  <label className="text-[8px] uppercase tracking-[0.2em] text-[#7f786c] block mb-1.5">
+                  <label className="text-[8px] uppercase tracking-[0.2em] text-[#857768] block mb-1.5">
                     Preferred Visit Date *
                   </label>
                   <input
@@ -126,18 +126,18 @@ export const AppointmentModal: React.FC<AppointmentModalProps> = ({ isOpen, onCl
                     required
                     value={formData.visitDate}
                     onChange={(e) => setFormData({ ...formData, visitDate: e.target.value })}
-                    className="w-full bg-[#14110c] border border-[#f4eee3]/12 focus:border-[#c9a96a] text-[#f4eee3] rounded-none p-3 outline-none transition-colors"
+                    className="w-full bg-[#1b1110] border border-[#f6efe4]/12 focus:border-[#c8a05c] text-[#f6efe4] rounded-none p-3 outline-none transition-colors"
                   />
                 </div>
 
                 <div>
-                  <label className="text-[8px] uppercase tracking-[0.2em] text-[#7f786c] block mb-1.5">
+                  <label className="text-[8px] uppercase tracking-[0.2em] text-[#857768] block mb-1.5">
                     Time Slot
                   </label>
                   <select
                     value={formData.timeSlot}
                     onChange={(e) => setFormData({ ...formData, timeSlot: e.target.value })}
-                    className="w-full bg-[#14110c] border border-[#f4eee3]/12 focus:border-[#c9a96a] text-[#f4eee3] rounded-none p-3 outline-none transition-colors"
+                    className="w-full bg-[#1b1110] border border-[#f6efe4]/12 focus:border-[#c8a05c] text-[#f6efe4] rounded-none p-3 outline-none transition-colors"
                   >
                     <option value="11:00 AM - 01:00 PM">11:00 AM – 01:00 PM (Morning)</option>
                     <option value="02:00 PM - 04:00 PM">02:00 PM – 04:00 PM (Afternoon)</option>
@@ -148,13 +148,13 @@ export const AppointmentModal: React.FC<AppointmentModalProps> = ({ isOpen, onCl
               </div>
 
               <div>
-                <label className="text-[8px] uppercase tracking-[0.2em] text-[#7f786c] block mb-1.5">
+                <label className="text-[8px] uppercase tracking-[0.2em] text-[#857768] block mb-1.5">
                   Primary Collection Interest
                 </label>
                 <select
                   value={formData.categoryInterest}
                   onChange={(e) => setFormData({ ...formData, categoryInterest: e.target.value })}
-                  className="w-full bg-[#14110c] border border-[#f4eee3]/12 focus:border-[#c9a96a] text-[#f4eee3] rounded-none p-3 outline-none transition-colors"
+                  className="w-full bg-[#1b1110] border border-[#f6efe4]/12 focus:border-[#c8a05c] text-[#f6efe4] rounded-none p-3 outline-none transition-colors"
                 >
                   <option value="Bridal Couture & Kundan">Bridal Trousseau &amp; Rajwadi Kundan</option>
                   <option value="Solitaire Engagement Rings">Solitaire Engagement Rings &amp; Tennis Bracelets</option>
@@ -164,19 +164,19 @@ export const AppointmentModal: React.FC<AppointmentModalProps> = ({ isOpen, onCl
                 </select>
               </div>
 
-              <div className="bg-[#16130e] p-4 border border-[#c9a96a]/20 flex items-center justify-between gap-4">
+              <div className="bg-[#1e1413] p-4 border border-[#c8a05c]/20 flex items-center justify-between gap-4">
                 <div className="flex items-center gap-3">
-                  <Sparkles className="w-4 h-4 text-[#c9a96a]" strokeWidth={1.3} />
+                  <Sparkles className="w-4 h-4 text-[#c8a05c]" strokeWidth={1.3} />
                   <div>
-                    <strong className="block text-[11px] text-[#f4eee3] font-normal">Reserve the private VIP suite</strong>
-                    <span className="text-[9px] text-[#7f786c]">Complimentary refreshments &amp; valet parking</span>
+                    <strong className="block text-[11px] text-[#f6efe4] font-normal">Reserve the private VIP suite</strong>
+                    <span className="text-[9px] text-[#857768]">Complimentary refreshments &amp; valet parking</span>
                   </div>
                 </div>
                 <input
                   type="checkbox"
                   checked={formData.vipLounge}
                   onChange={(e) => setFormData({ ...formData, vipLounge: e.target.checked })}
-                  className="w-4 h-4 accent-[#c9a96a] cursor-pointer"
+                  className="w-4 h-4 accent-[#c8a05c] cursor-pointer"
                 />
               </div>
 
@@ -192,15 +192,15 @@ export const AppointmentModal: React.FC<AppointmentModalProps> = ({ isOpen, onCl
           </div>
         ) : (
           <div className="text-center py-6">
-            <div className="w-11 h-11 border border-[#c9a96a]/50 text-[#c9a96a] flex items-center justify-center mx-auto mb-4">
+            <div className="w-11 h-11 border border-[#c8a05c]/50 text-[#c8a05c] flex items-center justify-center mx-auto mb-4">
               <Check className="w-5 h-5" strokeWidth={1.4} />
             </div>
             <span className="lux-eyebrow block mb-2">Reserved</span>
-            <h3 className="text-2xl font-serif-luxury font-light text-[#f4eee3] mb-3">
+            <h3 className="text-2xl font-serif-luxury font-light text-[#f6efe4] mb-3">
               We look forward to your visit
             </h3>
-            <p className="text-[11px] text-[#a79e8e] font-light leading-relaxed max-w-sm mx-auto mb-7">
-              <strong className="text-[#f4eee3] font-normal">{formData.fullName}</strong>, your private viewing is noted for <strong className="text-[#c9a96a] font-normal">{formData.visitDate} · {formData.timeSlot}</strong>. Our concierge will confirm shortly.
+            <p className="text-[11px] text-[#a99987] font-light leading-relaxed max-w-sm mx-auto mb-7">
+              <strong className="text-[#f6efe4] font-normal">{formData.fullName}</strong>, your private viewing is noted for <strong className="text-[#c8a05c] font-normal">{formData.visitDate} · {formData.timeSlot}</strong>. Our concierge will confirm shortly.
             </p>
 
             <div className="flex flex-col gap-3">

@@ -31,21 +31,22 @@ export const Footer: React.FC = () => {
   };
 
   return (
-    <footer className="bg-[#080706] border-t border-[#c9a96a]/25 text-[#ded6c7] relative overflow-hidden">
+    <footer className="bg-[#0a0606] border-t border-[#c8a05c]/25 text-[#e0d4c2] relative overflow-hidden">
+      <div className="absolute -top-40 right-0 w-[640px] h-[560px] bg-[#481c24]/30 blur-[150px] pointer-events-none" />
       {/* Newsletter band */}
-      <div className="border-b border-[#f4eee3]/8">
+      <div className="border-b border-[#f6efe4]/8">
         <div className="max-w-[1400px] mx-auto px-5 sm:px-8 py-14 sm:py-16 grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
           <div className="lg:col-span-6">
             <span className="lux-eyebrow block mb-4">The House Letter</span>
-            <h2 className="text-[2rem] sm:text-[2.8rem] font-light text-[#f4eee3] leading-[1.08] tracking-[-0.01em]">
+            <h2 className="text-[2rem] sm:text-[2.8rem] font-light text-[#f6efe4] leading-[1.08] tracking-[-0.01em]">
               Private previews, quiet launches,
               <br className="hidden sm:block" />
-              <span className="italic text-[#e8d9b4]"> and the day&apos;s gold rate.</span>
+              <span className="italic text-[#ecd8ae]"> and the day&apos;s gold rate.</span>
             </h2>
           </div>
 
           <div className="lg:col-span-6 lg:pl-10">
-            <p className="text-[11px] text-[#a79e8e] font-light leading-[1.8] mb-5 max-w-md">
+            <p className="text-[11px] text-[#a99987] font-light leading-[1.8] mb-5 max-w-md">
               A considered letter from our Jaipur atelier — new collections, bridal previews and daily metal alerts. No noise.
             </p>
 
@@ -62,19 +63,19 @@ export const Footer: React.FC = () => {
                     placeholder="Your email address"
                     value={emailInput}
                     onChange={(e) => setEmailInput(e.target.value)}
-                    className="w-full bg-transparent border-b border-[#f4eee3]/20 focus:border-[#c9a96a] text-[11px] tracking-[0.03em] text-[#f4eee3] placeholder-[#7f786c] py-3 outline-none transition-colors rounded-none"
+                    className="w-full bg-transparent border-b border-[#f6efe4]/20 focus:border-[#c8a05c] text-[11px] tracking-[0.03em] text-[#f6efe4] placeholder-[#857768] py-3 outline-none transition-colors rounded-none"
                   />
                 </div>
                 <button
                   type="submit"
-                  className="group flex items-center gap-2 text-[9px] uppercase tracking-[0.2em] text-[#e8d9b4] pb-3 shrink-0 hover:text-[#f4eee3] transition-colors"
+                  className="group flex items-center gap-2 text-[9px] uppercase tracking-[0.2em] text-[#ecd8ae] pb-3 shrink-0 hover:text-[#f6efe4] transition-colors"
                 >
                   Subscribe
-                  <ArrowRight className="w-3.5 h-3.5 text-[#c9a96a] group-hover:translate-x-1 transition-transform" strokeWidth={1.4} />
+                  <ArrowRight className="w-3.5 h-3.5 text-[#c8a05c] group-hover:translate-x-1 transition-transform" strokeWidth={1.4} />
                 </button>
               </form>
             ) : (
-              <div className="border border-[#c9a96a]/30 px-4 py-3 text-[10px] tracking-[0.12em] uppercase text-[#e8d9b4] max-w-md">
+              <div className="border border-[#c8a05c]/30 px-4 py-3 text-[10px] tracking-[0.12em] uppercase text-[#ecd8ae] max-w-md">
                 Thank you — you are on the list.
               </div>
             )}
@@ -84,58 +85,58 @@ export const Footer: React.FC = () => {
 
       {/* Main footer */}
       <div className="max-w-[1400px] mx-auto px-5 sm:px-8">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-10 lg:gap-8 py-14 border-b border-[#f4eee3]/8">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-10 lg:gap-8 py-14 border-b border-[#f6efe4]/8">
           {/* Brand */}
           <div className="lg:col-span-5 flex flex-col gap-6 pr-0 lg:pr-14">
             <Logo size="lg" />
-            <p className="text-[11px] text-[#a79e8e] font-light leading-[1.95] max-w-sm">
+            <p className="text-[11px] text-[#a99987] font-light leading-[1.95] max-w-sm">
               Jain Jewells is a Jaipur maison of fine jewellery — 100% BIS hallmarked gold, GIA certified solitaires, royal Polki couture and bespoke artistry, since 1984.
             </p>
             <div className="flex flex-wrap items-center gap-x-6 gap-y-3 pt-1">
-              <span className="flex items-center gap-2 text-[9px] uppercase tracking-[0.16em] text-[#a79e8e]">
-                <ShieldCheck className="w-3.5 h-3.5 text-[#c9a96a]" strokeWidth={1.3} /> BIS 916
+              <span className="flex items-center gap-2 text-[9px] uppercase tracking-[0.16em] text-[#a99987]">
+                <ShieldCheck className="w-3.5 h-3.5 text-[#c8a05c]" strokeWidth={1.3} /> BIS 916
               </span>
-              <span className="w-px h-3 bg-[#f4eee3]/12" />
-              <span className="flex items-center gap-2 text-[9px] uppercase tracking-[0.16em] text-[#a79e8e]">
-                <Award className="w-3.5 h-3.5 text-[#c9a96a]" strokeWidth={1.3} /> GIA &amp; IGI
+              <span className="w-px h-3 bg-[#f6efe4]/12" />
+              <span className="flex items-center gap-2 text-[9px] uppercase tracking-[0.16em] text-[#a99987]">
+                <Award className="w-3.5 h-3.5 text-[#c8a05c]" strokeWidth={1.3} /> GIA &amp; IGI
               </span>
             </div>
           </div>
 
           {/* Showroom */}
           <div className="lg:col-span-4 flex flex-col gap-5">
-            <h4 className="text-[9px] uppercase tracking-[0.28em] text-[#c9a96a]">The Showroom</h4>
+            <h4 className="text-[9px] uppercase tracking-[0.28em] text-[#c8a05c]">The Showroom</h4>
 
-            <div className="flex items-start gap-3 text-[11px] text-[#ded6c7]/85 font-light leading-relaxed">
-              <MapPin className="w-4 h-4 text-[#c9a96a] shrink-0 mt-0.5" strokeWidth={1.3} />
+            <div className="flex items-start gap-3 text-[11px] text-[#e0d4c2]/85 font-light leading-relaxed">
+              <MapPin className="w-4 h-4 text-[#c8a05c] shrink-0 mt-0.5" strokeWidth={1.3} />
               <span>
                 {SHOWROOM_DETAILS.address},<br />
                 {SHOWROOM_DETAILS.cityStatePincode}
               </span>
             </div>
 
-            <div className="flex items-start gap-3 text-[11px] text-[#ded6c7]/85 font-light">
-              <Clock className="w-4 h-4 text-[#c9a96a] shrink-0 mt-0.5" strokeWidth={1.3} />
+            <div className="flex items-start gap-3 text-[11px] text-[#e0d4c2]/85 font-light">
+              <Clock className="w-4 h-4 text-[#c8a05c] shrink-0 mt-0.5" strokeWidth={1.3} />
               <div>
                 <div>{SHOWROOM_DETAILS.hours.weekdays}</div>
-                <div className="text-[#7f786c] mt-1">{SHOWROOM_DETAILS.hours.sunday}</div>
+                <div className="text-[#857768] mt-1">{SHOWROOM_DETAILS.hours.sunday}</div>
               </div>
             </div>
 
-            <div className="flex items-start gap-3 text-[11px] text-[#ded6c7]/85 font-light">
-              <Phone className="w-4 h-4 text-[#c9a96a] shrink-0 mt-0.5" strokeWidth={1.3} />
+            <div className="flex items-start gap-3 text-[11px] text-[#e0d4c2]/85 font-light">
+              <Phone className="w-4 h-4 text-[#c8a05c] shrink-0 mt-0.5" strokeWidth={1.3} />
               <div className="flex flex-col gap-1">
                 {SHOWROOM_DETAILS.phone.map((ph) => (
-                  <a key={ph} href={`tel:${ph}`} className="hover:text-[#e8d9b4] transition-colors">
+                  <a key={ph} href={`tel:${ph}`} className="hover:text-[#ecd8ae] transition-colors">
                     {ph}
                   </a>
                 ))}
               </div>
             </div>
 
-            <div className="flex items-center gap-3 text-[11px] text-[#ded6c7]/85 font-light">
-              <Mail className="w-4 h-4 text-[#c9a96a] shrink-0" strokeWidth={1.3} />
-              <a href={`mailto:${SHOWROOM_DETAILS.email}`} className="hover:text-[#e8d9b4] transition-colors">
+            <div className="flex items-center gap-3 text-[11px] text-[#e0d4c2]/85 font-light">
+              <Mail className="w-4 h-4 text-[#c8a05c] shrink-0" strokeWidth={1.3} />
+              <a href={`mailto:${SHOWROOM_DETAILS.email}`} className="hover:text-[#ecd8ae] transition-colors">
                 {SHOWROOM_DETAILS.email}
               </a>
             </div>
@@ -144,12 +145,12 @@ export const Footer: React.FC = () => {
           {/* Navigation */}
           <div className="lg:col-span-3 grid grid-cols-2 gap-8">
             <div className="flex flex-col gap-3">
-              <h4 className="text-[9px] uppercase tracking-[0.28em] text-[#c9a96a] mb-1">Explore</h4>
+              <h4 className="text-[9px] uppercase tracking-[0.28em] text-[#c8a05c] mb-1">Explore</h4>
               {SHOP_LINKS.map((link) => (
                 <a
                   key={link.href}
                   href={link.href}
-                  className="text-[11px] text-[#a79e8e] font-light hover:text-[#f4eee3] transition-colors"
+                  className="text-[11px] text-[#a99987] font-light hover:text-[#f6efe4] transition-colors"
                 >
                   {link.label}
                 </a>
@@ -157,17 +158,17 @@ export const Footer: React.FC = () => {
             </div>
 
             <div className="flex flex-col gap-3">
-              <h4 className="text-[9px] uppercase tracking-[0.28em] text-[#c9a96a] mb-1">Client Care</h4>
+              <h4 className="text-[9px] uppercase tracking-[0.28em] text-[#c8a05c] mb-1">Client Care</h4>
               {CARE_LINKS.map((link) => (
                 <a
                   key={link.href}
                   href={link.href}
-                  className="text-[11px] text-[#a79e8e] font-light hover:text-[#f4eee3] transition-colors"
+                  className="text-[11px] text-[#a99987] font-light hover:text-[#f6efe4] transition-colors"
                 >
                   {link.label}
                 </a>
               ))}
-              <a href="/admin" className="text-[11px] text-[#c9a96a] hover:text-[#e8d9b4] transition-colors mt-1">
+              <a href="/admin" className="text-[11px] text-[#c8a05c] hover:text-[#ecd8ae] transition-colors mt-1">
                 Admin Portal
               </a>
             </div>
@@ -176,13 +177,13 @@ export const Footer: React.FC = () => {
 
         {/* Watermark */}
         <div className="py-8 overflow-hidden select-none pointer-events-none" aria-hidden="true">
-          <p className="font-serif-luxury text-center text-[13vw] leading-none tracking-[0.06em] text-[#f4eee3]/[0.04] whitespace-nowrap">
+          <p className="font-serif-luxury text-center text-[13vw] leading-none tracking-[0.06em] text-[#f6efe4]/[0.04] whitespace-nowrap">
             Jain Jewells
           </p>
         </div>
 
         {/* Bottom bar */}
-        <div className="pb-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-[9px] uppercase tracking-[0.16em] text-[#7f786c] border-t border-[#f4eee3]/8 pt-6">
+        <div className="pb-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-[9px] uppercase tracking-[0.16em] text-[#857768] border-t border-[#f6efe4]/8 pt-6">
           <div>
             © 1984–{new Date().getFullYear()} Jain Jewells · Jaipur
           </div>

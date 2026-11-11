@@ -31,7 +31,7 @@ export default function Home() {
   };
 
   return (
-    <main className="min-h-screen flex flex-col bg-[#0a0a08] text-[#f4eee3] relative selection:bg-[#c9a96a] selection:text-[#0a0a08]">
+    <main className="min-h-screen flex flex-col bg-[#0e0908] text-[#f6efe4] relative selection:bg-[#c8a05c] selection:text-[#0e0908]">
       {/* Sticky Header Navbar */}
       <Header
         onOpenAppointment={() => setAppointmentOpen(true)}
@@ -91,7 +91,7 @@ export default function Home() {
           href={`https://wa.me/${SHOWROOM_DETAILS.whatsapp.replace("+", "")}?text=Hello%20Jain%20Jewells%2C%20I%20would%20like%20to%20connect%20with%20your%20showroom%20concierge`}
           target="_blank"
           rel="noopener noreferrer"
-          className="w-11 h-11 bg-[#100e0a]/90 backdrop-blur-md border border-[#c9a96a]/35 text-[#e8d9b4] flex items-center justify-center hover:border-[#c9a96a] hover:bg-[#c9a96a] hover:text-[#0a0a08] transition-all duration-300"
+          className="w-11 h-11 bg-[#100e0a]/90 backdrop-blur-md border border-[#c8a05c]/35 text-[#ecd8ae] flex items-center justify-center hover:border-[#c8a05c] hover:bg-[#c8a05c] hover:text-[#0e0908] transition-all duration-300"
           title="Chat with our showroom concierge"
           aria-label="Chat on WhatsApp"
         >

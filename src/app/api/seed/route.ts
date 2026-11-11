@@ -36,7 +36,7 @@ export async function POST() {
           {
             productId: "jj-101",
             name: "Rajwadi Heritage Polki & Emerald Bridal Choker",
-            image: "https://images.unsplash.com/photo-1599643478518-a784e5dc4c8f?auto=format&fit=crop&w=800&q=80",
+            image: "https://images.unsplash.com/photo-1601121141461-9d6647bca1ed?auto=format&fit=crop&w=1000&q=85",
             category: "bridal",
             metal: "22K Yellow Gold",
             metalPurity: "22K (916 BIS)",
@@ -82,7 +82,7 @@ export async function POST() {
           {
             productId: "jj-103",
             name: "Antique Nakshi Lakshmi Kasu Temple Necklace",
-            image: "https://images.unsplash.com/photo-1611591475155-4286fa7c2e7f?auto=format&fit=crop&w=800&q=80",
+            image: "https://images.unsplash.com/photo-1599643478518-a784e5dc4c8f?auto=format&fit=crop&w=1000&q=85",
             category: "antique",
             metal: "22K Antique Gold",
             metalPurity: "22K (916 BIS)",
@@ -117,7 +117,7 @@ export async function POST() {
           {
             productId: "jj-104",
             name: "Fine Floral Diamond Tennis Bracelet",
-            image: "https://images.unsplash.com/photo-1535632066927-ab7c9ab60908?auto=format&fit=crop&w=800&q=80",
+            image: "https://images.unsplash.com/photo-1573408301185-9146fe634ad0?auto=format&fit=crop&w=1000&q=85",
             category: "diamond",
             metal: "18K Rose Gold",
             metalPurity: "18K (750 BIS)",
@@ -172,7 +172,7 @@ export async function POST() {
           {
             productId: "jj-105",
             name: "999 Fine Silver Royal Pooja Thali Set (1.2 kg)",
-            image: "https://images.unsplash.com/photo-1603561591411-07134e71a2a9?auto=format&fit=crop&w=800&q=80",
+            image: "https://images.unsplash.com/photo-1589128777073-263566ae5e4d?auto=format&fit=crop&w=1000&q=85",
             category: "silver",
             metal: "999 Pure Silver",
             metalPurity: "99.9% Fine Silver",

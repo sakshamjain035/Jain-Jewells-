@@ -104,7 +104,7 @@ export const LeadsSection: React.FC<LeadsSectionProps> = ({
   return (
     <div className="space-y-6">
       {/* Top Header & Search Controls */}
-      <div className="border-y border-[#f4eee3]/10 py-4 flex flex-col lg:flex-row items-start lg:items-center justify-between gap-5">
+      <div className="border-y border-[#f6efe4]/10 py-4 flex flex-col lg:flex-row items-start lg:items-center justify-between gap-5">
         {/* Status Filters */}
         <div className="flex items-center gap-6 sm:gap-7 overflow-x-auto w-full lg:w-auto scrollbar-none">
           {statuses.map((s) => (
@@ -113,8 +113,8 @@ export const LeadsSection: React.FC<LeadsSectionProps> = ({
               onClick={() => setStatusFilter(s)}
               className={`relative whitespace-nowrap text-[9px] uppercase tracking-[0.16em] pb-2 transition-colors flex items-center gap-1.5 ${
                 statusFilter === s
-                  ? "text-[#e8d9b4] after:absolute after:left-0 after:right-0 after:bottom-0 after:h-px after:bg-[#c9a96a]"
-                  : "text-[#a79e8e] hover:text-[#f4eee3]"
+                  ? "text-[#ecd8ae] after:absolute after:left-0 after:right-0 after:bottom-0 after:h-px after:bg-[#c8a05c]"
+                  : "text-[#a99987] hover:text-[#f6efe4]"
               }`}
             >
               {s === "New" && <span className="w-1.5 h-1.5 rounded-full bg-[#d3ab72]" />}
@@ -128,23 +128,23 @@ export const LeadsSection: React.FC<LeadsSectionProps> = ({
           <select
             value={priorityFilter}
             onChange={(e) => setPriorityFilter(e.target.value)}
-            className="w-full sm:w-36 bg-transparent border-b border-[#f4eee3]/20 focus:border-[#c9a96a] text-[9px] uppercase tracking-[0.12em] text-[#ded6c7] rounded-none px-0 py-2.5 outline-none cursor-pointer"
+            className="w-full sm:w-36 bg-transparent border-b border-[#f6efe4]/20 focus:border-[#c8a05c] text-[9px] uppercase tracking-[0.12em] text-[#e0d4c2] rounded-none px-0 py-2.5 outline-none cursor-pointer"
           >
             {priorities.map((p) => (
-              <option key={p} value={p} className="bg-[#14110c]">
+              <option key={p} value={p} className="bg-[#1b1110]">
                 Priority: {p}
               </option>
             ))}
           </select>
 
           <div className="relative w-full sm:w-60">
-            <Search className="w-3.5 h-3.5 text-[#7f786c] absolute left-0 top-1/2 -translate-y-1/2" strokeWidth={1.4} />
+            <Search className="w-3.5 h-3.5 text-[#857768] absolute left-0 top-1/2 -translate-y-1/2" strokeWidth={1.4} />
             <input
               type="text"
               placeholder="Search leads"
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
-              className="w-full bg-transparent border-b border-[#f4eee3]/20 focus:border-[#c9a96a] text-[10px] text-[#f4eee3] placeholder-[#7f786c] rounded-none pl-6 pr-3 py-2.5 outline-none transition-colors"
+              className="w-full bg-transparent border-b border-[#f6efe4]/20 focus:border-[#c8a05c] text-[10px] text-[#f6efe4] placeholder-[#857768] rounded-none pl-6 pr-3 py-2.5 outline-none transition-colors"
             />
           </div>
 
@@ -159,15 +159,15 @@ export const LeadsSection: React.FC<LeadsSectionProps> = ({
 
       {/* Leads Cards Grid */}
       {isLoading ? (
-        <div className="text-center py-20 border border-[#f4eee3]/10">
-          <div className="w-6 h-6 border border-[#c9a96a]/25 border-t-transparent rounded-full animate-spin mx-auto mb-4" />
-          <p className="text-[9px] uppercase tracking-[0.2em] text-[#a79e8e]">Retrieving client leads…</p>
+        <div className="text-center py-20 border border-[#f6efe4]/10">
+          <div className="w-6 h-6 border border-[#c8a05c]/25 border-t-transparent rounded-full animate-spin mx-auto mb-4" />
+          <p className="text-[9px] uppercase tracking-[0.2em] text-[#a99987]">Retrieving client leads…</p>
         </div>
       ) : filteredLeads.length === 0 ? (
-        <div className="text-center py-16 border border-[#f4eee3]/10 max-w-lg mx-auto">
-          <Users className="w-8 h-8 text-[#c9a96a]/60 mx-auto mb-4" strokeWidth={1} />
-          <h3 className="text-xl font-serif-luxury font-light text-[#f4eee3] mb-2">No leads found</h3>
-          <p className="text-[10px] text-[#a79e8e] mb-6 leading-relaxed">
+        <div className="text-center py-16 border border-[#f6efe4]/10 max-w-lg mx-auto">
+          <Users className="w-8 h-8 text-[#c8a05c]/60 mx-auto mb-4" strokeWidth={1} />
+          <h3 className="text-xl font-serif-luxury font-light text-[#f6efe4] mb-2">No leads found</h3>
+          <p className="text-[10px] text-[#a99987] mb-6 leading-relaxed">
             No active inquiries or appointments match &quot;{statusFilter}&quot;.
           </p>
           <button
@@ -195,12 +195,12 @@ export const LeadsSection: React.FC<LeadsSectionProps> = ({
             return (
               <div
                 key={lead._id}
-                className="bg-[#0f0d0a] border border-[#f4eee3]/10 hover:border-[#c9a96a]/40 transition-colors p-5 flex flex-col justify-between group"
+                className="bg-[#150d0c] border border-[#f6efe4]/10 hover:border-[#c8a05c]/40 transition-colors p-5 flex flex-col justify-between group"
               >
                 <div>
                   {/* Card Header: Lead ID, Priority, Source */}
-                  <div className="flex items-center justify-between border-b border-[#f4eee3]/10 pb-3 mb-3">
-                    <span className="text-[9px] font-mono text-[#7f786c] tracking-[0.06em]">{lead.leadNumber}</span>
+                  <div className="flex items-center justify-between border-b border-[#f6efe4]/10 pb-3 mb-3">
+                    <span className="text-[9px] font-mono text-[#857768] tracking-[0.06em]">{lead.leadNumber}</span>
                     <div className="flex items-center gap-3">
                       <span
                         className={`text-[8px] uppercase tracking-[0.14em] ${
@@ -213,42 +213,42 @@ export const LeadsSection: React.FC<LeadsSectionProps> = ({
                       >
                         {lead.priority}
                       </span>
-                      <span className="text-[8px] uppercase tracking-[0.12em] text-[#7f786c]">
+                      <span className="text-[8px] uppercase tracking-[0.12em] text-[#857768]">
                         {lead.source}
                       </span>
                     </div>
                   </div>
 
                   {/* Customer Info */}
-                  <h4 className="text-base font-serif-luxury font-light text-[#f4eee3] group-hover:text-[#c9a96a] transition-colors">
+                  <h4 className="text-base font-serif-luxury font-light text-[#f6efe4] group-hover:text-[#c8a05c] transition-colors">
                     {lead.name}
                   </h4>
 
-                  <div className="text-xs text-[#a79e8e] space-y-1.5 mt-2">
+                  <div className="text-xs text-[#a99987] space-y-1.5 mt-2">
                     <div className="flex items-center gap-2">
-                      <Phone className="w-3.5 h-3.5 text-[#c9a96a]" />
-                      <a href={`tel:${lead.phone}`} className="hover:text-[#f4eee3]">
+                      <Phone className="w-3.5 h-3.5 text-[#c8a05c]" />
+                      <a href={`tel:${lead.phone}`} className="hover:text-[#f6efe4]">
                         {lead.phone}
                       </a>
                     </div>
                     {lead.email && (
                       <div className="flex items-center gap-2">
-                        <Mail className="w-3.5 h-3.5 text-[#c9a96a]" />
+                        <Mail className="w-3.5 h-3.5 text-[#c8a05c]" />
                         <span className="truncate">{lead.email}</span>
                       </div>
                     )}
                   </div>
 
                   {/* Interest Details */}
-                  <div className="border-y border-[#f4eee3]/8 my-4 py-3 text-[10px] space-y-1">
-                    <div className="text-[8px] uppercase tracking-[0.18em] text-[#7f786c]">
+                  <div className="border-y border-[#f6efe4]/8 my-4 py-3 text-[10px] space-y-1">
+                    <div className="text-[8px] uppercase tracking-[0.18em] text-[#857768]">
                       Interest &amp; Budget
                     </div>
-                    <div className="text-[#f4eee3]">
+                    <div className="text-[#f6efe4]">
                       {lead.productName || lead.interestedCategory || "General Collection Inquiry"}
                     </div>
                     {lead.estimatedBudget && (
-                      <div className="text-[10px] text-[#c9a96a]">
+                      <div className="text-[10px] text-[#c8a05c]">
                         {lead.estimatedBudget}
                       </div>
                     )}
@@ -256,16 +256,16 @@ export const LeadsSection: React.FC<LeadsSectionProps> = ({
 
                   {/* Notes summary */}
                   {lead.notes && lead.notes.length > 0 && (
-                    <div className="text-[11px] text-[#a79e8e] italic line-clamp-2 mb-3 bg-black/20 p-2 rounded-none">
+                    <div className="text-[11px] text-[#a99987] italic line-clamp-2 mb-3 bg-black/20 p-2 rounded-none">
                       &quot;{lead.notes[lead.notes.length - 1].note}&quot;
                     </div>
                   )}
                 </div>
 
                 {/* Card Footer: Status Selector & Direct Action Buttons */}
-                <div className="border-t border-[#f4eee3]/10 pt-3 flex flex-col gap-2">
+                <div className="border-t border-[#f6efe4]/10 pt-3 flex flex-col gap-2">
                   <div className="flex items-center justify-between gap-2">
-                    <span className="text-[8px] text-[#7f786c] uppercase tracking-[0.16em]">Status</span>
+                    <span className="text-[8px] text-[#857768] uppercase tracking-[0.16em]">Status</span>
                     <select
                       value={lead.status}
                       disabled={isUpdating}
@@ -276,8 +276,8 @@ export const LeadsSection: React.FC<LeadsSectionProps> = ({
                           : lead.status === "Converted"
                           ? "text-[#9ab79f] border-[#9ab79f]/40"
                           : lead.status === "In Negotiation"
-                          ? "text-[#c9a96a] border-[#c9a96a]/40"
-                          : "text-[#a79e8e] border-[#f4eee3]/15"
+                          ? "text-[#c8a05c] border-[#c8a05c]/40"
+                          : "text-[#a99987] border-[#f6efe4]/15"
                       }`}
                     >
                       <option value="New">New</option>
@@ -301,7 +301,7 @@ export const LeadsSection: React.FC<LeadsSectionProps> = ({
 
                     <button
                       onClick={() => setActiveLeadNotesModal(lead)}
-                      className="border border-[#c9a96a]/30 hover:border-[#c9a96a] text-[#e8d9b4] text-[9px] uppercase tracking-[0.12em] py-2.5 px-2 flex items-center justify-center gap-1.5 transition-colors"
+                      className="border border-[#c8a05c]/30 hover:border-[#c8a05c] text-[#ecd8ae] text-[9px] uppercase tracking-[0.12em] py-2.5 px-2 flex items-center justify-center gap-1.5 transition-colors"
                     >
                       <FileText className="w-3 h-3" strokeWidth={1.4} /> Notes ({lead.notes?.length || 0})
                     </button>
@@ -315,40 +315,40 @@ export const LeadsSection: React.FC<LeadsSectionProps> = ({
 
       {/* Lead Notes Drawer / Modal */}
       {activeLeadNotesModal && (
-        <div className="fixed inset-0 z-50 bg-[#050504]/90 backdrop-blur-md flex items-center justify-center p-4 overflow-y-auto">
-          <div className="bg-[#100e0b] max-w-xl w-full p-6 sm:p-9 border border-[#c9a96a]/25 relative shadow-2xl my-8 text-[#f4eee3]">
+        <div className="fixed inset-0 z-50 bg-[#080504]/90 backdrop-blur-md flex items-center justify-center p-4 overflow-y-auto">
+          <div className="bg-[#170d0c] max-w-xl w-full p-6 sm:p-9 border border-[#c8a05c]/25 relative shadow-2xl my-8 text-[#f6efe4]">
             <button
               onClick={() => setActiveLeadNotesModal(null)}
-              className="absolute top-4 right-4 w-9 h-9 flex items-center justify-center text-[#a79e8e] hover:text-[#f4eee3] border border-[#f4eee3]/10 hover:border-[#c9a96a]/50 transition-colors"
+              className="absolute top-4 right-4 w-9 h-9 flex items-center justify-center text-[#a99987] hover:text-[#f6efe4] border border-[#f6efe4]/10 hover:border-[#c8a05c]/50 transition-colors"
               aria-label="Close lead notes"
             >
               ✕
             </button>
 
-            <div className="border-b border-[#f4eee3]/10 pb-4 mb-4">
-              <span className="text-[10px] text-[#c9a96a] font-bold uppercase tracking-widest block">
+            <div className="border-b border-[#f6efe4]/10 pb-4 mb-4">
+              <span className="text-[10px] text-[#c8a05c] font-bold uppercase tracking-widest block">
                 Concierge Activity Log
               </span>
-              <h3 className="text-xl font-serif-luxury font-light text-[#f4eee3]">
+              <h3 className="text-xl font-serif-luxury font-light text-[#f6efe4]">
                 Lead Notes: {activeLeadNotesModal.name}
               </h3>
-              <p className="text-xs text-[#a79e8e]">{activeLeadNotesModal.phone}</p>
+              <p className="text-xs text-[#a99987]">{activeLeadNotesModal.phone}</p>
             </div>
 
             {/* Existing Notes Timeline */}
             <div className="space-y-3 max-h-60 overflow-y-auto pr-1 mb-5">
               {activeLeadNotesModal.notes && activeLeadNotesModal.notes.length > 0 ? (
                 activeLeadNotesModal.notes.map((note: any, index: number) => (
-                  <div key={index} className="bg-[#12100c] p-3 rounded-none border border-[#f4eee3]/10 text-xs">
-                    <p className="text-[#f4eee3]/90">{note.note}</p>
-                    <div className="flex items-center justify-between text-[10px] text-[#7f786c] mt-2">
+                  <div key={index} className="bg-[#17100f] p-3 rounded-none border border-[#f6efe4]/10 text-xs">
+                    <p className="text-[#f6efe4]/90">{note.note}</p>
+                    <div className="flex items-center justify-between text-[10px] text-[#857768] mt-2">
                       <span>By: {note.author}</span>
                       <span>{new Date(note.addedAt).toLocaleString()}</span>
                     </div>
                   </div>
                 ))
               ) : (
-                <div className="text-center py-6 text-xs text-[#7f786c]">No notes recorded yet.</div>
+                <div className="text-center py-6 text-xs text-[#857768]">No notes recorded yet.</div>
               )}
             </div>
 
@@ -360,14 +360,14 @@ export const LeadsSection: React.FC<LeadsSectionProps> = ({
                 value={newNoteText}
                 onChange={(e) => setNewNoteText(e.target.value)}
                 placeholder="Log customer preference, quotation given, follow-up promise..."
-                className="w-full bg-[#14110c] border border-[#f4eee3]/15 focus:border-[#c9a96a] text-[#f4eee3] text-xs rounded-none p-3 outline-none resize-none"
+                className="w-full bg-[#1b1110] border border-[#f6efe4]/15 focus:border-[#c8a05c] text-[#f6efe4] text-xs rounded-none p-3 outline-none resize-none"
               />
 
               <div className="flex justify-end gap-3">
                 <button
                   type="button"
                   onClick={() => setActiveLeadNotesModal(null)}
-                  className="px-4 py-2 rounded-none text-xs border border-[#f4eee3]/10 text-[#a79e8e]"
+                  className="px-4 py-2 rounded-none text-xs border border-[#f6efe4]/10 text-[#a99987]"
                 >
                   Close
                 </button>
