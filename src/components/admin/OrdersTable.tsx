@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useState } from "react";
+import Image from "next/image";
 import {
   Truck,
   Search,
@@ -56,51 +57,49 @@ export const OrdersTable: React.FC<OrdersTableProps> = ({
   return (
     <div className="space-y-6">
       {/* Controls Bar */}
-      <div className="emerald-glass p-4 sm:p-5 rounded-2xl border border-[#d4af37]/30 flex flex-col lg:flex-row items-center justify-between gap-4 shadow-xl">
+      <div className="border-y border-[#f4eee3]/10 py-4 flex flex-col lg:flex-row items-start lg:items-center justify-between gap-5">
         {/* Status Filters */}
-        <div className="flex items-center gap-2 overflow-x-auto w-full lg:w-auto scrollbar-none pb-2 lg:pb-0">
+        <div className="flex items-center gap-6 sm:gap-7 overflow-x-auto w-full lg:w-auto scrollbar-none">
           {statusTabs.map((tab) => (
             <button
               key={tab.id}
               onClick={() => setStatusFilter(tab.id)}
-              className={`py-2 px-3.5 rounded-xl text-xs font-semibold whitespace-nowrap transition-all flex items-center gap-1.5 ${
+              className={`relative whitespace-nowrap text-[9px] uppercase tracking-[0.16em] pb-2 transition-colors flex items-center gap-1.5 ${
                 statusFilter === tab.id
-                  ? "gold-bg-gradient text-[#06110c] font-bold shadow-md"
-                  : "bg-[#06110c]/80 text-white/70 hover:text-white border border-white/10"
+                  ? "text-[#e8d9b4] after:absolute after:left-0 after:right-0 after:bottom-0 after:h-px after:bg-[#c9a96a]"
+                  : "text-[#a79e8e] hover:text-[#f4eee3]"
               }`}
             >
-              {tab.id === "Received" && (
-                <span className="w-2 h-2 rounded-full bg-amber-400 animate-ping" />
-              )}
+              {tab.id === "Received" && <span className="w-1.5 h-1.5 rounded-full bg-[#d3ab72]" />}
               {tab.label}
             </button>
           ))}
         </div>
 
         {/* Search Bar */}
-        <div className="relative w-full lg:w-80">
-          <Search className="w-4 h-4 text-white/40 absolute left-3.5 top-1/2 -translate-y-1/2" />
+        <div className="relative w-full lg:w-72">
+          <Search className="w-3.5 h-3.5 text-[#7f786c] absolute left-0 top-1/2 -translate-y-1/2" strokeWidth={1.4} />
           <input
             type="text"
-            placeholder="Search by Order #, Name, Phone, City..."
+            placeholder="Search orders, names, cities"
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
-            className="w-full bg-[#06110c]/90 border border-white/15 focus:border-[#d4af37] text-xs text-white placeholder-white/40 rounded-xl pl-9 pr-4 py-2.5 outline-none transition-colors"
+            className="w-full bg-transparent border-b border-[#f4eee3]/20 focus:border-[#c9a96a] text-[10px] tracking-[0.03em] text-[#f4eee3] placeholder-[#7f786c] rounded-none pl-6 pr-3 py-2.5 outline-none transition-colors"
           />
         </div>
       </div>
 
       {/* Orders List / Cards */}
       {isLoading ? (
-        <div className="text-center py-20 emerald-glass rounded-2xl border border-white/10">
-          <div className="w-10 h-10 border-2 border-[#d4af37] border-t-transparent rounded-full animate-spin mx-auto mb-3" />
-          <p className="text-xs text-white/70">Fetching real-time orders from MongoDB...</p>
+        <div className="text-center py-20 border border-[#f4eee3]/10">
+          <div className="w-6 h-6 border border-[#c9a96a]/25 border-t-transparent rounded-full animate-spin mx-auto mb-4" />
+          <p className="text-[9px] uppercase tracking-[0.2em] text-[#a79e8e]">Retrieving orders…</p>
         </div>
       ) : orders.length === 0 ? (
-        <div className="text-center py-16 emerald-glass rounded-2xl border border-white/10 max-w-lg mx-auto">
-          <Package className="w-12 h-12 text-[#d4af37]/60 mx-auto mb-3" />
-          <h3 className="text-lg font-serif-luxury font-bold text-white mb-1">No Orders Found</h3>
-          <p className="text-xs text-white/60 mb-4">
+        <div className="text-center py-16 border border-[#f4eee3]/10 max-w-lg mx-auto">
+          <Package className="w-8 h-8 text-[#c9a96a]/60 mx-auto mb-4" strokeWidth={1} />
+          <h3 className="text-xl font-serif-luxury font-light text-[#f4eee3] mb-2">No orders found</h3>
+          <p className="text-[10px] text-[#a79e8e] mb-6 leading-relaxed">
             No orders match the selected filter &quot;{statusFilter}&quot; or search query.
           </p>
           <button
@@ -108,7 +107,7 @@ export const OrdersTable: React.FC<OrdersTableProps> = ({
               setStatusFilter("All");
               setSearchQuery("");
             }}
-            className="gold-bg-gradient text-[#06110c] text-xs font-bold px-4 py-2 rounded-xl"
+            className="lux-btn lux-btn-outline !py-3 !px-5 !text-[9px]"
           >
             Reset Filters
           </button>
@@ -124,47 +123,47 @@ export const OrdersTable: React.FC<OrdersTableProps> = ({
             return (
               <div
                 key={order._id}
-                className={`emerald-glass rounded-2xl border p-5 sm:p-6 transition-all duration-300 shadow-xl ${
+                className={`bg-[#0f0d0a] border p-5 sm:p-6 transition-colors duration-300 ${
                   isPendingDispatch
-                    ? "border-amber-500/40 bg-gradient-to-r from-[#061811] via-[#091f16] to-[#121f0b]/40 hover:border-amber-400"
+                    ? "border-[#f4eee3]/10 border-l-2 border-l-[#d3ab72] hover:border-[#c9a96a]/40"
                     : isDispatched
-                    ? "border-emerald-500/40 bg-gradient-to-r from-[#061811] to-[#041a12] hover:border-emerald-400"
-                    : "border-white/10 hover:border-[#d4af37]/40"
+                    ? "border-[#f4eee3]/10 border-l-2 border-l-[#9ab79f] hover:border-[#c9a96a]/40"
+                    : "border-[#f4eee3]/10 hover:border-[#c9a96a]/40"
                 }`}
               >
                 {/* Top Bar of Card */}
-                <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 border-b border-white/10 pb-4 mb-4">
+                <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 border-b border-[#f4eee3]/10 pb-4 mb-4">
                   <div className="flex items-center gap-3">
                     <div
-                      className={`w-10 h-10 rounded-xl flex items-center justify-center font-bold text-sm ${
+                      className={`w-8 h-8 flex items-center justify-center border ${
                         isPendingDispatch
-                          ? "bg-amber-500/20 text-amber-300 border border-amber-500/40"
+                          ? "border-[#d3ab72]/40 text-[#d3ab72]"
                           : isDispatched
-                          ? "bg-emerald-500/20 text-emerald-300 border border-emerald-500/40"
-                          : "bg-white/10 text-white border border-white/20"
+                          ? "border-[#9ab79f]/40 text-[#9ab79f]"
+                          : "border-[#f4eee3]/15 text-[#f4eee3]"
                       }`}
                     >
-                      {isPendingDispatch ? <Package className="w-5 h-5" /> : <Truck className="w-5 h-5" />}
+                      {isPendingDispatch ? <Package className="w-3.5 h-3.5" strokeWidth={1.4} /> : <Truck className="w-3.5 h-3.5" strokeWidth={1.4} />}
                     </div>
 
                     <div>
                       <div className="flex items-center gap-2">
-                        <span className="text-base font-serif-luxury font-bold text-white tracking-wide">
+                        <span className="text-base font-serif-luxury font-light text-[#f4eee3] tracking-wide">
                           #{order.orderNumber}
                         </span>
                         <span
-                          className={`text-[10px] font-extrabold uppercase px-2.5 py-0.5 rounded-full border ${
+                          className={`text-[8px] uppercase tracking-[0.14em] ${
                             isPendingDispatch
-                              ? "bg-amber-500/20 text-amber-300 border-amber-500/40 animate-pulse"
+                              ? "text-[#d3ab72]"
                               : isDispatched
-                              ? "bg-emerald-500/20 text-emerald-300 border-emerald-500/40"
-                              : "bg-cyan-500/20 text-cyan-300 border-cyan-500/40"
+                              ? "text-[#9ab79f]"
+                              : "text-[#a79e8e]"
                           }`}
                         >
-                          ● {order.orderStatus}
+                          · {order.orderStatus}
                         </span>
                       </div>
-                      <span className="text-[11px] text-white/50 flex items-center gap-1 mt-0.5">
+                      <span className="text-[11px] text-[#7f786c] flex items-center gap-1 mt-0.5">
                         <Clock className="w-3 h-3" /> Placed on{" "}
                         {new Date(order.createdAt).toLocaleDateString("en-IN", {
                           day: "numeric",
@@ -180,17 +179,15 @@ export const OrdersTable: React.FC<OrdersTableProps> = ({
                   {/* Pricing and Payment Tag */}
                   <div className="flex items-center gap-3 self-start sm:self-auto">
                     <div className="text-right">
-                      <div className="text-lg font-serif-luxury font-bold text-[#fcf6ba]">
+                      <div className="text-lg font-serif-luxury font-light text-[#e8d9b4]">
                         ₹{order.totalAmount.toLocaleString("en-IN")}
                       </div>
                       <span
-                        className={`text-[10px] font-bold px-2 py-0.5 rounded ${
-                          order.paymentStatus === "Paid"
-                            ? "bg-emerald-950 text-emerald-400 border border-emerald-500/30"
-                            : "bg-amber-950 text-amber-400 border border-amber-500/30"
+                        className={`text-[8px] uppercase tracking-[0.14em] ${
+                          order.paymentStatus === "Paid" ? "text-[#9ab79f]" : "text-[#d3ab72]"
                         }`}
                       >
-                        {order.paymentStatus} ({order.paymentMethod})
+                        {order.paymentStatus} · {order.paymentMethod}
                       </span>
                     </div>
                   </div>
@@ -199,31 +196,31 @@ export const OrdersTable: React.FC<OrdersTableProps> = ({
                 {/* Body: Customer Details & Items Preview Grid */}
                 <div className="grid grid-cols-1 lg:grid-cols-12 gap-5 items-start">
                   {/* Customer Info Column */}
-                  <div className="lg:col-span-4 bg-[#04140d] p-4 rounded-xl border border-white/10 text-xs space-y-2">
-                    <div className="text-[10px] font-bold text-[#d4af37] uppercase tracking-wider mb-1">
+                  <div className="lg:col-span-4 bg-[#14110c] p-5 border border-[#f4eee3]/8 text-[11px] space-y-2.5 font-light">
+                    <div className="text-[10px] font-bold text-[#c9a96a] uppercase tracking-wider mb-1">
                       Patron &amp; Delivery Destination
                     </div>
-                    <div className="text-sm font-serif-luxury font-bold text-white">
+                    <div className="text-sm font-serif-luxury font-light text-[#f4eee3]">
                       {order.customerName}
                     </div>
 
-                    <div className="flex items-center gap-2 text-white/80">
-                      <Phone className="w-3.5 h-3.5 text-[#d4af37]" />
+                    <div className="flex items-center gap-2 text-[#ded6c7]">
+                      <Phone className="w-3.5 h-3.5 text-[#c9a96a]" />
                       <a
                         href={`tel:${order.customerPhone}`}
-                        className="hover:text-[#d4af37] transition-colors"
+                        className="hover:text-[#c9a96a] transition-colors"
                       >
                         {order.customerPhone}
                       </a>
                     </div>
 
-                    <div className="flex items-center gap-2 text-white/70">
-                      <Mail className="w-3.5 h-3.5 text-[#d4af37]" />
+                    <div className="flex items-center gap-2 text-[#a79e8e]">
+                      <Mail className="w-3.5 h-3.5 text-[#c9a96a]" />
                       <span className="truncate">{order.customerEmail}</span>
                     </div>
 
-                    <div className="flex items-start gap-2 text-white/70 pt-1 border-t border-white/10">
-                      <MapPin className="w-3.5 h-3.5 text-[#d4af37] shrink-0 mt-0.5" />
+                    <div className="flex items-start gap-2 text-[#a79e8e] pt-1 border-t border-[#f4eee3]/10">
+                      <MapPin className="w-3.5 h-3.5 text-[#c9a96a] shrink-0 mt-0.5" />
                       <span>
                         {order.shippingAddress.street}, {order.shippingAddress.city},{" "}
                         {order.shippingAddress.state} - {order.shippingAddress.pincode}
@@ -233,7 +230,7 @@ export const OrdersTable: React.FC<OrdersTableProps> = ({
 
                   {/* Items Ordered List Column */}
                   <div className="lg:col-span-5 space-y-2">
-                    <div className="text-[10px] font-bold text-[#d4af37] uppercase tracking-wider">
+                    <div className="text-[10px] font-bold text-[#c9a96a] uppercase tracking-wider">
                       Purchased Masterpieces ({order.items.length})
                     </div>
 
@@ -241,25 +238,28 @@ export const OrdersTable: React.FC<OrdersTableProps> = ({
                       {order.items.map((item: any, idx: number) => (
                         <div
                           key={idx}
-                          className="bg-[#04140d]/80 p-2.5 rounded-xl border border-white/10 flex items-center gap-3 text-xs"
+                          className="border-b border-[#f4eee3]/8 pb-2.5 flex items-center gap-3 text-[11px] last:border-0"
                         >
-                          <img
+                          <Image
                             src={item.image}
                             alt={item.name}
-                            className="w-12 h-12 rounded-lg object-cover border border-[#d4af37]/30 shrink-0"
+                            width={48}
+                            height={48}
+                            sizes="48px"
+                            className="w-12 h-12 object-cover border border-[#c9a96a]/25 shrink-0"
                           />
                           <div className="flex-1 min-w-0">
-                            <strong className="text-white truncate block font-medium">
+                            <strong className="text-[#f4eee3] truncate block font-medium">
                               {item.name}
                             </strong>
-                            <div className="flex items-center gap-2 text-[11px] text-white/60">
-                              <span className="text-[#d4af37]">{item.metalPurity}</span>
+                            <div className="flex items-center gap-2 text-[11px] text-[#a79e8e]">
+                              <span className="text-[#c9a96a]">{item.metalPurity}</span>
                               <span>• {item.weightGrams}g</span>
                               <span>• Qty: {item.quantity}</span>
                             </div>
                           </div>
                           <div className="text-right">
-                            <span className="text-[#fcf6ba] font-serif-luxury font-bold">
+                            <span className="text-[#e8d9b4] font-serif-luxury font-light">
                               ₹{(item.price * item.quantity).toLocaleString("en-IN")}
                             </span>
                           </div>
@@ -268,7 +268,7 @@ export const OrdersTable: React.FC<OrdersTableProps> = ({
                     </div>
 
                     {order.notes && (
-                      <p className="text-[11px] text-white/60 italic bg-black/30 p-2 rounded-lg border border-white/5">
+                      <p className="text-[11px] text-[#a79e8e] italic bg-black/30 p-2 rounded-none border border-[#f4eee3]/5">
                         &quot;{order.notes}&quot;
                       </p>
                     )}
@@ -278,26 +278,25 @@ export const OrdersTable: React.FC<OrdersTableProps> = ({
                   <div className="lg:col-span-3 flex flex-col justify-between gap-3 h-full">
                     {/* If Dispatched: Show Tracking Info */}
                     {isDispatched && order.dispatchDetails?.isDispatched && (
-                      <div className="bg-[#032014] p-3 rounded-xl border border-emerald-500/30 text-xs space-y-1.5">
-                        <div className="flex items-center gap-1.5 text-emerald-400 font-bold text-[11px]">
-                          <Truck className="w-3.5 h-3.5" /> Dispatched via{" "}
-                          {order.dispatchDetails.courierPartner}
+                      <div className="border border-[#9ab79f]/25 p-3.5 text-[10px] space-y-1.5">
+                        <div className="flex items-center gap-1.5 text-[#9ab79f] uppercase tracking-[0.12em] text-[8px]">
+                          <Truck className="w-3 h-3" strokeWidth={1.4} /> {order.dispatchDetails.courierPartner}
                         </div>
-                        <div className="text-[11px] text-white/70">
-                          AWB:{" "}
-                          <code className="text-[#fcf6ba] font-mono font-bold">
+                        <div className="text-[#a79e8e]">
+                          AWB{" "}
+                          <code className="text-[#e8d9b4] font-mono">
                             {order.dispatchDetails.trackingNumber}
                           </code>
                         </div>
-                        <div className="text-[10px] text-white/60">
-                          Est. Delivery: {order.dispatchDetails.estimatedDelivery}
+                        <div className="text-[#7f786c]">
+                          Est. delivery {order.dispatchDetails.estimatedDelivery}
                         </div>
 
                         <button
                           onClick={() => onOpenNotificationModal(order)}
-                          className="w-full mt-2 bg-emerald-950 hover:bg-emerald-900 border border-emerald-500/40 text-emerald-300 text-[11px] font-semibold py-1.5 px-2 rounded-lg flex items-center justify-center gap-1.5 transition-colors"
+                          className="w-full mt-2 border border-[#c9a96a]/30 hover:border-[#c9a96a] text-[#e8d9b4] text-[8px] uppercase tracking-[0.14em] py-2 px-2 flex items-center justify-center gap-1.5 transition-colors"
                         >
-                          <MessageSquare className="w-3 h-3" /> View Notification Log
+                          <MessageSquare className="w-3 h-3" strokeWidth={1.4} /> Notification log
                         </button>
                       </div>
                     )}
@@ -307,17 +306,17 @@ export const OrdersTable: React.FC<OrdersTableProps> = ({
                       {isPendingDispatch && (
                         <button
                           onClick={() => onOpenDispatchModal(order)}
-                          className="w-full gold-bg-gradient text-[#06110c] font-extrabold text-xs uppercase tracking-wider py-3.5 px-4 rounded-xl flex items-center justify-center gap-2 shadow-xl hover:scale-[1.02] active:scale-95 transition-all animate-bounce-subtle"
+                          className="lux-btn lux-btn-gold w-full"
                         >
-                          <Truck className="w-4 h-4" /> Dispatch Order Now
+                          <Truck className="w-3.5 h-3.5" strokeWidth={1.4} /> Dispatch Order
                         </button>
                       )}
 
                       <button
                         onClick={() => setSelectedOrderDetails(order)}
-                        className="w-full bg-[#061811] hover:bg-[#0d2a1e] border border-white/15 text-white/80 hover:text-white text-xs font-semibold py-2 px-3 rounded-xl flex items-center justify-center gap-1.5 transition-all"
+                        className="w-full border border-[#f4eee3]/12 hover:border-[#c9a96a]/45 text-[#ded6c7] hover:text-[#f4eee3] text-[9px] uppercase tracking-[0.16em] py-3 px-3 flex items-center justify-center gap-1.5 transition-colors"
                       >
-                        <Eye className="w-3.5 h-3.5 text-[#d4af37]" /> Full Order Details
+                        <Eye className="w-3.5 h-3.5 text-[#c9a96a]" strokeWidth={1.4} /> Full Details
                       </button>
                     </div>
                   </div>
@@ -330,59 +329,58 @@ export const OrdersTable: React.FC<OrdersTableProps> = ({
 
       {/* Detailed Order Modal */}
       {selectedOrderDetails && (
-        <div className="fixed inset-0 z-50 bg-black/85 backdrop-blur-md flex items-center justify-center p-4 overflow-y-auto">
-          <div className="emerald-glass max-w-2xl w-full rounded-3xl p-6 sm:p-8 border border-[#d4af37] relative shadow-2xl my-8 text-white">
+        <div className="fixed inset-0 z-50 bg-[#050504]/90 backdrop-blur-md flex items-center justify-center p-4 overflow-y-auto">
+          <div className="bg-[#100e0b] max-w-2xl w-full p-6 sm:p-9 border border-[#c9a96a]/25 relative shadow-2xl my-8 text-[#f4eee3]">
             <button
               onClick={() => setSelectedOrderDetails(null)}
-              className="absolute top-4 right-4 text-white/70 hover:text-white p-2 rounded-full bg-white/10"
+              className="absolute top-4 right-4 w-9 h-9 flex items-center justify-center text-[#a79e8e] hover:text-[#f4eee3] border border-[#f4eee3]/10 hover:border-[#c9a96a]/50 transition-colors"
+              aria-label="Close order details"
             >
               ✕
             </button>
 
-            <div className="border-b border-white/10 pb-4 mb-4">
-              <span className="text-[10px] text-[#d4af37] font-bold uppercase tracking-widest block">
-                Jain Jewells Order Certificate
-              </span>
-              <h3 className="text-2xl font-serif-luxury font-bold text-white">
+            <div className="border-b border-[#f4eee3]/10 pb-5 mb-5">
+              <span className="lux-eyebrow block mb-2">Order Record</span>
+              <h3 className="text-2xl font-serif-luxury font-light text-[#f4eee3]">
                 Order #{selectedOrderDetails.orderNumber}
               </h3>
             </div>
 
-            <div className="space-y-4 text-xs">
-              <div className="grid grid-cols-2 gap-3 bg-[#04140d] p-4 rounded-xl border border-white/10">
+            <div className="space-y-5 text-[11px]">
+              <div className="grid grid-cols-2 gap-5 border-y border-[#f4eee3]/10 py-5">
                 <div>
-                  <span className="text-white/50 block">Customer Name</span>
-                  <strong className="text-white">{selectedOrderDetails.customerName}</strong>
+                  <span className="text-[#7f786c] block">Customer Name</span>
+                  <strong className="text-[#f4eee3]">{selectedOrderDetails.customerName}</strong>
                 </div>
                 <div>
-                  <span className="text-white/50 block">Phone</span>
-                  <strong className="text-white">{selectedOrderDetails.customerPhone}</strong>
+                  <span className="text-[#7f786c] block">Phone</span>
+                  <strong className="text-[#f4eee3]">{selectedOrderDetails.customerPhone}</strong>
                 </div>
                 <div>
-                  <span className="text-white/50 block">Email</span>
-                  <strong className="text-white">{selectedOrderDetails.customerEmail}</strong>
+                  <span className="text-[#7f786c] block">Email</span>
+                  <strong className="text-[#f4eee3]">{selectedOrderDetails.customerEmail}</strong>
                 </div>
                 <div>
-                  <span className="text-white/50 block">Status</span>
-                  <strong className="text-emerald-400">{selectedOrderDetails.orderStatus}</strong>
+                  <span className="text-[#7f786c] block">Status</span>
+                  <strong className="text-[#9ab79f]">{selectedOrderDetails.orderStatus}</strong>
                 </div>
               </div>
 
               <div>
-                <span className="text-white/50 block mb-2 font-semibold">Items Breakdown:</span>
-                <div className="space-y-2">
+                <span className="text-[8px] uppercase tracking-[0.18em] text-[#7f786c] block mb-2">Items</span>
+                <div className="space-y-0">
                   {selectedOrderDetails.items.map((i: any, index: number) => (
                     <div
                       key={index}
-                      className="bg-[#061811] p-3 rounded-xl border border-white/10 flex justify-between items-center"
+                      className="py-3 border-b border-[#f4eee3]/8 last:border-0 flex justify-between items-center gap-4"
                     >
                       <div>
-                        <strong className="text-white block">{i.name}</strong>
-                        <span className="text-[10px] text-white/60">
+                        <strong className="text-[#f4eee3] block">{i.name}</strong>
+                        <span className="text-[10px] text-[#a79e8e]">
                           {i.metalPurity} • {i.weightGrams}g • Qty: {i.quantity}
                         </span>
                       </div>
-                      <strong className="text-[#fcf6ba] font-serif-luxury">
+                      <strong className="text-[#e8d9b4] font-serif-luxury">
                         ₹{(i.price * i.quantity).toLocaleString("en-IN")}
                       </strong>
                     </div>
@@ -391,23 +389,23 @@ export const OrdersTable: React.FC<OrdersTableProps> = ({
               </div>
 
               {selectedOrderDetails.dispatchDetails?.isDispatched && (
-                <div className="bg-[#032014] p-4 rounded-xl border border-emerald-500/40 text-emerald-200">
-                  <div className="font-bold mb-1 text-emerald-300">📦 Dispatch Information:</div>
-                  <div>Logistics: {selectedOrderDetails.dispatchDetails.courierPartner}</div>
-                  <div>AWB / Tracking: {selectedOrderDetails.dispatchDetails.trackingNumber}</div>
+                <div className="border border-[#9ab79f]/25 p-4 text-[10px] text-[#ded6c7] space-y-1">
+                  <div className="uppercase tracking-[0.16em] text-[8px] text-[#9ab79f] mb-2">Dispatch Information</div>
+                  <div>Logistics · {selectedOrderDetails.dispatchDetails.courierPartner}</div>
+                  <div>AWB · {selectedOrderDetails.dispatchDetails.trackingNumber}</div>
                   <div>
-                    Dispatched At:{" "}
+                    Dispatched ·{" "}
                     {new Date(selectedOrderDetails.dispatchDetails.dispatchedAt).toLocaleString()}
                   </div>
-                  <div>Notes: {selectedOrderDetails.dispatchDetails.dispatchNotes}</div>
+                  <div className="text-[#a79e8e]">Notes · {selectedOrderDetails.dispatchDetails.dispatchNotes}</div>
                 </div>
               )}
             </div>
 
-            <div className="flex justify-end gap-3 mt-6 pt-4 border-t border-white/10">
+            <div className="flex justify-end gap-3 mt-6 pt-4 border-t border-[#f4eee3]/10">
               <button
                 onClick={() => setSelectedOrderDetails(null)}
-                className="gold-bg-gradient text-[#06110c] font-bold text-xs uppercase tracking-wider px-6 py-2.5 rounded-xl"
+                className="lux-btn lux-btn-gold"
               >
                 Close
               </button>

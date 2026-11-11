@@ -160,7 +160,7 @@ export const PRODUCTS_DATA: Product[] = [
     weightGrams: 68.2,
     gemstone: "Ruby & South Sea Pearl Accents",
     certification: "BIS 916 Hallmark Certificate",
-    image: "https://images.unsplash.com/photo-1611591475281-8d9954a2be31?auto=format&fit=crop&w=1000&q=80",
+    image: "https://images.unsplash.com/photo-1599459183200-59c7687a0275?auto=format&fit=crop&w=1000&q=80",
     description: "Features elaborate handcrafted divine Goddess Lakshmi motifs and Nakshi carving work, paired with cultured pearls.",
     isNewArrival: true,
     makingChargePercent: 15,

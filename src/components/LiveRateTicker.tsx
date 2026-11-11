@@ -2,7 +2,7 @@
 
 import React, { useState } from "react";
 import { LIVE_METAL_RATES, SHOWROOM_DETAILS } from "@/data/jewelryData";
-import { Calculator, TrendingUp, ShieldCheck, RefreshCw, Info, ArrowRight, MessageSquare } from "lucide-react";
+import { Calculator, RefreshCw, Info, ArrowRight, MessageSquare } from "lucide-react";
 
 export const LiveRateTicker: React.FC = () => {
   const [selectedRateIndex, setSelectedRateIndex] = useState(1); // 22K default
@@ -18,88 +18,87 @@ export const LiveRateTicker: React.FC = () => {
   const totalEstimatedPrice = Math.round(subtotal + gstAmount);
 
   return (
-    <section id="rates" className="py-16 px-4 bg-[#040c09] border-y border-[#d4af37]/20 relative overflow-hidden">
-      {/* Background ambient glow */}
-      <div className="absolute -top-32 left-1/2 -translate-x-1/2 w-[600px] h-[300px] bg-emerald-700/10 blur-[120px] rounded-full pointer-events-none" />
+    <section id="rates" className="py-24 sm:py-28 px-5 sm:px-8 bg-[#0a0a08] border-y border-[#c9a96a]/12 relative overflow-hidden">
+      {/* Ambient warmth */}
+      <div className="absolute -top-32 left-1/2 -translate-x-1/2 w-[620px] h-[300px] bg-[#c9a96a]/5 blur-[130px] rounded-full pointer-events-none" />
 
-      <div className="max-w-7xl mx-auto relative z-10">
+      <div className="max-w-[1400px] mx-auto relative z-10">
         {/* Section Header */}
-        <div className="text-center max-w-3xl mx-auto mb-12">
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#0d2a1e] border border-[#d4af37]/40 text-[#d4af37] text-xs font-semibold uppercase tracking-widest mb-3">
-            <ShieldCheck className="w-4 h-4" /> 100% BIS Hallmarked Transparency
+        <div className="lux-reveal flex flex-col lg:flex-row lg:items-end justify-between gap-6 mb-12 pb-10 border-b border-[#f4eee3]/10">
+          <div className="max-w-2xl">
+            <span className="lux-eyebrow block mb-4">Transparent by Design</span>
+            <h2 className="text-[2.2rem] sm:text-[3.2rem] font-light text-[#f4eee3] leading-[1.05]">
+              Today&apos;s Live Metal Rates<br className="hidden sm:block" />
+              <span className="italic text-[#e8d9b4]"> &amp; Atelier Estimator</span>
+            </h2>
           </div>
-          <h2 className="text-3xl sm:text-4xl font-serif-luxury font-bold gold-text-gradient mb-3">
-            Today&apos;s Live Metal Rates &amp; Price Calculator
-          </h2>
-          <p className="text-white/70 text-sm sm:text-base">
-            Guaranteed 100% pure live rate board updated twice daily directly at the Jain Jewells Jaipur showroom.
+          <p className="text-[#a79e8e] text-xs sm:text-sm font-light leading-[1.9] max-w-sm lg:text-right">
+            A pure rate board, refreshed twice daily at our Jaipur showroom. Estimate any piece with complete clarity — no hidden charges.
           </p>
         </div>
 
         {/* Live Rate Cards Grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-12">
+        <div className="lux-reveal grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-px bg-[#f4eee3]/10 border border-[#f4eee3]/10 mb-14">
           {LIVE_METAL_RATES.map((rate, idx) => (
             <div
               key={rate.metal}
               onClick={() => setSelectedRateIndex(idx)}
-              className={`cursor-pointer rounded-2xl p-5 transition-all duration-300 relative ${
+              className={`cursor-pointer p-6 sm:p-7 transition-all duration-500 relative ${
                 selectedRateIndex === idx
-                  ? "bg-[#0d2e21] border-2 border-[#d4af37] shadow-[0_0_25px_rgba(212,175,55,0.2)] transform -translate-y-1"
-                  : "emerald-glass emerald-glass-hover opacity-90"
+                  ? "bg-[#1a1712]"
+                  : "bg-[#0c0b09] hover:bg-[#14110c]"
               }`}
             >
               {selectedRateIndex === idx && (
-                <span className="absolute top-3 right-3 text-[10px] bg-[#d4af37] text-[#06110c] font-extrabold px-2 py-0.5 rounded-full uppercase tracking-wider">
-                  Selected
-                </span>
+                <span className="absolute top-0 left-0 right-0 h-px bg-[#c9a96a]" />
               )}
-              <div className="flex items-center justify-between mb-2">
-                <span className="text-sm font-semibold text-white/90">{rate.metal}</span>
+              <div className="flex items-center justify-between mb-4">
+                <span className="text-[10px] uppercase tracking-[0.2em] text-[#ded6c7]">{rate.metal}</span>
                 <span
-                  className={`text-xs font-bold px-2 py-0.5 rounded ${
-                    rate.isPositive ? "bg-emerald-950 text-emerald-400 border border-emerald-500/30" : "bg-rose-950 text-rose-400 border border-rose-500/30"
+                  className={`text-[10px] tracking-[0.04em] ${
+                    rate.isPositive ? "text-[#c9a96a]" : "text-[#a79e8e]"
                   }`}
                 >
                   {rate.change}
                 </span>
               </div>
-              <div className="text-2xl font-serif-luxury font-bold text-[#fcf6ba] mb-1">
+              <div className="text-[1.7rem] font-serif-luxury font-light text-[#f4eee3] mb-1">
                 ₹{rate.ratePerGram.toLocaleString("en-IN")}
-                <span className="text-xs font-normal text-white/60 ml-1">/ {rate.unit}</span>
+                <span className="text-[10px] font-light text-[#7f786c] ml-1.5">/ {rate.unit}</span>
               </div>
-              <div className="text-[11px] text-white/60">{rate.purity}</div>
+              <div className="text-[10px] text-[#7f786c] tracking-[0.04em]">{rate.purity}</div>
             </div>
           ))}
         </div>
 
         {/* Interactive Estimator Tool */}
-        <div className="emerald-glass rounded-3xl p-6 sm:p-8 border border-[#d4af37]/30 grid grid-cols-1 lg:grid-cols-12 gap-8 items-center shadow-2xl">
+        <div className="lux-reveal bg-[#0f0d0a] border border-[#f4eee3]/10 p-6 sm:p-10 grid grid-cols-1 lg:grid-cols-12 gap-10 items-stretch">
           {/* Controls side */}
-          <div className="lg:col-span-7 flex flex-col gap-6">
-            <div className="flex items-center justify-between border-b border-white/10 pb-4">
-              <h3 className="text-xl font-serif-luxury font-semibold text-white flex items-center gap-2">
-                <Calculator className="w-5 h-5 text-[#d4af37]" />
-                Estimate Jewellery Cost
+          <div className="lg:col-span-7 flex flex-col gap-7">
+            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 border-b border-[#f4eee3]/10 pb-5">
+              <h3 className="text-2xl font-serif-luxury font-light text-[#f4eee3] flex items-center gap-2.5">
+                <Calculator className="w-4 h-4 text-[#c9a96a]" strokeWidth={1.3} />
+                Atelier Cost Estimator
               </h3>
-              <span className="text-xs text-white/50 flex items-center gap-1">
-                <RefreshCw className="w-3 h-3 text-emerald-400 animate-spin" /> Rate: {lastRefreshed}
+              <span className="text-[9px] uppercase tracking-[0.16em] text-[#7f786c] flex items-center gap-1.5">
+                <RefreshCw className="w-2.5 h-2.5 text-[#c9a96a]" /> Updated {lastRefreshed}
               </span>
             </div>
 
             {/* Metal Selector Tabs */}
             <div>
-              <label className="text-xs uppercase tracking-wider text-white/70 font-medium mb-2 block">
-                1. Select Metal Type
+              <label className="text-[9px] uppercase tracking-[0.2em] text-[#7f786c] mb-3 block">
+                01 — Select Metal
               </label>
               <div className="grid grid-cols-2 sm:grid-cols-4 gap-2">
                 {LIVE_METAL_RATES.map((r, idx) => (
                   <button
                     key={r.metal}
                     onClick={() => setSelectedRateIndex(idx)}
-                    className={`py-2 px-3 rounded-xl text-xs font-semibold transition-all ${
+                    className={`py-3 px-3 text-[10px] uppercase tracking-[0.08em] transition-all border ${
                       selectedRateIndex === idx
-                        ? "gold-bg-gradient text-[#06110c] font-bold shadow-md"
-                        : "bg-[#06110c]/80 text-white/80 border border-white/10 hover:border-[#d4af37]/50"
+                        ? "border-[#c9a96a] text-[#e8d9b4] bg-[#c9a96a]/10"
+                        : "border-[#f4eee3]/10 text-[#a79e8e] hover:border-[#c9a96a]/40 hover:text-[#f4eee3]"
                     }`}
                   >
                     {r.metal}
@@ -110,11 +109,11 @@ export const LiveRateTicker: React.FC = () => {
 
             {/* Gram Weight Input */}
             <div>
-              <div className="flex justify-between items-center mb-2">
-                <label className="text-xs uppercase tracking-wider text-white/70 font-medium">
-                  2. Jewellery Weight (Grams)
+              <div className="flex justify-between items-center mb-3">
+                <label className="text-[9px] uppercase tracking-[0.2em] text-[#7f786c]">
+                  02 — Jewellery Weight
                 </label>
-                <span className="text-sm font-bold text-[#d4af37]">{gramWeight} grams</span>
+                <span className="text-xs text-[#e8d9b4] font-light">{gramWeight} grams</span>
               </div>
               <input
                 type="range"
@@ -122,26 +121,26 @@ export const LiveRateTicker: React.FC = () => {
                 max="250"
                 value={gramWeight}
                 onChange={(e) => setGramWeight(Number(e.target.value))}
-                className="w-full h-2 bg-emerald-950 rounded-lg appearance-none cursor-pointer accent-[#d4af37]"
+                className="w-full h-[3px] bg-[#2c2619] rounded-none appearance-none cursor-pointer accent-[#c9a96a]"
               />
-              <div className="flex justify-between text-[10px] text-white/40 mt-1">
-                <span>1g (Rings/Earrings)</span>
-                <span>50g (Bangles)</span>
-                <span>150g (Necklaces)</span>
-                <span>250g+ (Bridal Sets)</span>
+              <div className="flex justify-between text-[9px] tracking-[0.04em] text-[#7f786c] mt-2">
+                <span>1g · Rings</span>
+                <span>50g · Bangles</span>
+                <span>150g · Necklaces</span>
+                <span>250g+ · Bridal</span>
               </div>
             </div>
 
             {/* Making Charges Slider */}
             <div>
-              <div className="flex justify-between items-center mb-2">
-                <label className="text-xs uppercase tracking-wider text-white/70 font-medium flex items-center gap-1">
-                  3. Making Charge Rate (%)
-                  <span title="Making charges depend on design complexity (cast vs handcrafted Nakshi work)">
-                    <Info className="w-3.5 h-3.5 text-white/40 hover:text-white" />
+              <div className="flex justify-between items-center mb-3">
+                <label className="text-[9px] uppercase tracking-[0.2em] text-[#7f786c] flex items-center gap-1.5">
+                  03 — Making Charge
+                  <span title="Making charges depend on design complexity — cast work versus handcrafted Nakshi work">
+                    <Info className="w-3 h-3 text-[#7f786c] hover:text-[#c9a96a]" strokeWidth={1.4} />
                   </span>
                 </label>
-                <span className="text-sm font-bold text-[#d4af37]">{makingChargePercent}%</span>
+                <span className="text-xs text-[#e8d9b4] font-light">{makingChargePercent}%</span>
               </div>
               <input
                 type="range"
@@ -149,47 +148,47 @@ export const LiveRateTicker: React.FC = () => {
                 max="22"
                 value={makingChargePercent}
                 onChange={(e) => setMakingChargePercent(Number(e.target.value))}
-                className="w-full h-2 bg-emerald-950 rounded-lg appearance-none cursor-pointer accent-[#d4af37]"
+                className="w-full h-[3px] bg-[#2c2619] rounded-none appearance-none cursor-pointer accent-[#c9a96a]"
               />
-              <div className="flex justify-between text-[10px] text-white/40 mt-1">
-                <span>8% (Lightweight/Chains)</span>
-                <span>14% (Kundan/Meenakari)</span>
-                <span>22% (Heavy Artisan Nakshi)</span>
+              <div className="flex justify-between text-[9px] tracking-[0.04em] text-[#7f786c] mt-2">
+                <span>8% · Lightweight</span>
+                <span>14% · Kundan</span>
+                <span>22% · Artisan Nakshi</span>
               </div>
             </div>
           </div>
 
           {/* Breakdown summary side */}
-          <div className="lg:col-span-5 bg-[#061811] p-6 rounded-2xl border border-[#d4af37]/30 flex flex-col justify-between h-full gap-6">
+          <div className="lg:col-span-5 bg-[#16130e] p-6 sm:p-8 border border-[#c9a96a]/20 flex flex-col justify-between h-full gap-7">
             <div>
-              <h4 className="text-sm font-semibold text-white/80 uppercase tracking-widest border-b border-white/10 pb-3 mb-4">
-                Estimated Price Breakdown
+              <h4 className="text-[9px] text-[#c9a96a] uppercase tracking-[0.24em] border-b border-[#f4eee3]/10 pb-4 mb-5">
+                Price Breakdown
               </h4>
               
-              <div className="flex flex-col gap-3 text-sm">
-                <div className="flex justify-between text-white/70">
-                  <span>Metal Value ({gramWeight}g @ ₹{activeRateObj.ratePerGram}/g):</span>
-                  <span className="font-semibold text-white">₹{metalCost.toLocaleString("en-IN")}</span>
+              <div className="flex flex-col gap-3.5 text-[11px] font-light">
+                <div className="flex justify-between gap-3 text-[#a79e8e]">
+                  <span>Metal value · {gramWeight}g @ ₹{activeRateObj.ratePerGram}/g</span>
+                  <span className="text-[#f4eee3]">₹{metalCost.toLocaleString("en-IN")}</span>
                 </div>
-                <div className="flex justify-between text-white/70">
-                  <span>Making Charges ({makingChargePercent}%):</span>
-                  <span className="font-semibold text-white">₹{Math.round(makingCost).toLocaleString("en-IN")}</span>
+                <div className="flex justify-between gap-3 text-[#a79e8e]">
+                  <span>Making charges · {makingChargePercent}%</span>
+                  <span className="text-[#f4eee3]">₹{Math.round(makingCost).toLocaleString("en-IN")}</span>
                 </div>
-                <div className="flex justify-between text-white/70">
-                  <span>GST (3% Standard Govt Tax):</span>
-                  <span className="font-semibold text-white">₹{Math.round(gstAmount).toLocaleString("en-IN")}</span>
+                <div className="flex justify-between gap-3 text-[#a79e8e]">
+                  <span>GST · 3% standard</span>
+                  <span className="text-[#f4eee3]">₹{Math.round(gstAmount).toLocaleString("en-IN")}</span>
                 </div>
               </div>
 
-              <div className="border-t border-[#d4af37]/30 mt-4 pt-4">
-                <span className="text-xs text-[#d4af37] uppercase tracking-wider block mb-1">
-                  Estimated Grand Total (INR)
+              <div className="border-t border-[#c9a96a]/25 mt-5 pt-5">
+                <span className="text-[9px] text-[#7f786c] uppercase tracking-[0.22em] block mb-2">
+                  Estimated Total · INR
                 </span>
-                <div className="text-3xl font-serif-luxury font-extrabold gold-text-gradient">
+                <div className="text-[2.1rem] font-serif-luxury font-light text-[#e8d9b4]">
                   ₹{totalEstimatedPrice.toLocaleString("en-IN")}
                 </div>
-                <p className="text-[11px] text-white/50 mt-1">
-                  *Exact price may vary slightly based on gemstone carats, stone settings & final ornament design.
+                <p className="text-[9px] text-[#7f786c] leading-relaxed mt-2">
+                  Final price may vary with gemstone carats, settings and the finished ornament.
                 </p>
               </div>
             </div>
@@ -198,11 +197,11 @@ export const LiveRateTicker: React.FC = () => {
               href={`https://wa.me/${SHOWROOM_DETAILS.whatsapp.replace("+", "")}?text=Hi%20Jain%20Jewells%2C%20I%20used%20your%20online%20calculator%20for%20a%20${gramWeight}g%20${activeRateObj.metal}%20design%20(Est%3A%20%E2%82%B9${totalEstimatedPrice.toLocaleString("en-IN")}).%20Can%20you%20share%20available%20designs%3F`}
               target="_blank"
               rel="noopener noreferrer"
-              className="w-full bg-[#0d3828] hover:bg-[#124d38] border border-[#d4af37]/40 text-[#fcf6ba] font-bold text-xs uppercase tracking-wider py-3.5 rounded-xl flex items-center justify-center gap-2 transition-all shadow-md group"
+              className="lux-btn lux-btn-outline w-full group"
             >
-              <MessageSquare className="w-4 h-4 text-emerald-400" />
-              Inquire This Quote on WhatsApp
-              <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+              <MessageSquare className="w-3.5 h-3.5 text-[#c9a96a]" strokeWidth={1.4} />
+              Request this Quote
+              <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform" strokeWidth={1.4} />
             </a>
           </div>
         </div>

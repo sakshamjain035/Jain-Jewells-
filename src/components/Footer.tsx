@@ -3,7 +3,23 @@
 import React, { useState } from "react";
 import { Logo } from "./Logo";
 import { SHOWROOM_DETAILS } from "@/data/jewelryData";
-import { Phone, MapPin, Mail, Clock, ShieldCheck, Award, MessageSquare, Heart } from "lucide-react";
+import { Phone, MapPin, Mail, Clock, ShieldCheck, Award, ArrowRight } from "lucide-react";
+
+const SHOP_LINKS = [
+  { label: "The Maison", href: "#hero" },
+  { label: "Showroom Tour", href: "#showroom" },
+  { label: "Collections", href: "#collections" },
+  { label: "Bespoke Atelier", href: "#bespoke" },
+  { label: "Live Gold Rates", href: "#rates" },
+  { label: "Our Heritage", href: "#heritage" },
+];
+
+const CARE_LINKS = [
+  { label: "Privacy Policy", href: "/privacy" },
+  { label: "Terms & Conditions", href: "/terms" },
+  { label: "Shipping & Delivery", href: "/shipping" },
+  { label: "Returns & Exchange", href: "/returns" },
+];
 
 export const Footer: React.FC = () => {
   const [emailInput, setEmailInput] = useState("");
@@ -15,130 +31,163 @@ export const Footer: React.FC = () => {
   };
 
   return (
-    <footer className="bg-[#030907] border-t border-[#d4af37]/30 text-white/80 pt-16 pb-8 relative">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6">
-        {/* Main Footer Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-10 pb-12 border-b border-white/10">
-          {/* Brand Col */}
-          <div className="lg:col-span-4 flex flex-col gap-4">
-            <Logo size="lg" />
-            <p className="text-xs text-white/70 font-light leading-relaxed max-w-sm mt-2">
-              Jain Jewells is Jaipur&apos;s celebrated luxury jewellery showroom, offering 100% BIS Hallmarked 22K Gold, GIA Certified Solitaires, Polki Bridal Couture &amp; Bespoke Artistry since 1984.
+    <footer className="bg-[#080706] border-t border-[#c9a96a]/25 text-[#ded6c7] relative overflow-hidden">
+      {/* Newsletter band */}
+      <div className="border-b border-[#f4eee3]/8">
+        <div className="max-w-[1400px] mx-auto px-5 sm:px-8 py-14 sm:py-16 grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
+          <div className="lg:col-span-6">
+            <span className="lux-eyebrow block mb-4">The House Letter</span>
+            <h2 className="text-[2rem] sm:text-[2.8rem] font-light text-[#f4eee3] leading-[1.08] tracking-[-0.01em]">
+              Private previews, quiet launches,
+              <br className="hidden sm:block" />
+              <span className="italic text-[#e8d9b4]"> and the day&apos;s gold rate.</span>
+            </h2>
+          </div>
+
+          <div className="lg:col-span-6 lg:pl-10">
+            <p className="text-[11px] text-[#a79e8e] font-light leading-[1.8] mb-5 max-w-md">
+              A considered letter from our Jaipur atelier — new collections, bridal previews and daily metal alerts. No noise.
             </p>
 
-            {/* Seals */}
-            <div className="flex items-center gap-4 mt-2">
-              <div className="emerald-glass px-3 py-1.5 rounded-xl border border-[#d4af37]/30 flex items-center gap-2 text-[11px] text-[#fcf6ba]">
-                <ShieldCheck className="w-4 h-4 text-[#d4af37]" /> BIS 916 Hallmark
+            {!subscribed ? (
+              <form onSubmit={handleSubscribe} className="flex items-end gap-3 max-w-md">
+                <div className="flex-1">
+                  <label htmlFor="footer-email" className="sr-only">
+                    Email address
+                  </label>
+                  <input
+                    id="footer-email"
+                    type="email"
+                    required
+                    placeholder="Your email address"
+                    value={emailInput}
+                    onChange={(e) => setEmailInput(e.target.value)}
+                    className="w-full bg-transparent border-b border-[#f4eee3]/20 focus:border-[#c9a96a] text-[11px] tracking-[0.03em] text-[#f4eee3] placeholder-[#7f786c] py-3 outline-none transition-colors rounded-none"
+                  />
+                </div>
+                <button
+                  type="submit"
+                  className="group flex items-center gap-2 text-[9px] uppercase tracking-[0.2em] text-[#e8d9b4] pb-3 shrink-0 hover:text-[#f4eee3] transition-colors"
+                >
+                  Subscribe
+                  <ArrowRight className="w-3.5 h-3.5 text-[#c9a96a] group-hover:translate-x-1 transition-transform" strokeWidth={1.4} />
+                </button>
+              </form>
+            ) : (
+              <div className="border border-[#c9a96a]/30 px-4 py-3 text-[10px] tracking-[0.12em] uppercase text-[#e8d9b4] max-w-md">
+                Thank you — you are on the list.
               </div>
-              <div className="emerald-glass px-3 py-1.5 rounded-xl border border-[#d4af37]/30 flex items-center gap-2 text-[11px] text-[#fcf6ba]">
-                <Award className="w-4 h-4 text-[#d4af37]" /> GIA &amp; IGI Certified
-              </div>
+            )}
+          </div>
+        </div>
+      </div>
+
+      {/* Main footer */}
+      <div className="max-w-[1400px] mx-auto px-5 sm:px-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-10 lg:gap-8 py-14 border-b border-[#f4eee3]/8">
+          {/* Brand */}
+          <div className="lg:col-span-5 flex flex-col gap-6 pr-0 lg:pr-14">
+            <Logo size="lg" />
+            <p className="text-[11px] text-[#a79e8e] font-light leading-[1.95] max-w-sm">
+              Jain Jewells is a Jaipur maison of fine jewellery — 100% BIS hallmarked gold, GIA certified solitaires, royal Polki couture and bespoke artistry, since 1984.
+            </p>
+            <div className="flex flex-wrap items-center gap-x-6 gap-y-3 pt-1">
+              <span className="flex items-center gap-2 text-[9px] uppercase tracking-[0.16em] text-[#a79e8e]">
+                <ShieldCheck className="w-3.5 h-3.5 text-[#c9a96a]" strokeWidth={1.3} /> BIS 916
+              </span>
+              <span className="w-px h-3 bg-[#f4eee3]/12" />
+              <span className="flex items-center gap-2 text-[9px] uppercase tracking-[0.16em] text-[#a79e8e]">
+                <Award className="w-3.5 h-3.5 text-[#c9a96a]" strokeWidth={1.3} /> GIA &amp; IGI
+              </span>
             </div>
           </div>
 
-          {/* Showroom Details Col */}
-          <div className="lg:col-span-4 flex flex-col gap-3 text-xs">
-            <h4 className="text-sm font-serif-luxury font-bold text-white uppercase tracking-wider text-[#d4af37]">
-              Showroom Location &amp; Hours
-            </h4>
+          {/* Showroom */}
+          <div className="lg:col-span-4 flex flex-col gap-5">
+            <h4 className="text-[9px] uppercase tracking-[0.28em] text-[#c9a96a]">The Showroom</h4>
 
-            <div className="flex items-start gap-2.5 text-white/80">
-              <MapPin className="w-4 h-4 text-[#d4af37] shrink-0 mt-0.5" />
-              <span>{SHOWROOM_DETAILS.address}, {SHOWROOM_DETAILS.cityStatePincode}</span>
+            <div className="flex items-start gap-3 text-[11px] text-[#ded6c7]/85 font-light leading-relaxed">
+              <MapPin className="w-4 h-4 text-[#c9a96a] shrink-0 mt-0.5" strokeWidth={1.3} />
+              <span>
+                {SHOWROOM_DETAILS.address},<br />
+                {SHOWROOM_DETAILS.cityStatePincode}
+              </span>
             </div>
 
-            <div className="flex items-start gap-2.5 text-white/80">
-              <Clock className="w-4 h-4 text-[#d4af37] shrink-0 mt-0.5" />
+            <div className="flex items-start gap-3 text-[11px] text-[#ded6c7]/85 font-light">
+              <Clock className="w-4 h-4 text-[#c9a96a] shrink-0 mt-0.5" strokeWidth={1.3} />
               <div>
                 <div>{SHOWROOM_DETAILS.hours.weekdays}</div>
-                <div className="text-white/50">{SHOWROOM_DETAILS.hours.sunday}</div>
+                <div className="text-[#7f786c] mt-1">{SHOWROOM_DETAILS.hours.sunday}</div>
               </div>
             </div>
 
-            <div className="flex items-center gap-2.5 text-white/80">
-              <Phone className="w-4 h-4 text-[#d4af37] shrink-0" />
-              <div className="flex gap-3">
+            <div className="flex items-start gap-3 text-[11px] text-[#ded6c7]/85 font-light">
+              <Phone className="w-4 h-4 text-[#c9a96a] shrink-0 mt-0.5" strokeWidth={1.3} />
+              <div className="flex flex-col gap-1">
                 {SHOWROOM_DETAILS.phone.map((ph) => (
-                  <a key={ph} href={`tel:${ph}`} className="hover:text-[#d4af37]">
+                  <a key={ph} href={`tel:${ph}`} className="hover:text-[#e8d9b4] transition-colors">
                     {ph}
                   </a>
                 ))}
               </div>
             </div>
 
-            <div className="flex items-center gap-2.5 text-white/80">
-              <Mail className="w-4 h-4 text-[#d4af37] shrink-0" />
-              <a href={`mailto:${SHOWROOM_DETAILS.email}`} className="hover:text-[#d4af37]">
+            <div className="flex items-center gap-3 text-[11px] text-[#ded6c7]/85 font-light">
+              <Mail className="w-4 h-4 text-[#c9a96a] shrink-0" strokeWidth={1.3} />
+              <a href={`mailto:${SHOWROOM_DETAILS.email}`} className="hover:text-[#e8d9b4] transition-colors">
                 {SHOWROOM_DETAILS.email}
               </a>
             </div>
           </div>
 
-          {/* Quick Links Col */}
-          <div className="lg:col-span-2 flex flex-col gap-2.5 text-xs">
-            <h4 className="text-sm font-serif-luxury font-bold text-white uppercase tracking-wider text-[#d4af37]">
-              Quick Navigation
-            </h4>
-            <a href="#hero" className="hover:text-[#d4af37] transition-colors">Home Showcase</a>
-            <a href="#showroom" className="hover:text-[#d4af37] transition-colors">Showroom Tour</a>
-            <a href="#collections" className="hover:text-[#d4af37] transition-colors">Jewellery Catalog</a>
-            <a href="#bespoke" className="hover:text-[#d4af37] transition-colors">Bespoke Design Lab</a>
-            <a href="#rates" className="hover:text-[#d4af37] transition-colors">Daily Gold Rates</a>
-            <a href="#heritage" className="hover:text-[#d4af37] transition-colors">Our Heritage</a>
-            <a href="/admin" className="text-[#d4af37] hover:underline font-semibold flex items-center gap-1 mt-1">
-              👑 Admin &amp; Orders Portal
-            </a>
-          </div>
-
-
-          {/* Newsletter / Gold Rate Alert Col */}
-          <div className="lg:col-span-2 flex flex-col gap-3 text-xs">
-            <h4 className="text-sm font-serif-luxury font-bold text-white uppercase tracking-wider text-[#d4af37]">
-              Daily Rate Alerts
-            </h4>
-            <p className="text-white/60 leading-relaxed">
-              Subscribe for daily Jaipur live gold rate SMS/email alerts and exclusive bridal launches.
-            </p>
-
-            {!subscribed ? (
-              <form onSubmit={handleSubscribe} className="flex flex-col gap-2">
-                <input
-                  type="email"
-                  required
-                  placeholder="Enter email address"
-                  value={emailInput}
-                  onChange={(e) => setEmailInput(e.target.value)}
-                  className="bg-[#061811] border border-white/20 text-white rounded-xl p-2.5 outline-none focus:border-[#d4af37]"
-                />
-                <button
-                  type="submit"
-                  className="gold-bg-gradient text-[#06110c] font-bold py-2 rounded-xl text-center uppercase tracking-wider"
+          {/* Navigation */}
+          <div className="lg:col-span-3 grid grid-cols-2 gap-8">
+            <div className="flex flex-col gap-3">
+              <h4 className="text-[9px] uppercase tracking-[0.28em] text-[#c9a96a] mb-1">Explore</h4>
+              {SHOP_LINKS.map((link) => (
+                <a
+                  key={link.href}
+                  href={link.href}
+                  className="text-[11px] text-[#a79e8e] font-light hover:text-[#f4eee3] transition-colors"
                 >
-                  Subscribe
-                </button>
-              </form>
-            ) : (
-              <div className="bg-[#0d2a1e] text-emerald-400 p-3 rounded-xl text-[11px] border border-emerald-500/30">
-                ✓ Subscribed to daily gold rate updates!
-              </div>
-            )}
+                  {link.label}
+                </a>
+              ))}
+            </div>
+
+            <div className="flex flex-col gap-3">
+              <h4 className="text-[9px] uppercase tracking-[0.28em] text-[#c9a96a] mb-1">Client Care</h4>
+              {CARE_LINKS.map((link) => (
+                <a
+                  key={link.href}
+                  href={link.href}
+                  className="text-[11px] text-[#a79e8e] font-light hover:text-[#f4eee3] transition-colors"
+                >
+                  {link.label}
+                </a>
+              ))}
+              <a href="/admin" className="text-[11px] text-[#c9a96a] hover:text-[#e8d9b4] transition-colors mt-1">
+                Admin Portal
+              </a>
+            </div>
           </div>
         </div>
 
-        {/* Bottom Copyright */}
-        <div className="pt-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-white/50">
-          <div>
-            © 1984 – {new Date().getFullYear()} <strong className="text-white">Jain Jewells</strong>. All Rights Reserved. 
-            <span className="hidden sm:inline font-light"> | BIS Hallmark HUID 6-Digit Guaranteed.</span>
-          </div>
+        {/* Watermark */}
+        <div className="py-8 overflow-hidden select-none pointer-events-none" aria-hidden="true">
+          <p className="font-serif-luxury text-center text-[13vw] leading-none tracking-[0.06em] text-[#f4eee3]/[0.04] whitespace-nowrap">
+            Jain Jewells
+          </p>
+        </div>
 
-          <div className="flex items-center gap-4">
-            <a href="#" className="hover:text-white transition-colors">Privacy Policy</a>
-            <span>•</span>
-            <a href="#" className="hover:text-white transition-colors">Terms of Purity</a>
-            <span>•</span>
-            <a href="#" className="hover:text-white transition-colors">Lifetime Exchange Policy</a>
+        {/* Bottom bar */}
+        <div className="pb-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-[9px] uppercase tracking-[0.16em] text-[#7f786c] border-t border-[#f4eee3]/8 pt-6">
+          <div>
+            © 1984–{new Date().getFullYear()} Jain Jewells · Jaipur
+          </div>
+          <div className="text-center text-[8px] tracking-[0.18em]">
+            BIS Hallmark HUID guaranteed · All rights reserved
           </div>
         </div>
       </div>

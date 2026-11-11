@@ -7,51 +7,50 @@ interface LogoProps {
 
 export const Logo: React.FC<LogoProps> = ({ className = "", size = "md" }) => {
   const sizeClasses = {
-    sm: "h-8",
-    md: "h-11",
-    lg: "h-16",
+    sm: "h-7",
+    md: "h-9",
+    lg: "h-12",
   };
 
   return (
     <div className={`inline-flex items-center gap-3 ${className}`}>
-      {/* Royal Crest Emblem */}
+      {/* House emblem — a fine gold seal */}
       <svg
-        className={`${sizeClasses[size]} w-auto text-[#d4af37] shrink-0 transition-transform duration-300 hover:scale-105`}
+        className={`${sizeClasses[size]} w-auto text-[#c9a96a] shrink-0`}
         viewBox="0 0 64 64"
         fill="none"
         xmlns="http://www.w3.org/2000/svg"
+        aria-hidden="true"
       >
+        <circle cx="32" cy="32" r="30" stroke="url(#goldGrad)" strokeWidth="0.8" opacity="0.55" />
+        <circle cx="32" cy="32" r="26" stroke="url(#goldGrad)" strokeWidth="0.5" opacity="0.35" />
         <path
-          d="M32 4L38.5 18.5L54 22L42.5 32.5L46 48L32 40L18 48L21.5 32.5L10 22L25.5 18.5L32 4Z"
+          d="M32 12L36.6 22.5L48 24.6L39.6 32.2L41.8 43.2L32 37.8L22.2 43.2L24.4 32.2L16 24.6L27.4 22.5L32 12Z"
           fill="url(#goldGrad)"
-          stroke="#b8860b"
-          strokeWidth="1.5"
         />
         <path
-          d="M32 14L35.5 22L44 24L37.5 30L39.5 38.5L32 34L24.5 38.5L26.5 30L20 24L28.5 22L32 14Z"
-          fill="#06110c"
+          d="M32 20L34.6 26.2L41.5 27L36.4 31.7L37.8 38.4L32 35.2L26.2 38.4L27.6 31.7L22.5 27L29.4 26.2L32 20Z"
+          fill="#0a0a08"
           stroke="url(#goldGrad)"
-          strokeWidth="1.2"
+          strokeWidth="0.9"
         />
-        <circle cx="32" cy="26" r="3" fill="#fcf6ba" />
+        <circle cx="32" cy="29.5" r="2" fill="#f4eee3" />
         <defs>
-          <linearGradient id="goldGrad" x1="0" y1="0" x2="64" y2="64" gradientUnits="userSpaceOnUse">
-            <stop offset="0%" stopColor="#bf953f" />
-            <stop offset="25%" stopColor="#fcf6ba" />
-            <stop offset="50%" stopColor="#b38728" />
-            <stop offset="75%" stopColor="#fbf5b7" />
-            <stop offset="100%" stopColor="#aa771c" />
+          <linearGradient id="goldGrad" x1="10" y1="10" x2="54" y2="54" gradientUnits="userSpaceOnUse">
+            <stop offset="0%" stopColor="#e8d9b4" />
+            <stop offset="45%" stopColor="#c9a96a" />
+            <stop offset="100%" stopColor="#9c7f4c" />
           </linearGradient>
         </defs>
       </svg>
 
-      {/* Brand Typography */}
-      <div className="flex flex-col">
-        <span className="font-serif-luxury text-xl sm:text-2xl font-bold tracking-[0.18em] uppercase gold-text-gradient leading-tight">
+      {/* Wordmark */}
+      <div className="flex flex-col leading-none">
+        <span className="font-serif-luxury text-[1.35rem] sm:text-[1.5rem] text-[#f4eee3] tracking-[0.16em] uppercase leading-none">
           Jain Jewells
         </span>
-        <span className="text-[9px] sm:text-[10px] tracking-[0.35em] text-[#d4af37]/80 uppercase font-medium">
-          Jaipur • Est. 1984
+        <span className="text-[7.5px] sm:text-[8px] tracking-[0.42em] text-[#a79e8e] uppercase mt-1.5 font-normal">
+          Jaipur · Est. 1984
         </span>
       </div>
     </div>

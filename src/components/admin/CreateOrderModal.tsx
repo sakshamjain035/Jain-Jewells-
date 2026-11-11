@@ -90,29 +90,29 @@ export const CreateOrderModal: React.FC<CreateOrderModalProps> = ({
   };
 
   return (
-    <div className="fixed inset-0 z-50 bg-black/85 backdrop-blur-md flex items-center justify-center p-4 overflow-y-auto">
-      <div className="emerald-glass max-w-2xl w-full rounded-3xl p-6 sm:p-8 border border-[#d4af37] relative shadow-2xl my-8 text-white">
+    <div className="fixed inset-0 z-50 bg-[#050504]/90 backdrop-blur-md flex items-center justify-center p-4 overflow-y-auto">
+      <div className="bg-[#100e0b] max-w-2xl w-full rounded-none p-6 sm:p-8 border border-[#c9a96a]/25 relative shadow-2xl my-8 text-[#f4eee3]">
         <button
           onClick={onClose}
-          className="absolute top-4 right-4 text-white/70 hover:text-white p-2 rounded-full bg-white/10"
+          className="absolute top-4 right-4 w-9 h-9 flex items-center justify-center text-[#a79e8e] hover:text-[#f4eee3] border border-[#f4eee3]/10 hover:border-[#c9a96a]/50 transition-colors"
         >
           <X className="w-5 h-5" />
         </button>
 
-        <div className="flex items-center gap-3 border-b border-white/10 pb-4 mb-5">
-          <div className="w-10 h-10 rounded-xl bg-amber-500/20 border border-amber-500/40 text-amber-400 flex items-center justify-center">
+        <div className="flex items-center gap-3 border-b border-[#f4eee3]/10 pb-4 mb-5">
+          <div className="w-10 h-10 rounded-none bg-amber-500/20 border border-amber-500/40 text-amber-400 flex items-center justify-center">
             <Package className="w-5 h-5" />
           </div>
           <div>
-            <h3 className="text-xl font-serif-luxury font-bold gold-text-gradient">
+            <h3 className="text-xl font-serif-luxury font-light gold-text-gradient">
               Create New Jewellery Order
             </h3>
-            <p className="text-xs text-white/60">Log showroom walk-in order or express order</p>
+            <p className="text-xs text-[#a79e8e]">Log showroom walk-in order or express order</p>
           </div>
         </div>
 
         {error && (
-          <div className="mb-4 bg-rose-950/80 border border-rose-500/40 p-3 rounded-xl text-rose-300 text-xs">
+          <div className="mb-4 bg-rose-950/80 border border-rose-500/40 p-3 rounded-none text-rose-300 text-xs">
             {error}
           </div>
         )}
@@ -120,13 +120,13 @@ export const CreateOrderModal: React.FC<CreateOrderModalProps> = ({
         <form onSubmit={handleSubmit} className="flex flex-col gap-4 text-xs">
           {/* Select Jewellery Piece */}
           <div>
-            <label className="font-semibold uppercase tracking-wider text-white/80 block mb-1">
+            <label className="text-[8px] uppercase tracking-[0.18em] text-[#7f786c] block mb-1.5">
               Select Jewellery Masterpiece *
             </label>
             <select
               value={selectedProductId}
               onChange={(e) => setSelectedProductId(e.target.value)}
-              className="w-full bg-[#061811] border border-white/15 focus:border-[#d4af37] text-white rounded-xl p-3 outline-none cursor-pointer"
+              className="w-full bg-[#14110c] border border-[#f4eee3]/15 focus:border-[#c9a96a] text-[#f4eee3] rounded-none p-3 outline-none cursor-pointer"
             >
               {PRODUCTS_DATA.map((p) => (
                 <option key={p.id} value={p.id}>
@@ -139,7 +139,7 @@ export const CreateOrderModal: React.FC<CreateOrderModalProps> = ({
           {/* Customer Details */}
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
             <div>
-              <label className="font-semibold uppercase tracking-wider text-white/80 block mb-1">
+              <label className="text-[8px] uppercase tracking-[0.18em] text-[#7f786c] block mb-1.5">
                 Customer Name *
               </label>
               <input
@@ -148,12 +148,12 @@ export const CreateOrderModal: React.FC<CreateOrderModalProps> = ({
                 placeholder="e.g. Maharani Archana Rathore"
                 value={customerName}
                 onChange={(e) => setCustomerName(e.target.value)}
-                className="w-full bg-[#061811] border border-white/15 focus:border-[#d4af37] text-white rounded-xl p-3 outline-none"
+                className="w-full bg-[#14110c] border border-[#f4eee3]/15 focus:border-[#c9a96a] text-[#f4eee3] rounded-none p-3 outline-none"
               />
             </div>
 
             <div>
-              <label className="font-semibold uppercase tracking-wider text-white/80 block mb-1">
+              <label className="text-[8px] uppercase tracking-[0.18em] text-[#7f786c] block mb-1.5">
                 Phone Number *
               </label>
               <input
@@ -162,14 +162,14 @@ export const CreateOrderModal: React.FC<CreateOrderModalProps> = ({
                 placeholder="+91 98290 XXXXX"
                 value={customerPhone}
                 onChange={(e) => setCustomerPhone(e.target.value)}
-                className="w-full bg-[#061811] border border-white/15 focus:border-[#d4af37] text-white rounded-xl p-3 outline-none"
+                className="w-full bg-[#14110c] border border-[#f4eee3]/15 focus:border-[#c9a96a] text-[#f4eee3] rounded-none p-3 outline-none"
               />
             </div>
           </div>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
             <div>
-              <label className="font-semibold uppercase tracking-wider text-white/80 block mb-1">
+              <label className="text-[8px] uppercase tracking-[0.18em] text-[#7f786c] block mb-1.5">
                 Email Address
               </label>
               <input
@@ -177,12 +177,12 @@ export const CreateOrderModal: React.FC<CreateOrderModalProps> = ({
                 placeholder="patron@example.com"
                 value={customerEmail}
                 onChange={(e) => setCustomerEmail(e.target.value)}
-                className="w-full bg-[#061811] border border-white/15 focus:border-[#d4af37] text-white rounded-xl p-3 outline-none"
+                className="w-full bg-[#14110c] border border-[#f4eee3]/15 focus:border-[#c9a96a] text-[#f4eee3] rounded-none p-3 outline-none"
               />
             </div>
 
             <div>
-              <label className="font-semibold uppercase tracking-wider text-white/80 block mb-1">
+              <label className="text-[8px] uppercase tracking-[0.18em] text-[#7f786c] block mb-1.5">
                 Street Address *
               </label>
               <input
@@ -190,14 +190,14 @@ export const CreateOrderModal: React.FC<CreateOrderModalProps> = ({
                 required
                 value={street}
                 onChange={(e) => setStreet(e.target.value)}
-                className="w-full bg-[#061811] border border-white/15 focus:border-[#d4af37] text-white rounded-xl p-3 outline-none"
+                className="w-full bg-[#14110c] border border-[#f4eee3]/15 focus:border-[#c9a96a] text-[#f4eee3] rounded-none p-3 outline-none"
               />
             </div>
           </div>
 
           <div className="grid grid-cols-3 gap-3">
             <div>
-              <label className="font-semibold uppercase tracking-wider text-white/80 block mb-1">
+              <label className="text-[8px] uppercase tracking-[0.18em] text-[#7f786c] block mb-1.5">
                 City *
               </label>
               <input
@@ -205,12 +205,12 @@ export const CreateOrderModal: React.FC<CreateOrderModalProps> = ({
                 required
                 value={city}
                 onChange={(e) => setCity(e.target.value)}
-                className="w-full bg-[#061811] border border-white/15 focus:border-[#d4af37] text-white rounded-xl p-3 outline-none"
+                className="w-full bg-[#14110c] border border-[#f4eee3]/15 focus:border-[#c9a96a] text-[#f4eee3] rounded-none p-3 outline-none"
               />
             </div>
 
             <div>
-              <label className="font-semibold uppercase tracking-wider text-white/80 block mb-1">
+              <label className="text-[8px] uppercase tracking-[0.18em] text-[#7f786c] block mb-1.5">
                 State *
               </label>
               <input
@@ -218,12 +218,12 @@ export const CreateOrderModal: React.FC<CreateOrderModalProps> = ({
                 required
                 value={state}
                 onChange={(e) => setState(e.target.value)}
-                className="w-full bg-[#061811] border border-white/15 focus:border-[#d4af37] text-white rounded-xl p-3 outline-none"
+                className="w-full bg-[#14110c] border border-[#f4eee3]/15 focus:border-[#c9a96a] text-[#f4eee3] rounded-none p-3 outline-none"
               />
             </div>
 
             <div>
-              <label className="font-semibold uppercase tracking-wider text-white/80 block mb-1">
+              <label className="text-[8px] uppercase tracking-[0.18em] text-[#7f786c] block mb-1.5">
                 Pincode *
               </label>
               <input
@@ -231,20 +231,20 @@ export const CreateOrderModal: React.FC<CreateOrderModalProps> = ({
                 required
                 value={pincode}
                 onChange={(e) => setPincode(e.target.value)}
-                className="w-full bg-[#061811] border border-white/15 focus:border-[#d4af37] text-white rounded-xl p-3 outline-none"
+                className="w-full bg-[#14110c] border border-[#f4eee3]/15 focus:border-[#c9a96a] text-[#f4eee3] rounded-none p-3 outline-none"
               />
             </div>
           </div>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
             <div>
-              <label className="font-semibold uppercase tracking-wider text-white/80 block mb-1">
+              <label className="text-[8px] uppercase tracking-[0.18em] text-[#7f786c] block mb-1.5">
                 Payment Status
               </label>
               <select
                 value={paymentStatus}
                 onChange={(e) => setPaymentStatus(e.target.value as any)}
-                className="w-full bg-[#061811] border border-white/15 focus:border-[#d4af37] text-white rounded-xl p-3 outline-none cursor-pointer"
+                className="w-full bg-[#14110c] border border-[#f4eee3]/15 focus:border-[#c9a96a] text-[#f4eee3] rounded-none p-3 outline-none cursor-pointer"
               >
                 <option value="Paid">Paid (Full Settlement)</option>
                 <option value="Advance Paid">Advance Paid (50%)</option>
@@ -253,13 +253,13 @@ export const CreateOrderModal: React.FC<CreateOrderModalProps> = ({
             </div>
 
             <div>
-              <label className="font-semibold uppercase tracking-wider text-white/80 block mb-1">
+              <label className="text-[8px] uppercase tracking-[0.18em] text-[#7f786c] block mb-1.5">
                 Payment Method
               </label>
               <select
                 value={paymentMethod}
                 onChange={(e) => setPaymentMethod(e.target.value)}
-                className="w-full bg-[#061811] border border-white/15 focus:border-[#d4af37] text-white rounded-xl p-3 outline-none cursor-pointer"
+                className="w-full bg-[#14110c] border border-[#f4eee3]/15 focus:border-[#c9a96a] text-[#f4eee3] rounded-none p-3 outline-none cursor-pointer"
               >
                 <option value="UPI / NetBanking">UPI / NetBanking</option>
                 <option value="Showroom Bank Transfer">Showroom Bank Transfer (RTGS/NEFT)</option>
@@ -270,9 +270,9 @@ export const CreateOrderModal: React.FC<CreateOrderModalProps> = ({
           </div>
 
           {/* Price Snapshot */}
-          <div className="bg-[#04140d] p-3 rounded-xl border border-white/10 flex justify-between items-center text-xs">
-            <span className="text-white/70">Total Order Value:</span>
-            <strong className="text-base font-serif-luxury text-[#fcf6ba]">
+          <div className="bg-[#12100c] p-3 rounded-none border border-[#f4eee3]/10 flex justify-between items-center text-xs">
+            <span className="text-[#a79e8e]">Total Order Value:</span>
+            <strong className="text-base font-serif-luxury text-[#e8d9b4]">
               ₹{product.price.toLocaleString("en-IN")}
             </strong>
           </div>
@@ -281,14 +281,14 @@ export const CreateOrderModal: React.FC<CreateOrderModalProps> = ({
             <button
               type="button"
               onClick={onClose}
-              className="px-5 py-2.5 rounded-xl border border-white/15 text-white/70 text-xs"
+              className="px-5 py-2.5 rounded-none border border-[#f4eee3]/15 text-[#a79e8e] text-xs"
             >
               Cancel
             </button>
             <button
               type="submit"
               disabled={isSubmitting}
-              className="gold-bg-gradient text-[#06110c] font-bold text-xs uppercase tracking-wider px-6 py-2.5 rounded-xl shadow-lg hover:scale-105 transition-all"
+              className="lux-btn lux-btn-gold"
             >
               {isSubmitting ? "Creating Order..." : "Place Order (Received State)"}
             </button>

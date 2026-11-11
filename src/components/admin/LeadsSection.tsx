@@ -104,71 +104,71 @@ export const LeadsSection: React.FC<LeadsSectionProps> = ({
   return (
     <div className="space-y-6">
       {/* Top Header & Search Controls */}
-      <div className="emerald-glass p-4 sm:p-5 rounded-2xl border border-[#d4af37]/30 flex flex-col lg:flex-row items-center justify-between gap-4 shadow-xl">
+      <div className="border-y border-[#f4eee3]/10 py-4 flex flex-col lg:flex-row items-start lg:items-center justify-between gap-5">
         {/* Status Filters */}
-        <div className="flex items-center gap-2 overflow-x-auto w-full lg:w-auto scrollbar-none pb-2 lg:pb-0">
+        <div className="flex items-center gap-6 sm:gap-7 overflow-x-auto w-full lg:w-auto scrollbar-none">
           {statuses.map((s) => (
             <button
               key={s}
               onClick={() => setStatusFilter(s)}
-              className={`py-2 px-3.5 rounded-xl text-xs font-semibold whitespace-nowrap transition-all ${
+              className={`relative whitespace-nowrap text-[9px] uppercase tracking-[0.16em] pb-2 transition-colors flex items-center gap-1.5 ${
                 statusFilter === s
-                  ? "gold-bg-gradient text-[#06110c] font-bold shadow-md"
-                  : "bg-[#06110c]/80 text-white/70 hover:text-white border border-white/10"
+                  ? "text-[#e8d9b4] after:absolute after:left-0 after:right-0 after:bottom-0 after:h-px after:bg-[#c9a96a]"
+                  : "text-[#a79e8e] hover:text-[#f4eee3]"
               }`}
             >
-              {s === "New" && <span className="w-2 h-2 rounded-full bg-[#d4af37] inline-block mr-1.5 animate-pulse" />}
+              {s === "New" && <span className="w-1.5 h-1.5 rounded-full bg-[#d3ab72]" />}
               {s}
             </button>
           ))}
         </div>
 
         {/* Priority Filter + Search + Add Lead Button */}
-        <div className="flex flex-col sm:flex-row items-center gap-3 w-full lg:w-auto">
+        <div className="flex flex-col sm:flex-row items-center gap-4 w-full lg:w-auto">
           <select
             value={priorityFilter}
             onChange={(e) => setPriorityFilter(e.target.value)}
-            className="w-full sm:w-36 bg-[#06110c]/90 border border-white/15 focus:border-[#d4af37] text-xs text-white rounded-xl px-3 py-2.5 outline-none cursor-pointer"
+            className="w-full sm:w-36 bg-transparent border-b border-[#f4eee3]/20 focus:border-[#c9a96a] text-[9px] uppercase tracking-[0.12em] text-[#ded6c7] rounded-none px-0 py-2.5 outline-none cursor-pointer"
           >
             {priorities.map((p) => (
-              <option key={p} value={p}>
+              <option key={p} value={p} className="bg-[#14110c]">
                 Priority: {p}
               </option>
             ))}
           </select>
 
-          <div className="relative w-full sm:w-64">
-            <Search className="w-4 h-4 text-white/40 absolute left-3.5 top-1/2 -translate-y-1/2" />
+          <div className="relative w-full sm:w-60">
+            <Search className="w-3.5 h-3.5 text-[#7f786c] absolute left-0 top-1/2 -translate-y-1/2" strokeWidth={1.4} />
             <input
               type="text"
-              placeholder="Search leads..."
+              placeholder="Search leads"
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
-              className="w-full bg-[#06110c]/90 border border-white/15 focus:border-[#d4af37] text-xs text-white placeholder-white/40 rounded-xl pl-9 pr-4 py-2.5 outline-none transition-colors"
+              className="w-full bg-transparent border-b border-[#f4eee3]/20 focus:border-[#c9a96a] text-[10px] text-[#f4eee3] placeholder-[#7f786c] rounded-none pl-6 pr-3 py-2.5 outline-none transition-colors"
             />
           </div>
 
           <button
             onClick={onOpenCreateLeadModal}
-            className="w-full sm:w-auto gold-bg-gradient text-[#06110c] font-bold text-xs uppercase tracking-wider py-2.5 px-4 rounded-xl flex items-center justify-center gap-2 shadow-lg shrink-0 hover:scale-105 transition-all"
+            className="lux-btn lux-btn-gold !py-2.5 !px-4 !text-[9px] shrink-0 w-full sm:w-auto"
           >
-            <Plus className="w-4 h-4" /> Add Lead
+            <Plus className="w-3.5 h-3.5" strokeWidth={1.5} /> Add Lead
           </button>
         </div>
       </div>
 
       {/* Leads Cards Grid */}
       {isLoading ? (
-        <div className="text-center py-20 emerald-glass rounded-2xl border border-white/10">
-          <div className="w-10 h-10 border-2 border-[#d4af37] border-t-transparent rounded-full animate-spin mx-auto mb-3" />
-          <p className="text-xs text-white/70">Loading customer leads from MongoDB...</p>
+        <div className="text-center py-20 border border-[#f4eee3]/10">
+          <div className="w-6 h-6 border border-[#c9a96a]/25 border-t-transparent rounded-full animate-spin mx-auto mb-4" />
+          <p className="text-[9px] uppercase tracking-[0.2em] text-[#a79e8e]">Retrieving client leads…</p>
         </div>
       ) : filteredLeads.length === 0 ? (
-        <div className="text-center py-16 emerald-glass rounded-2xl border border-white/10 max-w-lg mx-auto">
-          <Users className="w-12 h-12 text-[#d4af37]/60 mx-auto mb-3" />
-          <h3 className="text-lg font-serif-luxury font-bold text-white mb-1">No Leads Found</h3>
-          <p className="text-xs text-white/60 mb-4">
-            No active inquiries or appointments match your filter &quot;{statusFilter}&quot;.
+        <div className="text-center py-16 border border-[#f4eee3]/10 max-w-lg mx-auto">
+          <Users className="w-8 h-8 text-[#c9a96a]/60 mx-auto mb-4" strokeWidth={1} />
+          <h3 className="text-xl font-serif-luxury font-light text-[#f4eee3] mb-2">No leads found</h3>
+          <p className="text-[10px] text-[#a79e8e] mb-6 leading-relaxed">
+            No active inquiries or appointments match &quot;{statusFilter}&quot;.
           </p>
           <button
             onClick={() => {
@@ -176,7 +176,7 @@ export const LeadsSection: React.FC<LeadsSectionProps> = ({
               setPriorityFilter("All");
               setSearchQuery("");
             }}
-            className="gold-bg-gradient text-[#06110c] text-xs font-bold px-4 py-2 rounded-xl"
+            className="lux-btn lux-btn-outline !py-3 !px-5 !text-[9px]"
           >
             Reset Filters
           </button>
@@ -195,89 +195,89 @@ export const LeadsSection: React.FC<LeadsSectionProps> = ({
             return (
               <div
                 key={lead._id}
-                className="emerald-glass rounded-2xl border border-[#d4af37]/20 hover:border-[#d4af37]/60 transition-all p-5 flex flex-col justify-between shadow-xl bg-gradient-to-br from-[#061811] to-[#04140d] group"
+                className="bg-[#0f0d0a] border border-[#f4eee3]/10 hover:border-[#c9a96a]/40 transition-colors p-5 flex flex-col justify-between group"
               >
                 <div>
                   {/* Card Header: Lead ID, Priority, Source */}
-                  <div className="flex items-center justify-between border-b border-white/10 pb-3 mb-3">
-                    <span className="text-[10px] font-mono text-white/60">{lead.leadNumber}</span>
-                    <div className="flex items-center gap-1.5">
+                  <div className="flex items-center justify-between border-b border-[#f4eee3]/10 pb-3 mb-3">
+                    <span className="text-[9px] font-mono text-[#7f786c] tracking-[0.06em]">{lead.leadNumber}</span>
+                    <div className="flex items-center gap-3">
                       <span
-                        className={`text-[10px] font-extrabold uppercase px-2 py-0.5 rounded ${
+                        className={`text-[8px] uppercase tracking-[0.14em] ${
                           lead.priority === "Urgent"
-                            ? "bg-rose-950 text-rose-300 border border-rose-500/40"
+                            ? "text-[#cf8f7e]"
                             : lead.priority === "High"
-                            ? "bg-amber-950 text-amber-300 border border-amber-500/40"
-                            : "bg-emerald-950 text-emerald-300 border border-emerald-500/30"
+                            ? "text-[#d3ab72]"
+                            : "text-[#9ab79f]"
                         }`}
                       >
                         {lead.priority}
                       </span>
-                      <span className="text-[10px] bg-white/10 text-white/80 px-2 py-0.5 rounded">
+                      <span className="text-[8px] uppercase tracking-[0.12em] text-[#7f786c]">
                         {lead.source}
                       </span>
                     </div>
                   </div>
 
                   {/* Customer Info */}
-                  <h4 className="text-base font-serif-luxury font-bold text-white group-hover:text-[#d4af37] transition-colors">
+                  <h4 className="text-base font-serif-luxury font-light text-[#f4eee3] group-hover:text-[#c9a96a] transition-colors">
                     {lead.name}
                   </h4>
 
-                  <div className="text-xs text-white/70 space-y-1.5 mt-2">
+                  <div className="text-xs text-[#a79e8e] space-y-1.5 mt-2">
                     <div className="flex items-center gap-2">
-                      <Phone className="w-3.5 h-3.5 text-[#d4af37]" />
-                      <a href={`tel:${lead.phone}`} className="hover:text-white">
+                      <Phone className="w-3.5 h-3.5 text-[#c9a96a]" />
+                      <a href={`tel:${lead.phone}`} className="hover:text-[#f4eee3]">
                         {lead.phone}
                       </a>
                     </div>
                     {lead.email && (
                       <div className="flex items-center gap-2">
-                        <Mail className="w-3.5 h-3.5 text-[#d4af37]" />
+                        <Mail className="w-3.5 h-3.5 text-[#c9a96a]" />
                         <span className="truncate">{lead.email}</span>
                       </div>
                     )}
                   </div>
 
                   {/* Interest Details */}
-                  <div className="bg-[#03110b] p-3 rounded-xl border border-white/10 my-3 text-xs space-y-1">
-                    <div className="text-[10px] font-semibold text-[#d4af37] uppercase">
-                      Interest &amp; Budget:
+                  <div className="border-y border-[#f4eee3]/8 my-4 py-3 text-[10px] space-y-1">
+                    <div className="text-[8px] uppercase tracking-[0.18em] text-[#7f786c]">
+                      Interest &amp; Budget
                     </div>
-                    <div className="text-white font-medium">
+                    <div className="text-[#f4eee3]">
                       {lead.productName || lead.interestedCategory || "General Collection Inquiry"}
                     </div>
                     {lead.estimatedBudget && (
-                      <div className="text-[11px] text-emerald-300">
-                        Budget: {lead.estimatedBudget}
+                      <div className="text-[10px] text-[#c9a96a]">
+                        {lead.estimatedBudget}
                       </div>
                     )}
                   </div>
 
                   {/* Notes summary */}
                   {lead.notes && lead.notes.length > 0 && (
-                    <div className="text-[11px] text-white/60 italic line-clamp-2 mb-3 bg-black/20 p-2 rounded-lg">
+                    <div className="text-[11px] text-[#a79e8e] italic line-clamp-2 mb-3 bg-black/20 p-2 rounded-none">
                       &quot;{lead.notes[lead.notes.length - 1].note}&quot;
                     </div>
                   )}
                 </div>
 
                 {/* Card Footer: Status Selector & Direct Action Buttons */}
-                <div className="border-t border-white/10 pt-3 flex flex-col gap-2">
+                <div className="border-t border-[#f4eee3]/10 pt-3 flex flex-col gap-2">
                   <div className="flex items-center justify-between gap-2">
-                    <span className="text-[10px] text-white/50 uppercase font-semibold">Status:</span>
+                    <span className="text-[8px] text-[#7f786c] uppercase tracking-[0.16em]">Status</span>
                     <select
                       value={lead.status}
                       disabled={isUpdating}
                       onChange={(e) => handleUpdateStatus(lead._id, e.target.value)}
-                      className={`text-xs font-bold rounded-lg px-2 py-1 outline-none cursor-pointer ${
+                      className={`text-[9px] uppercase tracking-[0.1em] rounded-none px-0 py-1 outline-none cursor-pointer bg-transparent border-b ${
                         lead.status === "New"
-                          ? "bg-amber-500/20 text-amber-300 border border-amber-500/40"
+                          ? "text-[#d3ab72] border-[#d3ab72]/40"
                           : lead.status === "Converted"
-                          ? "bg-emerald-500/20 text-emerald-300 border border-emerald-500/40"
+                          ? "text-[#9ab79f] border-[#9ab79f]/40"
                           : lead.status === "In Negotiation"
-                          ? "bg-purple-500/20 text-purple-300 border border-purple-500/40"
-                          : "bg-white/10 text-white/80 border border-white/15"
+                          ? "text-[#c9a96a] border-[#c9a96a]/40"
+                          : "text-[#a79e8e] border-[#f4eee3]/15"
                       }`}
                     >
                       <option value="New">New</option>
@@ -294,16 +294,16 @@ export const LeadsSection: React.FC<LeadsSectionProps> = ({
                       href={`https://wa.me/${formattedPhone}?text=${waGreeting}`}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="bg-emerald-600 hover:bg-emerald-500 text-white text-xs font-semibold py-2 px-2.5 rounded-xl flex items-center justify-center gap-1.5 transition-all shadow"
+                      className="border border-[#9ab79f]/30 hover:border-[#9ab79f] text-[#9ab79f] text-[9px] uppercase tracking-[0.12em] py-2.5 px-2 flex items-center justify-center gap-1.5 transition-colors"
                     >
-                      <MessageSquare className="w-3.5 h-3.5" /> WhatsApp
+                      <MessageSquare className="w-3 h-3" strokeWidth={1.4} /> WhatsApp
                     </a>
 
                     <button
                       onClick={() => setActiveLeadNotesModal(lead)}
-                      className="bg-[#0a261a] hover:bg-[#0e3625] border border-[#d4af37]/40 text-[#fcf6ba] text-xs font-semibold py-2 px-2.5 rounded-xl flex items-center justify-center gap-1.5 transition-all"
+                      className="border border-[#c9a96a]/30 hover:border-[#c9a96a] text-[#e8d9b4] text-[9px] uppercase tracking-[0.12em] py-2.5 px-2 flex items-center justify-center gap-1.5 transition-colors"
                     >
-                      <FileText className="w-3.5 h-3.5" /> Notes ({lead.notes?.length || 0})
+                      <FileText className="w-3 h-3" strokeWidth={1.4} /> Notes ({lead.notes?.length || 0})
                     </button>
                   </div>
                 </div>
@@ -315,39 +315,40 @@ export const LeadsSection: React.FC<LeadsSectionProps> = ({
 
       {/* Lead Notes Drawer / Modal */}
       {activeLeadNotesModal && (
-        <div className="fixed inset-0 z-50 bg-black/85 backdrop-blur-md flex items-center justify-center p-4 overflow-y-auto">
-          <div className="emerald-glass max-w-xl w-full rounded-3xl p-6 sm:p-8 border border-[#d4af37] relative shadow-2xl my-8 text-white">
+        <div className="fixed inset-0 z-50 bg-[#050504]/90 backdrop-blur-md flex items-center justify-center p-4 overflow-y-auto">
+          <div className="bg-[#100e0b] max-w-xl w-full p-6 sm:p-9 border border-[#c9a96a]/25 relative shadow-2xl my-8 text-[#f4eee3]">
             <button
               onClick={() => setActiveLeadNotesModal(null)}
-              className="absolute top-4 right-4 text-white/70 hover:text-white p-2 rounded-full bg-white/10"
+              className="absolute top-4 right-4 w-9 h-9 flex items-center justify-center text-[#a79e8e] hover:text-[#f4eee3] border border-[#f4eee3]/10 hover:border-[#c9a96a]/50 transition-colors"
+              aria-label="Close lead notes"
             >
               ✕
             </button>
 
-            <div className="border-b border-white/10 pb-4 mb-4">
-              <span className="text-[10px] text-[#d4af37] font-bold uppercase tracking-widest block">
+            <div className="border-b border-[#f4eee3]/10 pb-4 mb-4">
+              <span className="text-[10px] text-[#c9a96a] font-bold uppercase tracking-widest block">
                 Concierge Activity Log
               </span>
-              <h3 className="text-xl font-serif-luxury font-bold text-white">
+              <h3 className="text-xl font-serif-luxury font-light text-[#f4eee3]">
                 Lead Notes: {activeLeadNotesModal.name}
               </h3>
-              <p className="text-xs text-white/60">{activeLeadNotesModal.phone}</p>
+              <p className="text-xs text-[#a79e8e]">{activeLeadNotesModal.phone}</p>
             </div>
 
             {/* Existing Notes Timeline */}
             <div className="space-y-3 max-h-60 overflow-y-auto pr-1 mb-5">
               {activeLeadNotesModal.notes && activeLeadNotesModal.notes.length > 0 ? (
                 activeLeadNotesModal.notes.map((note: any, index: number) => (
-                  <div key={index} className="bg-[#04140d] p-3 rounded-xl border border-white/10 text-xs">
-                    <p className="text-white/90">{note.note}</p>
-                    <div className="flex items-center justify-between text-[10px] text-white/40 mt-2">
+                  <div key={index} className="bg-[#12100c] p-3 rounded-none border border-[#f4eee3]/10 text-xs">
+                    <p className="text-[#f4eee3]/90">{note.note}</p>
+                    <div className="flex items-center justify-between text-[10px] text-[#7f786c] mt-2">
                       <span>By: {note.author}</span>
                       <span>{new Date(note.addedAt).toLocaleString()}</span>
                     </div>
                   </div>
                 ))
               ) : (
-                <div className="text-center py-6 text-xs text-white/40">No notes recorded yet.</div>
+                <div className="text-center py-6 text-xs text-[#7f786c]">No notes recorded yet.</div>
               )}
             </div>
 
@@ -359,21 +360,21 @@ export const LeadsSection: React.FC<LeadsSectionProps> = ({
                 value={newNoteText}
                 onChange={(e) => setNewNoteText(e.target.value)}
                 placeholder="Log customer preference, quotation given, follow-up promise..."
-                className="w-full bg-[#061811] border border-white/15 focus:border-[#d4af37] text-white text-xs rounded-xl p-3 outline-none resize-none"
+                className="w-full bg-[#14110c] border border-[#f4eee3]/15 focus:border-[#c9a96a] text-[#f4eee3] text-xs rounded-none p-3 outline-none resize-none"
               />
 
               <div className="flex justify-end gap-3">
                 <button
                   type="button"
                   onClick={() => setActiveLeadNotesModal(null)}
-                  className="px-4 py-2 rounded-xl text-xs border border-white/10 text-white/70"
+                  className="px-4 py-2 rounded-none text-xs border border-[#f4eee3]/10 text-[#a79e8e]"
                 >
                   Close
                 </button>
                 <button
                   type="submit"
                   disabled={isUpdating}
-                  className="gold-bg-gradient text-[#06110c] font-bold text-xs uppercase tracking-wider px-5 py-2 rounded-xl shadow"
+                  className="lux-btn lux-btn-gold"
                 >
                   Save Note
                 </button>

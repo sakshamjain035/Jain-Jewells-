@@ -57,36 +57,36 @@ export const CreateLeadModal: React.FC<CreateLeadModalProps> = ({
   };
 
   return (
-    <div className="fixed inset-0 z-50 bg-black/85 backdrop-blur-md flex items-center justify-center p-4 overflow-y-auto">
-      <div className="emerald-glass max-w-xl w-full rounded-3xl p-6 sm:p-8 border border-[#d4af37] relative shadow-2xl my-8 text-white">
+    <div className="fixed inset-0 z-50 bg-[#050504]/90 backdrop-blur-md flex items-center justify-center p-4 overflow-y-auto">
+      <div className="bg-[#100e0b] max-w-xl w-full rounded-none p-6 sm:p-8 border border-[#c9a96a]/25 relative shadow-2xl my-8 text-[#f4eee3]">
         <button
           onClick={onClose}
-          className="absolute top-4 right-4 text-white/70 hover:text-white p-2 rounded-full bg-white/10"
+          className="absolute top-4 right-4 w-9 h-9 flex items-center justify-center text-[#a79e8e] hover:text-[#f4eee3] border border-[#f4eee3]/10 hover:border-[#c9a96a]/50 transition-colors"
         >
           <X className="w-5 h-5" />
         </button>
 
-        <div className="flex items-center gap-3 border-b border-white/10 pb-4 mb-5">
-          <div className="w-10 h-10 rounded-xl bg-[#0e3324] border border-[#d4af37]/40 text-[#d4af37] flex items-center justify-center">
+        <div className="flex items-center gap-3 border-b border-[#f4eee3]/10 pb-4 mb-5">
+          <div className="w-10 h-10 rounded-none bg-[#221d15] border border-[#c9a96a]/40 text-[#c9a96a] flex items-center justify-center">
             <Users className="w-5 h-5" />
           </div>
           <div>
-            <h3 className="text-xl font-serif-luxury font-bold gold-text-gradient">
+            <h3 className="text-xl font-serif-luxury font-light gold-text-gradient">
               Add New Customer Lead
             </h3>
-            <p className="text-xs text-white/60">Log walk-in, phone inquiry, or VIP patronage</p>
+            <p className="text-xs text-[#a79e8e]">Log walk-in, phone inquiry, or VIP patronage</p>
           </div>
         </div>
 
         {error && (
-          <div className="mb-4 bg-rose-950/80 border border-rose-500/40 p-3 rounded-xl text-rose-300 text-xs">
+          <div className="mb-4 bg-rose-950/80 border border-rose-500/40 p-3 rounded-none text-rose-300 text-xs">
             {error}
           </div>
         )}
 
         <form onSubmit={handleSubmit} className="flex flex-col gap-4 text-xs">
           <div>
-            <label className="font-semibold uppercase tracking-wider text-white/80 block mb-1">
+            <label className="text-[8px] uppercase tracking-[0.18em] text-[#7f786c] block mb-1.5">
               Patron Name *
             </label>
             <input
@@ -95,13 +95,13 @@ export const CreateLeadModal: React.FC<CreateLeadModalProps> = ({
               placeholder="e.g. Smt. Gayatri Devi"
               value={formData.name}
               onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-              className="w-full bg-[#061811] border border-white/15 focus:border-[#d4af37] text-white rounded-xl p-3 outline-none"
+              className="w-full bg-[#14110c] border border-[#f4eee3]/15 focus:border-[#c9a96a] text-[#f4eee3] rounded-none p-3 outline-none"
             />
           </div>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
             <div>
-              <label className="font-semibold uppercase tracking-wider text-white/80 block mb-1">
+              <label className="text-[8px] uppercase tracking-[0.18em] text-[#7f786c] block mb-1.5">
                 Phone Number *
               </label>
               <input
@@ -110,12 +110,12 @@ export const CreateLeadModal: React.FC<CreateLeadModalProps> = ({
                 placeholder="+91 98290 XXXXX"
                 value={formData.phone}
                 onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
-                className="w-full bg-[#061811] border border-white/15 focus:border-[#d4af37] text-white rounded-xl p-3 outline-none"
+                className="w-full bg-[#14110c] border border-[#f4eee3]/15 focus:border-[#c9a96a] text-[#f4eee3] rounded-none p-3 outline-none"
               />
             </div>
 
             <div>
-              <label className="font-semibold uppercase tracking-wider text-white/80 block mb-1">
+              <label className="text-[8px] uppercase tracking-[0.18em] text-[#7f786c] block mb-1.5">
                 Email Address
               </label>
               <input
@@ -123,20 +123,20 @@ export const CreateLeadModal: React.FC<CreateLeadModalProps> = ({
                 placeholder="patron@example.com"
                 value={formData.email}
                 onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                className="w-full bg-[#061811] border border-white/15 focus:border-[#d4af37] text-white rounded-xl p-3 outline-none"
+                className="w-full bg-[#14110c] border border-[#f4eee3]/15 focus:border-[#c9a96a] text-[#f4eee3] rounded-none p-3 outline-none"
               />
             </div>
           </div>
 
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
             <div>
-              <label className="font-semibold uppercase tracking-wider text-white/80 block mb-1">
+              <label className="text-[8px] uppercase tracking-[0.18em] text-[#7f786c] block mb-1.5">
                 Lead Source
               </label>
               <select
                 value={formData.source}
                 onChange={(e) => setFormData({ ...formData, source: e.target.value as any })}
-                className="w-full bg-[#061811] border border-white/15 focus:border-[#d4af37] text-white rounded-xl p-3 outline-none cursor-pointer"
+                className="w-full bg-[#14110c] border border-[#f4eee3]/15 focus:border-[#c9a96a] text-[#f4eee3] rounded-none p-3 outline-none cursor-pointer"
               >
                 <option value="Direct Walk-in">Direct Walk-in</option>
                 <option value="VIP Appointment">VIP Appointment</option>
@@ -147,13 +147,13 @@ export const CreateLeadModal: React.FC<CreateLeadModalProps> = ({
             </div>
 
             <div>
-              <label className="font-semibold uppercase tracking-wider text-white/80 block mb-1">
+              <label className="text-[8px] uppercase tracking-[0.18em] text-[#7f786c] block mb-1.5">
                 Priority
               </label>
               <select
                 value={formData.priority}
                 onChange={(e) => setFormData({ ...formData, priority: e.target.value as any })}
-                className="w-full bg-[#061811] border border-white/15 focus:border-[#d4af37] text-white rounded-xl p-3 outline-none cursor-pointer"
+                className="w-full bg-[#14110c] border border-[#f4eee3]/15 focus:border-[#c9a96a] text-[#f4eee3] rounded-none p-3 outline-none cursor-pointer"
               >
                 <option value="Urgent">Urgent</option>
                 <option value="High">High</option>
@@ -163,7 +163,7 @@ export const CreateLeadModal: React.FC<CreateLeadModalProps> = ({
             </div>
 
             <div>
-              <label className="font-semibold uppercase tracking-wider text-white/80 block mb-1">
+              <label className="text-[8px] uppercase tracking-[0.18em] text-[#7f786c] block mb-1.5">
                 City / Location
               </label>
               <input
@@ -171,14 +171,14 @@ export const CreateLeadModal: React.FC<CreateLeadModalProps> = ({
                 value={formData.city}
                 onChange={(e) => setFormData({ ...formData, city: e.target.value })}
                 placeholder="e.g. Jaipur"
-                className="w-full bg-[#061811] border border-white/15 focus:border-[#d4af37] text-white rounded-xl p-3 outline-none"
+                className="w-full bg-[#14110c] border border-[#f4eee3]/15 focus:border-[#c9a96a] text-[#f4eee3] rounded-none p-3 outline-none"
               />
             </div>
           </div>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
             <div>
-              <label className="font-semibold uppercase tracking-wider text-white/80 block mb-1">
+              <label className="text-[8px] uppercase tracking-[0.18em] text-[#7f786c] block mb-1.5">
                 Collection Interest
               </label>
               <input
@@ -186,12 +186,12 @@ export const CreateLeadModal: React.FC<CreateLeadModalProps> = ({
                 value={formData.interestedCategory}
                 onChange={(e) => setFormData({ ...formData, interestedCategory: e.target.value })}
                 placeholder="e.g. Polki Choker & Jhumkas"
-                className="w-full bg-[#061811] border border-white/15 focus:border-[#d4af37] text-white rounded-xl p-3 outline-none"
+                className="w-full bg-[#14110c] border border-[#f4eee3]/15 focus:border-[#c9a96a] text-[#f4eee3] rounded-none p-3 outline-none"
               />
             </div>
 
             <div>
-              <label className="font-semibold uppercase tracking-wider text-white/80 block mb-1">
+              <label className="text-[8px] uppercase tracking-[0.18em] text-[#7f786c] block mb-1.5">
                 Estimated Budget (INR)
               </label>
               <input
@@ -199,13 +199,13 @@ export const CreateLeadModal: React.FC<CreateLeadModalProps> = ({
                 value={formData.estimatedBudget}
                 onChange={(e) => setFormData({ ...formData, estimatedBudget: e.target.value })}
                 placeholder="e.g. ₹5,00,000 - ₹10,00,000"
-                className="w-full bg-[#061811] border border-white/15 focus:border-[#d4af37] text-white rounded-xl p-3 outline-none"
+                className="w-full bg-[#14110c] border border-[#f4eee3]/15 focus:border-[#c9a96a] text-[#f4eee3] rounded-none p-3 outline-none"
               />
             </div>
           </div>
 
           <div>
-            <label className="font-semibold uppercase tracking-wider text-white/80 block mb-1">
+            <label className="text-[8px] uppercase tracking-[0.18em] text-[#7f786c] block mb-1.5">
               Initial Note / Requirement
             </label>
             <textarea
@@ -213,7 +213,7 @@ export const CreateLeadModal: React.FC<CreateLeadModalProps> = ({
               value={formData.initialNote}
               onChange={(e) => setFormData({ ...formData, initialNote: e.target.value })}
               placeholder="e.g. Looking for lightweight bridal jewellery for reception."
-              className="w-full bg-[#061811] border border-white/15 focus:border-[#d4af37] text-white rounded-xl p-3 outline-none resize-none"
+              className="w-full bg-[#14110c] border border-[#f4eee3]/15 focus:border-[#c9a96a] text-[#f4eee3] rounded-none p-3 outline-none resize-none"
             />
           </div>
 
@@ -221,14 +221,14 @@ export const CreateLeadModal: React.FC<CreateLeadModalProps> = ({
             <button
               type="button"
               onClick={onClose}
-              className="px-5 py-2.5 rounded-xl border border-white/15 text-white/70 text-xs"
+              className="px-5 py-2.5 rounded-none border border-[#f4eee3]/15 text-[#a79e8e] text-xs"
             >
               Cancel
             </button>
             <button
               type="submit"
               disabled={isSubmitting}
-              className="gold-bg-gradient text-[#06110c] font-bold text-xs uppercase tracking-wider px-6 py-2.5 rounded-xl shadow-lg hover:scale-105 transition-all"
+              className="lux-btn lux-btn-gold"
             >
               {isSubmitting ? "Saving Lead..." : "Save Lead to MongoDB"}
             </button>

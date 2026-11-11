@@ -1,15 +1,18 @@
 import type { Metadata } from "next";
-import { Playfair_Display, Plus_Jakarta_Sans } from "next/font/google";
+import { Cormorant_Garamond, Jost } from "next/font/google";
+import { ScrollReveal } from "@/components/ScrollReveal";
 import "./globals.css";
 
-const playfair = Playfair_Display({
+const playfair = Cormorant_Garamond({
   subsets: ["latin"],
+  weight: ["300", "400", "500", "600", "700"],
   variable: "--font-playfair",
   display: "swap",
 });
 
-const jakarta = Plus_Jakarta_Sans({
+const jakarta = Jost({
   subsets: ["latin"],
+  weight: ["300", "400", "500", "600"],
   variable: "--font-jakarta",
   display: "swap",
 });
@@ -36,7 +39,11 @@ export default function RootLayout({
       lang="en"
       className={`${playfair.variable} ${jakarta.variable} h-full antialiased scroll-smooth`}
     >
-      <body className="min-h-full flex flex-col bg-[#06110c] text-[#f4ede2] selection:bg-[#d4af37] selection:text-[#06110c]">
+      <body className="min-h-full flex flex-col bg-[#0a0a08] text-[#f4eee3] selection:bg-[#c9a96a] selection:text-[#0a0a08]">
+        <noscript>
+          <style>{`.lux-reveal{opacity:1 !important;transform:none !important}`}</style>
+        </noscript>
+        <ScrollReveal />
         {children}
       </body>
     </html>

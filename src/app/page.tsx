@@ -31,7 +31,7 @@ export default function Home() {
   };
 
   return (
-    <main className="min-h-screen flex flex-col bg-[#06110c] text-[#f4ede2] relative selection:bg-[#d4af37] selection:text-[#06110c]">
+    <main className="min-h-screen flex flex-col bg-[#0a0a08] text-[#f4eee3] relative selection:bg-[#c9a96a] selection:text-[#0a0a08]">
       {/* Sticky Header Navbar */}
       <Header
         onOpenAppointment={() => setAppointmentOpen(true)}
@@ -77,24 +77,25 @@ export default function Home() {
         onOpenAppointment={() => setAppointmentOpen(true)}
       />
 
-      {/* Floating Quick Action Widget (Bottom Right) */}
-      <div className="fixed bottom-6 right-6 z-40 flex flex-col items-end gap-3 pointer-events-auto">
+      {/* Floating concierge actions */}
+      <div className="fixed bottom-5 right-5 sm:bottom-8 sm:right-8 z-40 flex flex-col items-end gap-2.5 pointer-events-auto">
         <button
           onClick={() => setAppointmentOpen(true)}
-          className="gold-bg-gradient text-[#06110c] font-bold text-xs uppercase tracking-wider py-3 px-4 rounded-full shadow-[0_0_20px_rgba(212,175,55,0.4)] flex items-center gap-2 transform hover:scale-105 transition-all"
+          className="lux-btn lux-btn-gold shadow-[0_20px_45px_-20px_rgba(0,0,0,0.9)] !py-3 !px-4 sm:!px-5 !text-[9px]"
         >
-          <Calendar className="w-4 h-4" />
-          <span className="hidden sm:inline">Book VIP Visit</span>
+          <Calendar className="w-3.5 h-3.5" strokeWidth={1.5} />
+          <span className="hidden sm:inline">Book a Viewing</span>
         </button>
 
         <a
           href={`https://wa.me/${SHOWROOM_DETAILS.whatsapp.replace("+", "")}?text=Hello%20Jain%20Jewells%2C%20I%20would%20like%20to%20connect%20with%20your%20showroom%20concierge`}
           target="_blank"
           rel="noopener noreferrer"
-          className="bg-emerald-600 hover:bg-emerald-500 text-white p-3.5 rounded-full shadow-2xl flex items-center justify-center transform hover:scale-110 transition-all border border-emerald-400/40 group"
-          title="Chat with Showroom Concierge on WhatsApp"
+          className="w-11 h-11 bg-[#100e0a]/90 backdrop-blur-md border border-[#c9a96a]/35 text-[#e8d9b4] flex items-center justify-center hover:border-[#c9a96a] hover:bg-[#c9a96a] hover:text-[#0a0a08] transition-all duration-300"
+          title="Chat with our showroom concierge"
+          aria-label="Chat on WhatsApp"
         >
-          <MessageSquare className="w-6 h-6 fill-white" />
+          <MessageSquare className="w-[18px] h-[18px]" strokeWidth={1.3} />
         </a>
       </div>
     </main>

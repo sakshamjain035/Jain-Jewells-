@@ -1,7 +1,7 @@
 "use client";
 
 import React from "react";
-import { Package, Truck, IndianRupee, Users, ArrowUpRight, AlertCircle, CheckCircle2, Clock } from "lucide-react";
+import { Package, Truck, IndianRupee, Users, ArrowUpRight, Clock } from "lucide-react";
 
 interface AdminStatsProps {
   stats: {
@@ -34,7 +34,6 @@ interface AdminStatsProps {
 
 export const AdminStatsCards: React.FC<AdminStatsProps> = ({
   stats,
-  activeTab,
   setActiveTab,
   setOrderStatusFilter,
 }) => {
@@ -43,136 +42,129 @@ export const AdminStatsCards: React.FC<AdminStatsProps> = ({
   const newLeads = stats?.leads.new ?? 0;
 
   return (
-    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 mb-8">
-      {/* 1. Orders Received (Action Needed) Card */}
+    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-px bg-[#f4eee3]/10 border border-[#f4eee3]/10 mb-10">
+      {/* 1. Orders Received */}
       <div
         onClick={() => {
           setActiveTab("orders");
           if (setOrderStatusFilter) setOrderStatusFilter("Received");
         }}
-        className={`emerald-glass rounded-2xl p-5 border transition-all cursor-pointer relative overflow-hidden group hover:scale-[1.02] shadow-xl ${
-          pendingOrders > 0
-            ? "border-amber-500/50 bg-gradient-to-br from-[#0b2419] to-[#1f1505]"
-            : "border-[#d4af37]/30 hover:border-[#d4af37]"
-        }`}
+        className="group bg-[#0f0d0a] p-6 cursor-pointer hover:bg-[#15120d] transition-colors duration-500 relative"
       >
-        <div className="flex items-center justify-between mb-3">
-          <span className="text-xs uppercase font-bold tracking-wider text-amber-300 flex items-center gap-1.5">
-            <Package className="w-4 h-4 text-amber-400" />
+        <div className="flex items-center justify-between mb-5">
+          <span className="text-[8px] uppercase tracking-[0.22em] text-[#a79e8e] flex items-center gap-2">
+            <Package className="w-3.5 h-3.5 text-[#c9a96a]" strokeWidth={1.4} />
             Orders Received
           </span>
           {pendingOrders > 0 && (
-            <span className="inline-flex items-center gap-1 text-[10px] font-extrabold bg-amber-500 text-black px-2.5 py-0.5 rounded-full animate-pulse">
-              <AlertCircle className="w-3 h-3" /> {pendingOrders} Awaiting Dispatch
+            <span className="inline-flex items-center gap-1 text-[8px] tracking-[0.1em] uppercase text-[#d3ab72]">
+              <Clock className="w-2.5 h-2.5" strokeWidth={1.5} /> {pendingOrders} to dispatch
             </span>
           )}
         </div>
 
-        <div className="flex items-baseline justify-between">
-          <div className="text-3xl font-serif-luxury font-bold text-white">
-            {stats?.orders.received ?? 0}
-            <span className="text-xs font-normal text-white/50 ml-2">
-              of {stats?.orders.total ?? 0} total
-            </span>
-          </div>
-          <div className="text-xs text-amber-400/80 group-hover:text-amber-300 font-semibold flex items-center">
-            Dispatch Now <ArrowUpRight className="w-3.5 h-3.5 ml-0.5" />
-          </div>
+        <div className="text-[2rem] font-serif-luxury font-light text-[#f4eee3] leading-none">
+          {stats?.orders.received ?? 0}
+          <span className="text-[10px] font-light text-[#7f786c] ml-2">
+            of {stats?.orders.total ?? 0}
+          </span>
         </div>
 
-        <p className="text-[11px] text-white/60 mt-2">
-          New customer orders ready for verification, packing &amp; shipment.
+        <p className="text-[10px] text-[#a79e8e] font-light leading-relaxed mt-4">
+          Verified orders awaiting packing &amp; insured dispatch.
         </p>
+
+        <span className="inline-flex items-center gap-1 text-[8px] uppercase tracking-[0.18em] text-[#c9a96a] mt-5 group-hover:text-[#e8d9b4] transition-colors">
+          Review <ArrowUpRight className="w-2.5 h-2.5" strokeWidth={1.5} />
+        </span>
       </div>
 
-      {/* 2. Orders Dispatched Card */}
+      {/* 2. Orders Dispatched */}
       <div
         onClick={() => {
           setActiveTab("dispatched");
           if (setOrderStatusFilter) setOrderStatusFilter("Dispatched");
         }}
-        className="emerald-glass rounded-2xl p-5 border border-[#d4af37]/30 hover:border-emerald-400 transition-all cursor-pointer group hover:scale-[1.02] shadow-xl bg-gradient-to-br from-[#061811] to-[#041a12]"
+        className="group bg-[#0f0d0a] p-6 cursor-pointer hover:bg-[#15120d] transition-colors duration-500"
       >
-        <div className="flex items-center justify-between mb-3">
-          <span className="text-xs uppercase font-bold tracking-wider text-emerald-300 flex items-center gap-1.5">
-            <Truck className="w-4 h-4 text-emerald-400" />
-            Dispatched Orders
+        <div className="flex items-center justify-between mb-5">
+          <span className="text-[8px] uppercase tracking-[0.22em] text-[#a79e8e] flex items-center gap-2">
+            <Truck className="w-3.5 h-3.5 text-[#c9a96a]" strokeWidth={1.4} />
+            Dispatched
           </span>
-          <span className="inline-flex items-center gap-1 text-[10px] font-bold bg-emerald-500/20 text-emerald-300 px-2 py-0.5 rounded-full border border-emerald-500/30">
-            <CheckCircle2 className="w-3 h-3" /> In Transit
+          <span className="inline-flex items-center gap-1 text-[8px] uppercase tracking-[0.1em] text-[#9ab79f]">
+            In transit
           </span>
         </div>
 
-        <div className="flex items-baseline justify-between">
-          <div className="text-3xl font-serif-luxury font-bold text-emerald-300">
-            {dispatchedOrders}
-            <span className="text-xs font-normal text-white/50 ml-2">
-              ({stats?.orders.delivered ?? 0} delivered)
-            </span>
-          </div>
-          <div className="text-xs text-emerald-400/80 group-hover:text-emerald-300 font-semibold flex items-center">
-            View Tracking <ArrowUpRight className="w-3.5 h-3.5 ml-0.5" />
-          </div>
+        <div className="text-[2rem] font-serif-luxury font-light text-[#f4eee3] leading-none">
+          {dispatchedOrders}
+          <span className="text-[10px] font-light text-[#7f786c] ml-2">
+            {stats?.orders.delivered ?? 0} delivered
+          </span>
         </div>
 
-        <p className="text-[11px] text-white/60 mt-2">
-          Insured consignments actively monitored with customer notifications.
+        <p className="text-[10px] text-[#a79e8e] font-light leading-relaxed mt-4">
+          Consignments under monitoring with client notifications.
         </p>
+
+        <span className="inline-flex items-center gap-1 text-[8px] uppercase tracking-[0.18em] text-[#c9a96a] mt-5 group-hover:text-[#e8d9b4] transition-colors">
+          Track <ArrowUpRight className="w-2.5 h-2.5" strokeWidth={1.5} />
+        </span>
       </div>
 
-      {/* 3. Total Order Revenue Card */}
-      <div className="emerald-glass rounded-2xl p-5 border border-[#d4af37]/30 shadow-xl bg-gradient-to-br from-[#091f16] to-[#0c2e21]">
-        <div className="flex items-center justify-between mb-3">
-          <span className="text-xs uppercase font-bold tracking-wider text-[#d4af37] flex items-center gap-1.5">
-            <IndianRupee className="w-4 h-4 text-[#d4af37]" />
+      {/* 3. Revenue */}
+      <div className="bg-[#0f0d0a] p-6">
+        <div className="flex items-center justify-between mb-5">
+          <span className="text-[8px] uppercase tracking-[0.22em] text-[#a79e8e] flex items-center gap-2">
+            <IndianRupee className="w-3.5 h-3.5 text-[#c9a96a]" strokeWidth={1.4} />
             Gross Order Value
           </span>
-          <span className="text-[10px] text-white/60 bg-black/40 px-2 py-0.5 rounded border border-white/10">
-            Certified Gold
+          <span className="text-[8px] uppercase tracking-[0.1em] text-[#7f786c]">
+            Certified
           </span>
         </div>
 
-        <div className="text-3xl font-serif-luxury font-bold text-[#fcf6ba] truncate">
+        <div className="text-[2rem] font-serif-luxury font-light text-[#e8d9b4] truncate leading-none">
           {stats?.revenue.formatted ?? "₹0"}
         </div>
 
-        <p className="text-[11px] text-white/60 mt-2">
-          Cumulative value of confirmed showroom orders &amp; bridal trousseaus.
+        <p className="text-[10px] text-[#a79e8e] font-light leading-relaxed mt-4">
+          Cumulative value of confirmed orders and bridal commissions.
         </p>
       </div>
 
-      {/* 4. Active Leads & Inquiries Card */}
+      {/* 4. Leads */}
       <div
         onClick={() => setActiveTab("leads")}
-        className="emerald-glass rounded-2xl p-5 border border-[#d4af37]/30 hover:border-[#d4af37] transition-all cursor-pointer group hover:scale-[1.02] shadow-xl bg-gradient-to-br from-[#061811] to-[#12281e]"
+        className="group bg-[#0f0d0a] p-6 cursor-pointer hover:bg-[#15120d] transition-colors duration-500"
       >
-        <div className="flex items-center justify-between mb-3">
-          <span className="text-xs uppercase font-bold tracking-wider text-white/80 flex items-center gap-1.5">
-            <Users className="w-4 h-4 text-[#d4af37]" />
-            Customer Leads
+        <div className="flex items-center justify-between mb-5">
+          <span className="text-[8px] uppercase tracking-[0.22em] text-[#a79e8e] flex items-center gap-2">
+            <Users className="w-3.5 h-3.5 text-[#c9a96a]" strokeWidth={1.4} />
+            Client Leads
           </span>
           {newLeads > 0 && (
-            <span className="inline-flex items-center gap-1 text-[10px] font-bold bg-[#d4af37] text-black px-2 py-0.5 rounded-full">
-              {newLeads} Fresh
+            <span className="text-[8px] uppercase tracking-[0.1em] text-[#c9a96a]">
+              {newLeads} new
             </span>
           )}
         </div>
 
-        <div className="flex items-baseline justify-between">
-          <div className="text-3xl font-serif-luxury font-bold text-white">
-            {stats?.leads.total ?? 0}
-            <span className="text-xs font-normal text-white/50 ml-2">
-              ({stats?.leads.converted ?? 0} converted)
-            </span>
-          </div>
-          <div className="text-xs text-[#d4af37] group-hover:text-white font-semibold flex items-center">
-            Open Pipeline <ArrowUpRight className="w-3.5 h-3.5 ml-0.5" />
-          </div>
+        <div className="text-[2rem] font-serif-luxury font-light text-[#f4eee3] leading-none">
+          {stats?.leads.total ?? 0}
+          <span className="text-[10px] font-light text-[#7f786c] ml-2">
+            {stats?.leads.converted ?? 0} converted
+          </span>
         </div>
 
-        <p className="text-[11px] text-white/60 mt-2">
-          Inquiries, VIP showroom appointments, and bespoke design prospects.
+        <p className="text-[10px] text-[#a79e8e] font-light leading-relaxed mt-4">
+          Inquiries, private appointments and bespoke prospects.
         </p>
+
+        <span className="inline-flex items-center gap-1 text-[8px] uppercase tracking-[0.18em] text-[#c9a96a] mt-5 group-hover:text-[#e8d9b4] transition-colors">
+          Open pipeline <ArrowUpRight className="w-2.5 h-2.5" strokeWidth={1.5} />
+        </span>
       </div>
     </div>
   );
