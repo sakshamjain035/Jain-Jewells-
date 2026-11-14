@@ -1,8 +1,10 @@
 "use client";
 
-import React from "react";
+import React, { useMemo } from "react";
 import Image from "next/image";
 import { PRODUCTS_DATA, SHOWROOM_DETAILS } from "@/data/jewelryData";
+import { useLiveRates } from "@/hooks/useLiveRates";
+import { priceProducts } from "@/lib/productPricing";
 import { X, Heart, Trash2, Calendar, MessageSquare } from "lucide-react";
 
 interface WishlistDrawerProps {
@@ -20,9 +22,12 @@ export const WishlistDrawer: React.FC<WishlistDrawerProps> = ({
   onRemoveWishlist,
   onOpenAppointment,
 }) => {
+  const { data: liveRates } = useLiveRates();
+  const pricedProducts = useMemo(() => priceProducts(PRODUCTS_DATA, liveRates), [liveRates]);
+
   if (!isOpen) return null;
 
-  const wishlistedProducts = PRODUCTS_DATA.filter((p) => wishlistIds.includes(p.id));
+  const wishlistedProducts = pricedProducts.filter((p) => wishlistIds.includes(p.id));
   const totalPrice = wishlistedProducts.reduce((sum, item) => sum + item.price, 0);
 
   const waWishlistText = encodeURIComponent(

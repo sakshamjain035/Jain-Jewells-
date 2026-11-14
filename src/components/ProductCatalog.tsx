@@ -1,8 +1,10 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useMemo, useState } from "react";
 import Image from "next/image";
 import { PRODUCTS_DATA, Product, SHOWROOM_DETAILS } from "@/data/jewelryData";
+import { useLiveRates } from "@/hooks/useLiveRates";
+import { getProductGallery, priceProducts } from "@/lib/productPricing";
 import {
   Search,
   Filter,
@@ -46,6 +48,15 @@ export const ProductCatalog: React.FC<ProductCatalogProps> = ({
   const [buyerCity, setBuyerCity] = useState("Ludhiana");
   const [buyerAddress, setBuyerAddress] = useState("B-4, Gurdev Nagar");
   const [isOrdering, setIsOrdering] = useState(false);
+  const [activeImage, setActiveImage] = useState(0);
+
+  const { data: liveRates, isRefreshing } = useLiveRates();
+  const products = useMemo(() => priceProducts(PRODUCTS_DATA, liveRates), [liveRates]);
+
+  const openProduct = (product: Product) => {
+    setSelectedProduct(product);
+    setActiveImage(0);
+  };
 
   const categories = [
     { id: "all", label: "All Masterpieces" },
@@ -58,7 +69,7 @@ export const ProductCatalog: React.FC<ProductCatalogProps> = ({
 
 
   // Filtering
-  const filteredProducts = PRODUCTS_DATA.filter((item) => {
+  const filteredProducts = products.filter((item) => {
     const matchesCategory = activeCategory === "all" || item.category === activeCategory;
     const matchesSearch =
       item.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
@@ -74,6 +85,8 @@ export const ProductCatalog: React.FC<ProductCatalogProps> = ({
     if (sortBy === "weight") return b.weightGrams - a.weightGrams;
     return 0;
   });
+
+  const selectedGallery = selectedProduct ? getProductGallery(selectedProduct) : [];
 
   return (
     <section id="collections" className="py-24 sm:py-32 px-5 sm:px-8 bg-[#100a09] border-t border-[#c8a05c]/12 relative">
@@ -92,7 +105,7 @@ export const ProductCatalog: React.FC<ProductCatalogProps> = ({
         </div>
 
         {/* Filters & Search Controls Bar */}
-        <div className="border-b border-[#f6efe4]/10 pb-6 mb-12 flex flex-col lg:flex-row items-start lg:items-center justify-between gap-6">
+        <div className="border-b border-[#f6efe4]/10 pb-6 mb-5 flex flex-col lg:flex-row items-start lg:items-center justify-between gap-6">
           {/* Category Tabs */}
           <div className="flex items-center gap-6 sm:gap-8 overflow-x-auto w-full lg:w-auto scrollbar-none pb-2 lg:pb-0">
             {categories.map((cat) => (
@@ -150,6 +163,11 @@ export const ProductCatalog: React.FC<ProductCatalogProps> = ({
           </div>
         </div>
 
+        <p className="flex items-center gap-2 text-[9px] uppercase tracking-[0.16em] text-[#857768] mb-10">
+          <span className={`w-1.5 h-1.5 rounded-full bg-[#c8a05c] ${isRefreshing ? "animate-pulse" : ""}`} />
+          Live pricing · recalculated from today&apos;s gold, silver &amp; diamond rates
+        </p>
+
         {/* Product Cards Grid */}
         {sortedProducts.length === 0 ? (
           <div className="border border-[#c8a05c]/20 p-14 text-center max-w-lg mx-auto">
@@ -181,7 +199,7 @@ export const ProductCatalog: React.FC<ProductCatalogProps> = ({
                   {/* Card Image Wrapper */}
                   <div
                     className="relative aspect-[4/5] overflow-hidden bg-[#1b1110] border border-[#f6efe4]/8 cursor-pointer"
-                    onClick={() => setSelectedProduct(product)}
+                    onClick={() => openProduct(product)}
                   >
                     <Image
                       src={product.image}
@@ -242,7 +260,7 @@ export const ProductCatalog: React.FC<ProductCatalogProps> = ({
                         </span>
                       </div>
                       <h3
-                        onClick={() => setSelectedProduct(product)}
+                        onClick={() => openProduct(product)}
                         className="text-[1.3rem] leading-[1.3] font-light text-[#f6efe4] line-clamp-2 hover:text-[#ecd8ae] cursor-pointer transition-colors"
                       >
                         {product.name}
@@ -255,7 +273,7 @@ export const ProductCatalog: React.FC<ProductCatalogProps> = ({
                     <div className="border-t border-[#f6efe4]/10 pt-4 flex items-end justify-between gap-3">
                       <div>
                         <span className="text-[8px] text-[#857768] uppercase tracking-[0.2em] block mb-1">
-                          From
+                          Live price
                         </span>
                         <span className="text-xl font-serif-luxury font-light text-[#f6efe4]">
                           ₹{product.price.toLocaleString("en-IN")}
@@ -267,7 +285,7 @@ export const ProductCatalog: React.FC<ProductCatalogProps> = ({
                           <Scale className="w-3 h-3 text-[#c8a05c]" strokeWidth={1.3} /> {product.weightGrams}g
                         </span>
                         <button
-                          onClick={() => setSelectedProduct(product)}
+                          onClick={() => openProduct(product)}
                           className="w-8 h-8 border border-[#c8a05c]/30 text-[#c8a05c] flex items-center justify-center hover:bg-[#c8a05c] hover:text-[#0e0908] transition-all duration-300"
                           title="View complete specifications"
                           aria-label="View product details"
@@ -301,7 +319,7 @@ export const ProductCatalog: React.FC<ProductCatalogProps> = ({
               <div className="md:col-span-5 flex flex-col gap-4">
                 <div className="relative overflow-hidden aspect-[4/5] border border-[#f6efe4]/10 bg-[#1b1110]">
                   <Image
-                    src={selectedProduct.image}
+                    src={selectedGallery[activeImage] ?? selectedProduct.image}
                     alt={selectedProduct.name}
                     fill
                     sizes="(max-width: 768px) 100vw, 40vw"
@@ -310,7 +328,39 @@ export const ProductCatalog: React.FC<ProductCatalogProps> = ({
                   <span className="absolute bottom-3 left-3 bg-[#0e0908]/80 backdrop-blur-sm text-[#ecd8ae] text-[8px] tracking-[0.18em] uppercase px-3 py-1.5 border border-[#c8a05c]/30">
                     {selectedProduct.metalPurity}
                   </span>
+                  {selectedGallery.length > 1 && (
+                    <span className="absolute bottom-3 right-3 bg-[#0e0908]/80 backdrop-blur-sm text-[#a99987] text-[8px] tracking-[0.16em] px-2 py-1 border border-[#f6efe4]/15">
+                      {activeImage + 1} / {selectedGallery.length}
+                    </span>
+                  )}
                 </div>
+
+                {/* Gallery thumbnails — full view, detail crops and styled shots */}
+                {selectedGallery.length > 1 && (
+                  <div className="grid grid-cols-4 gap-2">
+                    {selectedGallery.map((src, index) => (
+                      <button
+                        key={`${src}-${index}`}
+                        type="button"
+                        onClick={() => setActiveImage(index)}
+                        aria-label={`View ${selectedProduct.name} image ${index + 1}`}
+                        className={`relative aspect-[4/5] overflow-hidden border transition-colors ${
+                          activeImage === index
+                            ? "border-[#c8a05c]"
+                            : "border-[#f6efe4]/10 hover:border-[#c8a05c]/50"
+                        }`}
+                      >
+                        <Image
+                          src={src}
+                          alt=""
+                          fill
+                          sizes="120px"
+                          className="object-cover saturate-[0.9]"
+                        />
+                      </button>
+                    ))}
+                  </div>
+                )}
 
                 <div className="border border-[#f6efe4]/10 p-4 text-xs flex flex-col gap-2">
                   <div className="flex items-center gap-2 text-[#c8a05c] text-[10px] uppercase tracking-[0.16em]">
@@ -334,7 +384,7 @@ export const ProductCatalog: React.FC<ProductCatalogProps> = ({
                   <div className="text-2xl font-serif-luxury font-light text-[#ecd8ae] mt-3">
                     ₹{selectedProduct.price.toLocaleString("en-IN")}
                     <span className="text-[10px] font-light tracking-wide text-[#857768] ml-2">
-                      incl. metal, making charge &amp; GST
+                      live market price · incl. making &amp; GST
                     </span>
                   </div>
                 </div>
@@ -354,6 +404,13 @@ export const ProductCatalog: React.FC<ProductCatalogProps> = ({
                     <span className="text-[#857768] text-[8px] uppercase tracking-[0.18em] block mb-1">Gross Weight</span>
                     <strong className="text-[#f6efe4] font-normal">{selectedProduct.weightGrams} Grams</strong>
                   </div>
+
+                  {selectedProduct.metalWeightGrams && (
+                    <div>
+                      <span className="text-[#857768] text-[8px] uppercase tracking-[0.18em] block mb-1">Fine Metal Weight</span>
+                      <strong className="text-[#f6efe4] font-normal">{selectedProduct.metalWeightGrams} Grams</strong>
+                    </div>
+                  )}
 
                   <div>
                     <span className="text-[#857768] text-[8px] uppercase tracking-[0.18em] block mb-1">Gemstone / Carats</span>
