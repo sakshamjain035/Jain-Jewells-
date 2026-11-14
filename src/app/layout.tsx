@@ -20,8 +20,8 @@ const manrope = Manrope({
 
 export const metadata: Metadata = {
   title: "Jain Jewells | Luxury Gold, Diamond & Polki Jewellery Showroom",
-  description: "Patronize Jain Jewells - Jaipur's premier showroom for 22K BIS Hallmarked Gold, GIA Certified Diamond Solitaires, Royal Polki Couture & Bespoke Craftsmanship.",
-  keywords: ["Jain Jewells", "Luxury Jewellery Showroom", "Gold Jewellery", "Bridal Polki", "Solitaire Diamonds", "BIS Hallmark 916", "Custom Jewellery Jaipur"],
+  description: "Patronize Jain Jewells - Ludhiana's premier showroom for 22K BIS Hallmarked Gold, GIA Certified Diamond Solitaires, Royal Polki Couture & Bespoke Craftsmanship.",
+  keywords: ["Jain Jewells", "Luxury Jewellery Showroom", "Gold Jewellery", "Bridal Polki", "Solitaire Diamonds", "BIS Hallmark 916", "Custom Jewellery Ludhiana"],
   authors: [{ name: "Jain Jewells" }],
   openGraph: {
     title: "Jain Jewells | Flagship Luxury Jewellery Showroom",

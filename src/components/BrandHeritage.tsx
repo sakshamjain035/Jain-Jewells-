@@ -42,7 +42,7 @@ export const BrandHeritage: React.FC = () => {
             </h2>
 
             <p className="text-[13px] sm:text-sm text-[#e0d4c2]/85 font-light leading-[1.9]">
-              Founded in 1984 in the historic Pink City of Jaipur, <strong className="text-[#f6efe4] font-normal">Jain Jewells</strong> has become a quiet destination for royalty, connoisseurs and families marking life&apos;s most cherished milestones.
+              Founded in 1984 in the historic city of Ludhiana, <strong className="text-[#f6efe4] font-normal">Jain Jewells</strong> has become a quiet destination for royalty, connoisseurs and families marking life&apos;s most cherished milestones.
             </p>
 
             <p className="text-[13px] text-[#a99987] font-light leading-[1.9]">
@@ -76,7 +76,7 @@ export const BrandHeritage: React.FC = () => {
               <div className="absolute bottom-0 left-0 right-0 p-6 sm:p-8">
                 <span className="lux-eyebrow block mb-2">The Atelier</span>
                 <h4 className="text-2xl font-serif-luxury font-light text-[#f6efe4] mb-2">
-                  Jaipur Master Goldsmiths
+                  Ludhiana Master Goldsmiths
                 </h4>
                 <p className="text-[11px] text-[#a99987] font-light leading-relaxed max-w-sm">
                   Every jewel undergoes eighteen rigorous quality checks before it receives the House of Jain signature.

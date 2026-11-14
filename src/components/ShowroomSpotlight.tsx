@@ -52,7 +52,7 @@ export const ShowroomSpotlight: React.FC<ShowroomSpotlightProps> = ({ onOpenAppo
             </h2>
           </div>
           <p className="text-[#a99987] text-xs sm:text-sm font-light leading-[1.9] max-w-sm lg:text-right">
-            Private lounges, in-house gemologists and unhurried service — in the heart of Jaipur since 1984.
+            Private lounges, in-house gemologists and unhurried service — in the heart of Ludhiana since 1984.
           </p>
         </div>
 
@@ -155,7 +155,7 @@ export const ShowroomSpotlight: React.FC<ShowroomSpotlightProps> = ({ onOpenAppo
             <div className="relative overflow-hidden group border border-[#f6efe4]/10 h-72 sm:h-80">
               <Image
                 src="https://images.unsplash.com/photo-1615874694520-474822394e73?auto=format&fit=crop&w=1400&q=85"
-                alt="The VIP lounge at Jain Jewells, Jaipur"
+                alt="The VIP lounge at Jain Jewells, Ludhiana"
                 fill
                 sizes="(max-width: 1024px) 100vw, 40vw"
                 className="object-cover saturate-[0.85] transition-transform duration-[1200ms] group-hover:scale-[1.05]"
@@ -210,7 +210,7 @@ export const ShowroomSpotlight: React.FC<ShowroomSpotlightProps> = ({ onOpenAppo
             
             <span className="lux-eyebrow block mb-2">A Preview</span>
             <h3 className="text-[1.8rem] sm:text-[2.2rem] font-serif-luxury font-light text-[#f6efe4] mb-2">
-              Inside the Jaipur Maison
+              Inside the Ludhiana Maison
             </h3>
             <p className="text-[11px] text-[#a99987] font-light mb-6">
               Private viewing lounges, in-house gemologists and discreet security, in the heart of the city.

@@ -114,7 +114,7 @@ export default function TermsPage() {
             <h2 className="text-2xl font-serif-luxury font-light text-[#c8a05c] mb-3">2. About Jain Jewells</h2>
             <div className="text-[#a99987] leading-relaxed space-y-3 text-sm">
               <p>
-                Jain Jewells has been crafting and retailing fine jewellery in Jaipur since 1984.
+                Jain Jewells has been crafting and retailing fine jewellery in Ludhiana since 1984.
                 We specialise in 22K BIS Hallmarked gold jewellery, GIA and IGI certified diamond
                 solitaires, royal polki couture, silver collections and bespoke custom commissions.
                 Our showroom is located at {SHOWROOM_DETAILS.address},{" "}
@@ -259,7 +259,7 @@ export default function TermsPage() {
                 These Terms are governed by and construed in accordance with the laws of India.
                 Any dispute arising out of or in connection with these Terms, or with any purchase
                 from Jain Jewells, shall be subject to the exclusive jurisdiction of the courts of
-                Jaipur, Rajasthan. We will always attempt to resolve any concern amicably before
+                Ludhiana, Punjab. We will always attempt to resolve any concern amicably before
                 formal proceedings.
               </p>
             </div>
@@ -325,7 +325,7 @@ export default function TermsPage() {
 
         {/* Footer note */}
         <p className="mt-12 pt-6 border-t border-[#f6efe4]/10 text-xs text-[#857768] text-center">
-          © 1984 – {new Date().getFullYear()} Jain Jewells, Jaipur. All Rights Reserved.
+          © 1984 – {new Date().getFullYear()} Jain Jewells, Ludhiana. All Rights Reserved.
         </p>
       </div>
     </main>

@@ -37,13 +37,13 @@ export interface ShowroomInfo {
 export const SHOWROOM_DETAILS: ShowroomInfo = {
   name: "Jain Jewells Flagship Showroom",
   tagline: "Heritage Craftsmanship & Timeless Elegance Since 1984",
-  address: "104-108, Heritage Jewellery Plaza, Palace Road, C-Scheme",
-  cityStatePincode: "Jaipur, Rajasthan 302001",
-  landmarks: ["Opposite Royal Palace Gate", "Next to Central Museum Square"],
-  phone: ["+91 141 234 5678", "+91 98290 12345"],
+  address: "104-108, Heritage Jewellery Plaza, Ferozepur Road, Gurdev Nagar",
+  cityStatePincode: "Ludhiana, Punjab 141001",
+  landmarks: ["Opposite Lodhi Club", "Near Gurdev Nagar Market"],
+  phone: ["+91 161 234 5678", "+91 98290 12345"],
   whatsapp: "+919829012345",
   email: "concierge@jainjewells.com",
-  googleMapsUrl: "https://maps.google.com/?q=Jain+Jewells+Jaipur",
+  googleMapsUrl: "https://maps.google.com/?q=Jain+Jewells+Ludhiana",
   hours: {
     weekdays: "10:30 AM – 8:30 PM (Mon – Sat)",
     sunday: "11:30 AM – 7:30 PM (Sun)",
@@ -81,37 +81,40 @@ export interface MetalRate {
   unit: string;
 }
 
+// Baseline snapshot, used only until the live market feed responds on page load.
+// The live numbers are fetched from /api/rates, which recomputes from spot metal
+// prices and the USD/INR exchange rate every few minutes.
 export const LIVE_METAL_RATES: MetalRate[] = [
   {
     metal: "24K Gold",
     purity: "99.9% Pure Fine Gold",
-    ratePerGram: 7485,
-    change: "+₹35 (+0.47%)",
+    ratePerGram: 12492,
+    change: "Live spot",
     isPositive: true,
     unit: "per gram",
   },
   {
     metal: "22K Gold",
     purity: "91.6% BIS Hallmarked",
-    ratePerGram: 6860,
-    change: "+₹30 (+0.44%)",
+    ratePerGram: 11443,
+    change: "Live spot",
     isPositive: true,
     unit: "per gram",
   },
   {
     metal: "18K Gold",
     purity: "75.0% Designer Gold",
-    ratePerGram: 5615,
-    change: "+₹25 (+0.45%)",
+    ratePerGram: 9369,
+    change: "Live spot",
     isPositive: true,
     unit: "per gram",
   },
   {
     metal: "999 Fine Silver",
     purity: "99.9% Sterling Silver",
-    ratePerGram: 93.5,
-    change: "-₹0.20 (-0.21%)",
-    isPositive: false,
+    ratePerGram: 156.34,
+    change: "Live spot",
+    isPositive: true,
     unit: "per gram",
   },
 ];
@@ -129,7 +132,7 @@ export const PRODUCTS_DATA: Product[] = [
     gemstone: "Uncut Diamonds (Polki) & Zambian Emerald Drop Beads",
     certification: "BIS Hallmarked & In-House Authenticity Certificate",
     image: "https://images.unsplash.com/photo-1601121141461-9d6647bca1ed?auto=format&fit=crop&w=1200&q=85",
-    description: "Handcrafted by 4th generation Jaipur artisans, featuring intricate meenakari work on the reverse and regal Zambian emerald clusters.",
+    description: "Handcrafted by 4th generation Ludhiana artisans, featuring intricate meenakari work on the reverse and regal Zambian emerald clusters.",
     isBestSeller: true,
     makingChargePercent: 14,
   },
@@ -247,7 +250,7 @@ export const PRODUCTS_DATA: Product[] = [
 export const TESTIMONIALS = [
   {
     name: "Meera & Siddharth Agarwal",
-    city: "Jaipur & Delhi",
+    city: "Ludhiana & Delhi",
     occasion: "Bridal Shopping",
     quote: "Jain Jewells made our daughter's wedding trousseau shopping extraordinary. The private bridal lounge allowed us to curate bespoke Polki and Kundan sets with full transparency on gold weight and gemstone carats.",
     rating: 5,

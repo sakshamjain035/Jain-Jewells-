@@ -12,7 +12,7 @@ const HERO_SLIDES = [
   {
     title: "Royal Rajwadi Polki & Kundan Bridal Couture",
     subtitle:
-      "Handcrafted heritage heirlooms for the modern Indian bride — set by hand in Jaipur, one stone at a time.",
+      "Handcrafted heritage heirlooms for the modern Indian bride — set by hand in Ludhiana, one stone at a time.",
     image:
       "https://images.unsplash.com/photo-1599459183200-59c7687a0275?auto=format&fit=crop&w=2200&q=88",
     tag: "Bridal Showcase 2026",
@@ -30,9 +30,9 @@ const HERO_SLIDES = [
     ctaLink: "#collections",
   },
   {
-    title: "Mastercrafted Antique Gold, in the Jaipur Tradition",
+    title: "Mastercrafted Antique Gold, from the Ludhiana Atelier",
     subtitle:
-      "22K BIS hallmarked 916 gold, sculpted by fourth-generation artisans in the ateliers of the Pink City.",
+      "22K BIS hallmarked 916 gold, sculpted by fourth-generation artisans in our Ludhiana atelier.",
     image:
       "https://images.unsplash.com/photo-1601121141461-9d6647bca1ed?auto=format&fit=crop&w=2200&q=88",
     tag: "Heritage Ateliers",
@@ -87,7 +87,7 @@ export const Hero: React.FC<HeroProps> = ({ onOpenAppointment }) => {
       <div className="hidden xl:flex absolute right-8 top-1/2 -translate-y-1/2 z-20 flex-col items-center gap-5">
         <span className="w-px h-16 bg-gradient-to-b from-transparent to-[#c8a05c]/50" />
         <span className="[writing-mode:vertical-rl] text-[9px] uppercase tracking-[0.4em] text-[#ecd8ae]/60">
-          The House of Jain · Jaipur
+          The House of Jain · Ludhiana
         </span>
         <span className="w-px h-16 bg-gradient-to-t from-transparent to-[#c8a05c]/50" />
       </div>
@@ -145,7 +145,7 @@ export const Hero: React.FC<HeroProps> = ({ onOpenAppointment }) => {
             {[
               { icon: ShieldCheck, title: "BIS 916 Hallmarked", note: "6-digit HUID" },
               { icon: Award, title: "GIA & IGI Certified", note: "Natural diamonds" },
-              { icon: MapPin, title: "Jaipur Flagship", note: "Since 1984" },
+              { icon: MapPin, title: "Ludhiana Flagship", note: "Since 1984" },
             ].map((item) => (
               <div
                 key={item.title}

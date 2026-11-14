@@ -87,7 +87,7 @@ export const BespokeStudio: React.FC = () => {
             </h2>
           </div>
           <p className="text-[#a99987] text-xs sm:text-sm font-light leading-[1.9] max-w-sm lg:text-right">
-            Sketch an idea with our master goldsmiths in Jaipur. From the first line to the final polish, the piece is yours alone.
+            Sketch an idea with our master goldsmiths in Ludhiana. From the first line to the final polish, the piece is yours alone.
           </p>
         </div>
 
@@ -253,7 +253,7 @@ export const BespokeStudio: React.FC = () => {
                       <span className="text-[#c8a05c] text-[10px] uppercase tracking-[0.2em] block mb-2">Step 04</span>
                       Your budget &amp; details
                     </h3>
-                    <p className="text-[11px] text-[#a99987] font-light">Finalise your commission inquiry for our Jaipur master artisans.</p>
+                    <p className="text-[11px] text-[#a99987] font-light">Finalise your commission inquiry for our Ludhiana master artisans.</p>
                   </div>
 
                   <div>
@@ -349,7 +349,7 @@ export const BespokeStudio: React.FC = () => {
                 Your vision is in our hands
               </h3>
               <p className="text-[11px] text-[#a99987] font-light leading-relaxed max-w-md mx-auto mb-7">
-                Thank you, <strong className="text-[#f6efe4] font-normal">{formData.fullName}</strong>. A senior designer at Jain Jewells Jaipur will review your specifications for a {formData.jewelryType}.
+                Thank you, <strong className="text-[#f6efe4] font-normal">{formData.fullName}</strong>. A senior designer at Jain Jewells Ludhiana will review your specifications for a {formData.jewelryType}.
               </p>
 
               <div className="flex flex-col sm:flex-row items-center justify-center gap-3">

@@ -336,7 +336,7 @@ export default function PrivacyPage() {
 
         {/* Footer note */}
         <p className="mt-12 pt-6 border-t border-[#f6efe4]/10 text-xs text-[#857768] text-center">
-          © 1984 – {new Date().getFullYear()} Jain Jewells, Jaipur. All Rights Reserved.
+          © 1984 – {new Date().getFullYear()} Jain Jewells, Ludhiana. All Rights Reserved.
         </p>
       </div>
     </main>

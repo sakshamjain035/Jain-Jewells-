@@ -2,7 +2,8 @@
 
 import React, { useState, useEffect } from "react";
 import { Logo } from "./Logo";
-import { SHOWROOM_DETAILS, LIVE_METAL_RATES } from "@/data/jewelryData";
+import { SHOWROOM_DETAILS } from "@/data/jewelryData";
+import { useLiveRates } from "@/hooks/useLiveRates";
 import {
   Phone,
   Calendar,
@@ -50,7 +51,8 @@ export const Header: React.FC<HeaderProps> = ({
     };
   }, [mobileMenuOpen]);
 
-  const gold22kRate = LIVE_METAL_RATES.find((r) => r.metal === "22K Gold");
+  const { data: liveRates } = useLiveRates();
+  const gold22kRate = liveRates.rates.find((r) => r.metal === "22K Gold");
 
   return (
     <header className="sticky top-0 z-40 w-full">
@@ -220,7 +222,7 @@ export const Header: React.FC<HeaderProps> = ({
               {SHOWROOM_DETAILS.phone[0]}
             </a>
             <p className="text-[10px] uppercase tracking-[0.24em] text-[#857768] text-center pt-4">
-              Jaipur · Established 1984
+              Ludhiana · Established 1984
             </p>
           </div>
         </div>

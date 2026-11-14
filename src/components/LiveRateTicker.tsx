@@ -1,16 +1,19 @@
 "use client";
 
 import React, { useState } from "react";
-import { LIVE_METAL_RATES, SHOWROOM_DETAILS } from "@/data/jewelryData";
+import { SHOWROOM_DETAILS } from "@/data/jewelryData";
+import { useLiveRates } from "@/hooks/useLiveRates";
+import { formatRateTime } from "@/lib/liveRates";
 import { Calculator, RefreshCw, Info, ArrowRight, MessageSquare } from "lucide-react";
 
 export const LiveRateTicker: React.FC = () => {
+  const { data, isRefreshing, refresh } = useLiveRates();
   const [selectedRateIndex, setSelectedRateIndex] = useState(1); // 22K default
   const [gramWeight, setGramWeight] = useState<number>(10);
   const [makingChargePercent, setMakingChargePercent] = useState<number>(12);
-  const [lastRefreshed] = useState<string>("Today, 10:30 AM IST");
 
-  const activeRateObj = LIVE_METAL_RATES[selectedRateIndex];
+  const rates = data.rates;
+  const activeRateObj = rates[Math.min(selectedRateIndex, rates.length - 1)];
   const metalCost = gramWeight * activeRateObj.ratePerGram;
   const makingCost = metalCost * (makingChargePercent / 100);
   const subtotal = metalCost + makingCost;
@@ -28,18 +31,18 @@ export const LiveRateTicker: React.FC = () => {
           <div className="max-w-2xl">
             <span className="lux-eyebrow block mb-4">Transparent by Design</span>
             <h2 className="text-[2.2rem] sm:text-[3.2rem] font-light text-[#f6efe4] leading-[1.05]">
-              Today&apos;s Live Metal Rates<br className="hidden sm:block" />
+              Today&apos;s Live Metal &amp; Diamond Rates<br className="hidden sm:block" />
               <span className="italic text-[#ecd8ae]"> &amp; Atelier Estimator</span>
             </h2>
           </div>
           <p className="text-[#a99987] text-xs sm:text-sm font-light leading-[1.9] max-w-sm lg:text-right">
-            A pure rate board, refreshed twice daily at our Jaipur showroom. Estimate any piece with complete clarity — no hidden charges.
+            A live market board, refreshed every time you visit our Ludhiana showroom. Estimate any piece with complete clarity — no hidden charges.
           </p>
         </div>
 
         {/* Live Rate Cards Grid */}
-        <div className="lux-reveal grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-px bg-[#f6efe4]/10 border border-[#f6efe4]/10 mb-14">
-          {LIVE_METAL_RATES.map((rate, idx) => (
+        <div className="lux-reveal grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-px bg-[#f6efe4]/10 border border-[#f6efe4]/10 mb-6">
+          {rates.map((rate, idx) => (
             <div
               key={rate.metal}
               onClick={() => setSelectedRateIndex(idx)}
@@ -71,6 +74,41 @@ export const LiveRateTicker: React.FC = () => {
           ))}
         </div>
 
+        {/* Diamond Reference Board */}
+        <div className="lux-reveal mb-4 border border-[#f6efe4]/10 bg-[#120c0b]">
+          <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-3 p-6 sm:p-7 border-b border-[#f6efe4]/10">
+            <div>
+              <span className="lux-eyebrow block mb-2">Certified Natural Diamonds</span>
+              <h3 className="text-xl font-serif-luxury font-light text-[#f6efe4]">
+                Diamond Rate Board
+                <span className="text-[10px] font-light text-[#857768] tracking-[0.04em]"> · per carat, round brilliant</span>
+              </h3>
+            </div>
+            <p className="text-[10px] text-[#857768] font-light leading-relaxed max-w-sm sm:text-right">
+              Weekly Rapaport-linked reference, converted at today&apos;s live USD/INR rate.
+              Final price varies with cut, clarity, colour and certification.
+            </p>
+          </div>
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-px bg-[#f6efe4]/10">
+            {data.diamonds.map((diamond) => (
+              <div key={diamond.metal} className="bg-[#150d0c] p-6 hover:bg-[#1b1110] transition-colors">
+                <span className="text-[10px] uppercase tracking-[0.2em] text-[#e0d4c2] block">
+                  {diamond.metal}
+                </span>
+                <span className="text-[10px] text-[#857768] block mt-1 mb-4">{diamond.purity}</span>
+                <div className="text-[1.45rem] font-serif-luxury font-light text-[#ecd8ae]">
+                  ₹{diamond.ratePerCarat.toLocaleString("en-IN")}
+                  <span className="text-[10px] font-light text-[#857768] ml-1.5">/ {diamond.unit}</span>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        <p className="lux-reveal text-[9px] tracking-[0.06em] text-[#857768] mb-12">
+          Indicative Ludhiana retail rates, inclusive of 6% import duty and exclusive of 3% GST.
+        </p>
+
         {/* Interactive Estimator Tool */}
         <div className="lux-reveal bg-[#150d0c] border border-[#f6efe4]/10 p-6 sm:p-10 grid grid-cols-1 lg:grid-cols-12 gap-10 items-stretch">
           {/* Controls side */}
@@ -80,9 +118,18 @@ export const LiveRateTicker: React.FC = () => {
                 <Calculator className="w-4 h-4 text-[#c8a05c]" strokeWidth={1.3} />
                 Atelier Cost Estimator
               </h3>
-              <span className="text-[9px] uppercase tracking-[0.16em] text-[#857768] flex items-center gap-1.5">
-                <RefreshCw className="w-2.5 h-2.5 text-[#c8a05c]" /> Updated {lastRefreshed}
-              </span>
+              <button
+                type="button"
+                onClick={() => void refresh()}
+                title="Refresh market rates"
+                className="text-[9px] uppercase tracking-[0.16em] text-[#857768] flex items-center gap-1.5 hover:text-[#ecd8ae] transition-colors"
+              >
+                <RefreshCw
+                  className={`w-2.5 h-2.5 text-[#c8a05c] ${isRefreshing ? "animate-spin" : ""}`}
+                  strokeWidth={1.6}
+                />
+                Updated {formatRateTime(data.updatedAt)}
+              </button>
             </div>
 
             {/* Metal Selector Tabs */}
@@ -91,7 +138,7 @@ export const LiveRateTicker: React.FC = () => {
                 01 — Select Metal
               </label>
               <div className="grid grid-cols-2 sm:grid-cols-4 gap-2">
-                {LIVE_METAL_RATES.map((r, idx) => (
+                {rates.map((r, idx) => (
                   <button
                     key={r.metal}
                     onClick={() => setSelectedRateIndex(idx)}
@@ -164,7 +211,7 @@ export const LiveRateTicker: React.FC = () => {
               <h4 className="text-[9px] text-[#c8a05c] uppercase tracking-[0.24em] border-b border-[#f6efe4]/10 pb-4 mb-5">
                 Price Breakdown
               </h4>
-              
+
               <div className="flex flex-col gap-3.5 text-[11px] font-light">
                 <div className="flex justify-between gap-3 text-[#a99987]">
                   <span>Metal value · {gramWeight}g @ ₹{activeRateObj.ratePerGram}/g</span>

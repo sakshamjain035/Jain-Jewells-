@@ -18,7 +18,7 @@ export const CreateLeadModal: React.FC<CreateLeadModalProps> = ({
     name: "",
     phone: "",
     email: "",
-    city: "Jaipur",
+    city: "Ludhiana",
     source: "Direct Walk-in",
     priority: "High",
     interestedCategory: "Bridal Couture & Kundan",
@@ -170,7 +170,7 @@ export const CreateLeadModal: React.FC<CreateLeadModalProps> = ({
                 type="text"
                 value={formData.city}
                 onChange={(e) => setFormData({ ...formData, city: e.target.value })}
-                placeholder="e.g. Jaipur"
+                placeholder="e.g. Ludhiana"
                 className="w-full bg-[#1b1110] border border-[#f6efe4]/15 focus:border-[#c8a05c] text-[#f6efe4] rounded-none p-3 outline-none"
               />
             </div>

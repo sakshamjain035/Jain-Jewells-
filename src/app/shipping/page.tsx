@@ -110,7 +110,7 @@ export default function ShippingPage() {
               <p>
                 Jain Jewells is headquartered at {SHOWROOM_DETAILS.address},{" "}
                 {SHOWROOM_DETAILS.cityStatePincode}, and dispatches all online orders from our
-                Jaipur showroom. This Shipping &amp; Delivery Policy forms part of our Terms &amp;
+                Ludhiana showroom. This Shipping &amp; Delivery Policy forms part of our Terms &amp;
                 Conditions and applies to every order placed through this website.
               </p>
               <p>
@@ -298,7 +298,7 @@ export default function ShippingPage() {
 
         {/* Footer note */}
         <p className="mt-12 pt-6 border-t border-[#f6efe4]/10 text-xs text-[#857768] text-center">
-          © 1984 – {new Date().getFullYear()} Jain Jewells, Jaipur. All Rights Reserved.
+          © 1984 – {new Date().getFullYear()} Jain Jewells, Ludhiana. All Rights Reserved.
         </p>
       </div>
     </main>

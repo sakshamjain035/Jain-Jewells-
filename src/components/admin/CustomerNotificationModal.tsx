@@ -163,7 +163,7 @@ export const CustomerNotificationModal: React.FC<CustomerNotificationModalProps>
                   JAIN JEWELLS
                 </div>
                 <span className="text-[10px] text-[#857768] tracking-widest uppercase block">
-                  Fine Jewellery Atelier • Jaipur
+                  Fine Jewellery Atelier • Ludhiana
                 </span>
               </div>
 

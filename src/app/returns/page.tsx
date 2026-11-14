@@ -208,7 +208,7 @@ export default function ReturnsPage() {
                 <li>Exchange value is calculated on the prevailing market rate of gold and/or diamonds at the time of exchange, less applicable making charges as per our policy.</li>
                 <li>The new piece&apos;s value must equal or exceed the exchange value of your returned piece; the balance is payable at the prevailing rate.</li>
                 <li>Solitaire and certified diamond pieces are valued based on the current stone market plus the gold value.</li>
-                <li>Exchange is available at our Jaipur showroom; for online orders, our concierge team will guide you through the process.</li>
+                <li>Exchange is available at our Ludhiana showroom; for online orders, our concierge team will guide you through the process.</li>
                 <li>Worn or altered pieces are still eligible for exchange — this is our commitment to you for life.</li>
               </ul>
             </div>
@@ -300,7 +300,7 @@ export default function ReturnsPage() {
 
         {/* Footer note */}
         <p className="mt-12 pt-6 border-t border-[#f6efe4]/10 text-xs text-[#857768] text-center">
-          © 1984 – {new Date().getFullYear()} Jain Jewells, Jaipur. All Rights Reserved.
+          © 1984 – {new Date().getFullYear()} Jain Jewells, Ludhiana. All Rights Reserved.
         </p>
       </div>
     </main>

@@ -68,7 +68,7 @@ export const AppointmentModal: React.FC<AppointmentModalProps> = ({ isOpen, onCl
                 A Private Viewing
               </h3>
               <p className="text-[10.5px] text-[#a99987] font-light leading-relaxed mt-2 max-w-sm mx-auto">
-                Reserve a private suite at our Jaipur showroom with a dedicated jewellery stylist.
+                Reserve a private suite at our Ludhiana showroom with a dedicated jewellery stylist.
               </p>
             </div>
 

@@ -50,7 +50,7 @@ export const Logo: React.FC<LogoProps> = ({ className = "", size = "md" }) => {
           Jain Jewells
         </span>
         <span className="text-[7.5px] sm:text-[8px] tracking-[0.42em] text-[#a99987] uppercase mt-1.5 font-normal">
-          Jaipur · Est. 1984
+          Ludhiana · Est. 1984
         </span>
       </div>
     </div>

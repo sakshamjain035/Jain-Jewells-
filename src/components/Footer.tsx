@@ -47,7 +47,7 @@ export const Footer: React.FC = () => {
 
           <div className="lg:col-span-6 lg:pl-10">
             <p className="text-[11px] text-[#a99987] font-light leading-[1.8] mb-5 max-w-md">
-              A considered letter from our Jaipur atelier — new collections, bridal previews and daily metal alerts. No noise.
+              A considered letter from our Ludhiana atelier — new collections, bridal previews and daily metal alerts. No noise.
             </p>
 
             {!subscribed ? (
@@ -90,7 +90,7 @@ export const Footer: React.FC = () => {
           <div className="lg:col-span-5 flex flex-col gap-6 pr-0 lg:pr-14">
             <Logo size="lg" />
             <p className="text-[11px] text-[#a99987] font-light leading-[1.95] max-w-sm">
-              Jain Jewells is a Jaipur maison of fine jewellery — 100% BIS hallmarked gold, GIA certified solitaires, royal Polki couture and bespoke artistry, since 1984.
+              Jain Jewells is a Ludhiana maison of fine jewellery — 100% BIS hallmarked gold, GIA certified solitaires, royal Polki couture and bespoke artistry, since 1984.
             </p>
             <div className="flex flex-wrap items-center gap-x-6 gap-y-3 pt-1">
               <span className="flex items-center gap-2 text-[9px] uppercase tracking-[0.16em] text-[#a99987]">
@@ -185,7 +185,7 @@ export const Footer: React.FC = () => {
         {/* Bottom bar */}
         <div className="pb-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-[9px] uppercase tracking-[0.16em] text-[#857768] border-t border-[#f6efe4]/8 pt-6">
           <div>
-            © 1984–{new Date().getFullYear()} Jain Jewells · Jaipur
+            © 1984–{new Date().getFullYear()} Jain Jewells · Ludhiana
           </div>
           <div className="text-center text-[8px] tracking-[0.18em]">
             BIS Hallmark HUID guaranteed · All rights reserved

@@ -43,8 +43,8 @@ export const ProductCatalog: React.FC<ProductCatalogProps> = ({
   const [buyerName, setBuyerName] = useState("");
   const [buyerPhone, setBuyerPhone] = useState("");
   const [buyerEmail, setBuyerEmail] = useState("");
-  const [buyerCity, setBuyerCity] = useState("Jaipur");
-  const [buyerAddress, setBuyerAddress] = useState("B-4, C-Scheme");
+  const [buyerCity, setBuyerCity] = useState("Ludhiana");
+  const [buyerAddress, setBuyerAddress] = useState("B-4, Gurdev Nagar");
   const [isOrdering, setIsOrdering] = useState(false);
 
   const categories = [
@@ -372,7 +372,7 @@ export const ProductCatalog: React.FC<ProductCatalogProps> = ({
 
                   <div>
                     <span className="text-[#857768] text-[8px] uppercase tracking-[0.18em] block mb-1">Availability</span>
-                    <strong className="text-[#c8a05c] font-normal">Ready in the Jaipur showroom</strong>
+                    <strong className="text-[#c8a05c] font-normal">Ready in the Ludhiana showroom</strong>
                   </div>
                 </div>
 
@@ -465,8 +465,8 @@ export const ProductCatalog: React.FC<ProductCatalogProps> = ({
                           shippingAddress: {
                             street: buyerAddress,
                             city: buyerCity,
-                            state: "Rajasthan",
-                            pincode: "302001",
+                            state: "Punjab",
+                            pincode: "141001",
                           },
                           items: [
                             {
